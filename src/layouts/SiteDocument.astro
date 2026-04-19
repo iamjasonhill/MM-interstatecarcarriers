@@ -46,6 +46,7 @@ function stripEntityContext(schema: GraphEntity) {
 const canonicalUrl = toAbsoluteUrl(canonicalPath);
 const imageUrl = toAbsoluteUrl(image);
 const sitemapUrl = toAbsoluteUrl('/sitemap-index.xml');
+const rssUrl = toAbsoluteUrl('/rss.xml');
 const resolvedGraph = schemas.length
   ? assembleGraph(
       schemas.map((schema) => stripEntityContext(schema)),
@@ -73,6 +74,7 @@ const resolvedGraph = schemas.length
       graph={resolvedGraph}
       extraLinks={[
         { rel: 'icon', type: 'image/svg+xml', href: site.seoAssets.favicon },
+        { rel: 'alternate', type: 'application/rss+xml', title: `${site.name} RSS Feed`, href: rssUrl },
         { rel: 'sitemap', href: sitemapUrl },
       ]}
       extraMeta={[

@@ -40,6 +40,10 @@ async function main() {
     'SiteDocument renders Analytics',
     siteDocument.includes('<Analytics />'),
   ]);
+  checks.push([
+    'SiteDocument links RSS feed',
+    siteDocument.includes("type: 'application/rss+xml'"),
+  ]);
 
   const siteConfig = await read('src/config/site.ts');
   checks.push([
@@ -50,6 +54,14 @@ async function main() {
     'site config exposes analytics on site object',
     siteConfig.includes('analytics: resolveAnalyticsConfig()'),
   ]);
+
+  for (const relativePath of [
+    'src/pages/rss.xml.ts',
+    'docs/nonindexed-redirect-report.md',
+    'docs/nonindexed-redirect-strategy.md',
+  ]) {
+    checks.push([`${relativePath} exists`, await exists(relativePath)]);
+  }
 
   const envExample = await read('.env.example');
   for (const key of [

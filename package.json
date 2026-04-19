@@ -19,6 +19,7 @@
     "format:check": "prettier --check ."
   },
   "dependencies": {
+    "@astrojs/rss": "^4.0.18",
     "@astrojs/sitemap": "^3.7.1",
     "@astrojs/vercel": "^10.0.2",
     "@jdevalk/astro-seo-graph": "^1.2.0",

@@ -18,6 +18,7 @@ This folder is the new first-class site home for Interstate Car Carriers inside 
 - real quote and contact handoff targets
 - support/content pages for the main broken inherited URLs
 - terms, privacy-policy, and sitemap support pages
+- RSS feed support for evergreen guide/service pages
 - dynamic route rendering from imported WordPress source files
 - `@jdevalk/astro-seo-graph` integration and shared `<Seo>` document layout
 - dynamic `robots.txt`
@@ -46,6 +47,7 @@ npm run import:routes:batches
 - dynamic route renderer: `src/pages/[routeSlug].astro`
 - route source data: `src/data/routes/source/`
 - HTML sitemap: `src/pages/sitemap.astro`
+- RSS feed: `src/pages/rss.xml.ts`
 - robots route: `src/pages/robots.txt.ts`
 - manifest: `brain.manifest.json`
 
@@ -62,3 +64,5 @@ Analytics is now enforced at the repo-contract level too. The shared analytics a
 - `docs/indexed-valid-inventory.md`
 - `docs/homepage-audit.md`
 - `docs/live-cutover-status.md`
+- `docs/nonindexed-redirect-strategy.md`
+- `docs/nonindexed-redirect-report.md`

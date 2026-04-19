@@ -1,0 +1,172 @@
+---
+import SiteDocument from '../layouts/SiteDocument.astro';
+import RoutePageTemplate from '../components/RoutePageTemplate.astro';
+import { site, toAbsoluteUrl } from '../config/site';
+
+const routeBenefits = [
+  {
+    title: 'A strong east-coast capital corridor',
+    body: 'Brisbane to Melbourne is a major interstate lane that usually benefits from clearer demand, more regular carrier movement, and simpler planning than thinner regional routes.',
+  },
+  {
+    title: 'Useful for moves, purchases, and handovers',
+    body: 'This corridor often suits private relocations, interstate purchases, dealer transfers, and owners who want the vehicle delivered south without taking the drive on themselves.',
+  },
+  {
+    title: 'Works for standard and more sensitive jobs',
+    body: 'Many everyday vehicles can start with a standard quote, while prestige, specialist, or non-drivable jobs can still be assessed through the same quote and contact flow.',
+  },
+];
+
+const whyUseTransport = [
+  {
+    title: 'Less wear over a long interstate run',
+    body: 'Keeping kilometres off the odometer helps reduce tyre, mechanical, and condition wear that comes with a long Brisbane-to-Melbourne drive.',
+  },
+  {
+    title: 'More time for the rest of the move',
+    body: 'If the transport sits inside a relocation or a purchase handover, passing the vehicle to a carrier gives you more room to focus on everything else.',
+  },
+  {
+    title: 'Safer than pushing through a very long drive',
+    body: 'Fatigue, traffic conditions, and unexpected issues become a bigger part of the risk when you decide to handle the whole interstate drive yourself.',
+  },
+  {
+    title: 'A cleaner fit for multi-vehicle jobs',
+    body: 'This corridor often suits dealer work, fleet handovers, and moves where more than one vehicle needs to be coordinated properly.',
+  },
+];
+
+const planningSignals = [
+  {
+    heading: 'When the standard quote is usually enough',
+    copy: 'If the vehicle is drivable, the route is straightforward, and pickup and delivery conditions are normal, start with the vehicle quote wizard.',
+  },
+  {
+    heading: 'When to contact the team first',
+    copy: 'Use the contact path if the vehicle is non-drivable, access is awkward, enclosed handling is likely, or the timing needs more discussion before booking.',
+  },
+  {
+    heading: 'What often affects this route most',
+    copy: 'Timing windows, carrier availability, and whether the handover is depot, home delivery, or dealership-led usually matter more than broad route copy.',
+  },
+];
+
+const routeChecklist = [
+  'Confirm whether the vehicle is standard, modified, prestige, or non-drivable.',
+  'Know the collection and delivery setup before you start the quote.',
+  'Flag tight timing windows early if the move sits around a relocation, sale, or delivery commitment.',
+  'Use contact instead of guessing if the route or handover conditions are not straightforward.',
+];
+
+const iccAdvantages = [
+  'A clean quote path for standard east-coast jobs and a contact path for anything higher-touch.',
+  'Support for standard vehicles, prestige jobs, and more specialist transport planning.',
+  'Door, depot, and handover options depending on what best fits the move and the corridor.',
+];
+
+const corridorJobs = [
+  {
+    title: 'Household relocation moves',
+    detail: 'A common fit when people are moving between Queensland and Victoria and do not want to add a long interstate drive to the move.',
+  },
+  {
+    title: 'Interstate purchases and dealer sales',
+    detail: 'This route often suits online vehicle purchases and dealer handovers where the buyer wants the vehicle delivered south without collecting it in person.',
+  },
+  {
+    title: 'Business and fleet coordination',
+    detail: 'Because the corridor is active, dealer, fleet, and business handover jobs can often be planned more cleanly than on lower-volume routes.',
+  },
+];
+
+const pageSchemas = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    '@id': toAbsoluteUrl('/#organization'),
+    name: site.name,
+    url: site.url,
+    description: site.defaultDescription,
+    logo: toAbsoluteUrl(site.seoAssets.favicon),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    '@id': toAbsoluteUrl('/#website'),
+    url: site.url,
+    name: site.name,
+    description: site.defaultDescription,
+    publisher: {
+      '@id': toAbsoluteUrl('/#organization'),
+    },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': toAbsoluteUrl('/car-transport-brisbane-melbourne/#webpage'),
+    url: toAbsoluteUrl('/car-transport-brisbane-melbourne/'),
+    name: `Car Transport Brisbane To Melbourne | ${site.name}`,
+    description:
+      'Interstate car transport guide for the Brisbane to Melbourne route, including when to quote online and when to contact the team first.',
+    isPartOf: {
+      '@id': toAbsoluteUrl('/#website'),
+    },
+    about: {
+      '@id': toAbsoluteUrl('/#organization'),
+    },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    '@id': toAbsoluteUrl('/car-transport-brisbane-melbourne/#service'),
+    name: 'Car transport from Brisbane to Melbourne',
+    description:
+      'Interstate vehicle transport guidance for the Brisbane to Melbourne corridor, covering standard quotes, specialist handling, and route planning.',
+    provider: {
+      '@id': toAbsoluteUrl('/#organization'),
+    },
+    areaServed: 'Australia',
+    serviceType: 'Interstate vehicle transport',
+  },
+];
+---
+
+<SiteDocument
+  title={`Car Transport Brisbane To Melbourne | ${site.name}`}
+  description="Interstate car transport guide for the Brisbane to Melbourne route, including when to quote online and when to contact the team first."
+  canonicalPath="/car-transport-brisbane-melbourne/"
+  schemas={pageSchemas}
+>
+  <RoutePageTemplate
+    heroEyebrow="High-frequency interstate route"
+    title="Car transport from Brisbane to Melbourne"
+    intro="Brisbane to Melbourne is a major east-coast vehicle corridor that regularly suits relocations, interstate purchases, and cleaner handovers for long-distance moves. For many customers, using professional transport is less about complexity and more about avoiding a long interstate drive and keeping the move organised."
+    panelRouteTitle="Brisbane to Melbourne"
+    panelRouteCopy="Busy east-coast capital corridor with standard vehicle moves, specialist handling, and purchase-driven demand."
+    panelBestStep="Quote online for standard east-coast jobs"
+    panelUseContact="Timing or specialist handling needs discussion"
+    bridgeHeading="A strong corridor usually means cleaner quoting and better route fit."
+    bridgeCopy="On a lane like Brisbane to Melbourne, the real decision is usually not whether the move can happen. It is whether the vehicle, the timing, and the collection conditions fit a standard booking path or need a more careful conversation first."
+    benefitsHeading="Three useful things about the Brisbane to Melbourne lane"
+    benefits={routeBenefits}
+    whyHeading="Why people use car transport from Brisbane to Melbourne"
+    whyLeadTitle="Most people book this lane to avoid a very long east-coast drive"
+    whyLeadBody="For relocations, vehicle purchases, and handovers, the biggest advantage is often simple: you do not need to spend a long stretch on the road, organise fuel and stopovers, and add unnecessary kilometres to the vehicle just to get it south."
+    corridorNoteTitle="Why this lane is easier to plan than many lower-volume routes"
+    corridorNoteBody="Brisbane to Melbourne usually benefits from clearer demand, more familiar metro pickup and delivery conditions, and stronger carrier movement than thinner regional corridors."
+    whyCards={whyUseTransport}
+    planningHeading="Use the route properly, not just the route name."
+    planningIntro="On a route like Brisbane to Melbourne, the smartest next step depends less on the city pair itself and more on the vehicle, the handover setup, and how fixed the timing really is."
+    planningSignals={planningSignals}
+    advantageHeading="The kinds of jobs that most often sit on this corridor"
+    advantageIntro="This is where the route-specific logic comes back in. Brisbane to Melbourne is not just a line between capitals. It is a corridor that regularly carries relocation, purchase, dealer, and handover jobs that benefit from cleaner planning."
+    corridorJobs={corridorJobs}
+    advantages={iccAdvantages}
+    checklistHeading="Have the route details clear before you start."
+    checklistIntro="The clearer the route, handover, and vehicle details are up front, the easier it is to tell whether a standard quote is enough or whether this move should go straight to the team."
+    checklist={routeChecklist}
+    ctaHeading="Ready to quote Brisbane to Melbourne vehicle transport?"
+    ctaSub="Start with the vehicle quote if the job is straightforward, or use the contact path if the route, access, or handling needs a more detailed discussion first."
+  />
+</SiteDocument>

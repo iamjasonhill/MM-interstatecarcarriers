@@ -1,0 +1,355 @@
+---
+import SiteDocument from '../layouts/SiteDocument.astro';
+import { site, toAbsoluteUrl } from '../config/site';
+
+const pageSchemas = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    '@id': toAbsoluteUrl('/#organization'),
+    name: site.name,
+    url: site.url,
+    description: site.defaultDescription,
+    logo: toAbsoluteUrl(site.seoAssets.favicon),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    '@id': toAbsoluteUrl('/#website'),
+    url: site.url,
+    name: site.name,
+    description: site.defaultDescription,
+    publisher: {
+      '@id': toAbsoluteUrl('/#organization'),
+    },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': toAbsoluteUrl('/terms/#webpage'),
+    url: toAbsoluteUrl('/terms/'),
+    name: `Terms Of Use | ${site.name}`,
+    description:
+      'Website terms for Interstate Car Carriers covering quotes, bookings, route timing, contracted carriers, and transport conditions.',
+    isPartOf: {
+      '@id': toAbsoluteUrl('/#website'),
+    },
+    about: {
+      '@id': toAbsoluteUrl('/#organization'),
+    },
+  },
+];
+---
+
+<SiteDocument
+  title={`Terms Of Use | ${site.name}`}
+  description="Website terms for Interstate Car Carriers covering quotes, bookings, route timing, contracted carriers, and transport conditions."
+  canonicalPath="/terms/"
+  schemas={pageSchemas}
+>
+  <section class="legal-hero">
+    <div class="container legal-hero-inner">
+      <span class="section-rule" aria-hidden="true"></span>
+      <p class="eyebrow">Terms Of Use</p>
+      <h1 class="display-lg legal-title">Website terms for quotes, bookings, and transport planning.</h1>
+      <p class="legal-intro">
+        These terms explain how Interstate Car Carriers presents information on this website, how
+        quote and contact pathways should be used, and the assumptions customers should make before
+        relying on pricing, timing, or transport availability.
+      </p>
+      <p class="legal-updated">Last updated: 19 April 2026</p>
+    </div>
+  </section>
+
+  <section class="legal-summary">
+    <div class="container legal-summary-inner">
+      <div>
+        <p class="eyebrow">Important note</p>
+        <h2 class="display-md legal-summary-heading">This website is the front door, not the whole booking contract.</h2>
+      </div>
+      <p class="legal-summary-copy">
+        Quotes, route suitability, timing, handling requirements, and booking confirmation all
+        depend on the vehicle and route details you provide. Final transport arrangements may also
+        involve contracted carriers, depot conditions, or access constraints that are confirmed
+        later in the process.
+      </p>
+    </div>
+  </section>
+
+  <section class="section legal-content" aria-labelledby="terms-heading">
+    <div class="container legal-grid">
+      <aside class="legal-side">
+        <p class="legal-side-label">On this page</p>
+        <ul class="legal-side-links" role="list">
+          <li><a href="#website-use">Website use</a></li>
+          <li><a href="#quotes-and-pricing">Quotes and pricing</a></li>
+          <li><a href="#bookings">Bookings and service scope</a></li>
+          <li><a href="#timing-and-carriers">Timing and contracted carriers</a></li>
+          <li><a href="#vehicle-conditions">Vehicle conditions and goods</a></li>
+          <li><a href="#changes-and-cancellations">Changes and cancellations</a></li>
+          <li><a href="#contact-and-updates">Contact and updates</a></li>
+        </ul>
+      </aside>
+
+      <div class="legal-main">
+        <div class="legal-head">
+          <p class="eyebrow">Terms detail</p>
+          <h2 id="terms-heading" class="display-md">The practical terms behind the transport workflow.</h2>
+        </div>
+
+        <article id="website-use" class="legal-card">
+          <h3>Website use</h3>
+          <p>
+            By using this website, you agree to use it for lawful purposes and to provide accurate
+            information when requesting quotes, making contact, or otherwise interacting with the
+            service. Content on the site is provided as general guidance and may be updated from
+            time to time.
+          </p>
+          <p>
+            The site is designed to help customers research vehicle transport, request quotes, and
+            contact the team. It should not be treated as a guarantee that every route, timing
+            window, or service configuration is available exactly as displayed on the page.
+          </p>
+        </article>
+
+        <article id="quotes-and-pricing" class="legal-card">
+          <h3>Quotes and pricing</h3>
+          <p>
+            Quote outputs depend on the route, vehicle type, dimensions, condition, and the details
+            supplied by you. Pricing can change if key information is inaccurate, incomplete, or
+            later clarified during booking review.
+          </p>
+          <p>
+            A website quote or enquiry response is not a final booking confirmation by itself.
+            Timing, route fit, specialist handling, enclosed transport, depot requirements, or
+            regional access conditions may all affect the final service path and the price.
+          </p>
+        </article>
+
+        <article id="bookings" class="legal-card">
+          <h3>Bookings and service scope</h3>
+          <p>
+            Bookings are only confirmed through the proper booking workflow. Interstate Car Carriers
+            may coordinate transport using contracted carriers, depot operators, platform systems,
+            and other service providers where needed to complete the job.
+          </p>
+          <p>
+            Some services are door-to-door, some are depot-based, and some require a practical
+            meeting point if access is restricted. Where route, vehicle, or access conditions demand
+            it, a customer may need to use the contact path instead of relying only on a standard
+            quote.
+          </p>
+        </article>
+
+        <article id="timing-and-carriers" class="legal-card">
+          <h3>Timing, transit estimates and contracted carriers</h3>
+          <p>
+            Transit times shown or discussed during quoting are estimates only. They can change due
+            to route demand, seasonal volume, weather, access constraints, carrier schedules,
+            quarantine issues, depot limitations, or other operational factors.
+          </p>
+          <p>
+            Interstate Car Carriers coordinates vehicle transport using contracted carriers and other
+            service partners. That means the exact collection and delivery timing may depend on the
+            carrier ultimately handling the route and the access conditions at pickup or delivery.
+          </p>
+        </article>
+
+        <article id="vehicle-conditions" class="legal-card">
+          <h3>Vehicle conditions and goods in vehicles</h3>
+          <p>
+            Customers must provide accurate information about whether a vehicle is drivable, its
+            dimensions, modifications, and any unusual handling requirements. Standard transport
+            assumptions may not apply if the vehicle is non-drivable, oversized, modified, or
+            presentation-sensitive.
+          </p>
+          <p>
+            Goods inside the vehicle are only allowed where the selected service and booking
+            conditions permit them. If goods are allowed, they must comply with the current packing,
+            weight, and safety rules for the route and service. Dangerous or unsuitable goods must
+            never be left in the vehicle.
+          </p>
+        </article>
+
+        <article id="changes-and-cancellations" class="legal-card">
+          <h3>Changes, cancellations and adjustments</h3>
+          <p>
+            Changes to confirmed bookings may affect price, timing, and carrier availability.
+            Cancellation, admin, or adjustment charges may apply depending on how late the change is
+            made and how far the booking has already progressed through the transport workflow.
+          </p>
+          <p>
+            If a vehicle has already been allocated space or entered the transport chain, the scope
+            for refunds or changes may be limited. Customers should not assume that route, timing,
+            or delivery changes can always be made without cost.
+          </p>
+        </article>
+
+        <article id="contact-and-updates" class="legal-card">
+          <h3>Contact and updates</h3>
+          <p>
+            If you have questions about these terms, or if your job has details that do not fit the
+            standard quote path, use the contact route so the team can review the move properly.
+          </p>
+          <p>
+            Related pages:
+            <a href="/privacy-policy/">Privacy Policy</a> and
+            <a href={site.secondaryCta.href} target="_blank" rel="noreferrer">Contact the quote team</a>.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+</SiteDocument>
+
+<style>
+  .legal-hero {
+    background:
+      radial-gradient(circle at top right, rgba(59, 143, 214, 0.16), transparent 22rem),
+      linear-gradient(180deg, #11161d 0%, #0c0f13 100%);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .legal-hero-inner {
+    max-width: 56rem;
+    padding-block: var(--space-24) var(--space-22);
+  }
+
+  .legal-title {
+    max-width: 14ch;
+    margin-bottom: var(--space-6);
+  }
+
+  .legal-intro {
+    max-width: 44rem;
+    margin: 0 0 var(--space-8);
+    color: var(--color-ink-secondary);
+    line-height: 1.8;
+    font-size: clamp(1rem, 0.95rem + 0.15vw, 1.1rem);
+  }
+
+  .legal-updated {
+    margin: 0;
+    font-size: var(--text-sm);
+    color: var(--color-ink-muted);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+  }
+
+  .legal-summary {
+    background:
+      radial-gradient(circle at top right, rgba(59, 143, 214, 0.08), transparent 20rem),
+      #F2FBF5;
+    border-top: 1px solid rgba(15, 24, 34, 0.08);
+    border-bottom: 1px solid rgba(15, 24, 34, 0.08);
+  }
+
+  .legal-summary-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.95fr);
+    gap: var(--space-10);
+    align-items: start;
+    padding-block: var(--space-18);
+  }
+
+  .legal-summary-heading {
+    color: #111823;
+    max-width: 16ch;
+    margin-bottom: var(--space-4);
+  }
+
+  .legal-summary-copy {
+    margin: 0;
+    color: #4b5968;
+    line-height: 1.8;
+    max-width: 36rem;
+  }
+
+  .legal-grid {
+    display: grid;
+    grid-template-columns: minmax(16rem, 0.34fr) minmax(0, 1fr);
+    gap: var(--space-8);
+  }
+
+  .legal-side {
+    position: sticky;
+    top: calc(var(--nav-height) + var(--space-6));
+    align-self: start;
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent),
+      var(--color-surface-raised);
+  }
+
+  .legal-side-label {
+    margin: 0 0 var(--space-4);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-widest);
+    color: var(--color-accent);
+  }
+
+  .legal-side-links {
+    display: grid;
+    gap: var(--space-3);
+    margin: 0;
+    padding: 0;
+  }
+
+  .legal-side-links a {
+    color: var(--color-ink-secondary);
+  }
+
+  .legal-main {
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  .legal-head {
+    margin-bottom: var(--space-2);
+  }
+
+  .legal-card {
+    padding: var(--space-8);
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent),
+      var(--color-surface-raised);
+  }
+
+  .legal-card h3 {
+    margin: 0 0 var(--space-4);
+    font-family: var(--font-display);
+    font-size: clamp(1.3rem, 1.15rem + 0.3vw, 1.6rem);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+  }
+
+  .legal-card p {
+    margin: 0 0 var(--space-4);
+    color: var(--color-ink-secondary);
+    line-height: 1.8;
+  }
+
+  .legal-card p:last-child {
+    margin-bottom: 0;
+  }
+
+  .legal-card a {
+    color: #9fcbef;
+  }
+
+  @media (max-width: 960px) {
+    .legal-summary-inner,
+    .legal-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .legal-side {
+      position: static;
+    }
+  }
+</style>

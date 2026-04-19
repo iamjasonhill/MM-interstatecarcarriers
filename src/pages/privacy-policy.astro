@@ -1,0 +1,330 @@
+---
+import SiteDocument from '../layouts/SiteDocument.astro';
+import { site, toAbsoluteUrl } from '../config/site';
+
+const pageSchemas = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    '@id': toAbsoluteUrl('/#organization'),
+    name: site.name,
+    url: site.url,
+    description: site.defaultDescription,
+    logo: toAbsoluteUrl(site.seoAssets.favicon),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    '@id': toAbsoluteUrl('/#website'),
+    url: site.url,
+    name: site.name,
+    description: site.defaultDescription,
+    publisher: {
+      '@id': toAbsoluteUrl('/#organization'),
+    },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': toAbsoluteUrl('/privacy-policy/#webpage'),
+    url: toAbsoluteUrl('/privacy-policy/'),
+    name: `Privacy Policy | ${site.name}`,
+    description:
+      'Privacy policy for Interstate Car Carriers covering website enquiries, quote requests, contact submissions, and analytics.',
+    isPartOf: {
+      '@id': toAbsoluteUrl('/#website'),
+    },
+    about: {
+      '@id': toAbsoluteUrl('/#organization'),
+    },
+  },
+];
+---
+
+<SiteDocument
+  title={`Privacy Policy | ${site.name}`}
+  description="Privacy policy for Interstate Car Carriers covering website enquiries, quote requests, contact submissions, and analytics."
+  canonicalPath="/privacy-policy/"
+  schemas={pageSchemas}
+>
+  <section class="legal-hero">
+    <div class="container legal-hero-inner">
+      <span class="section-rule" aria-hidden="true"></span>
+      <p class="eyebrow">Privacy Policy</p>
+      <h1 class="display-lg legal-title">How Interstate Car Carriers handles personal information.</h1>
+      <p class="legal-intro">
+        This policy explains what information we collect through the website, quote requests, and
+        contact pathways, how it is used, when it may be disclosed, and the steps we take to
+        protect it.
+      </p>
+      <p class="legal-updated">Last updated: 19 April 2026</p>
+    </div>
+  </section>
+
+  <section class="legal-summary">
+    <div class="container legal-summary-inner">
+      <div>
+        <p class="eyebrow">Important note</p>
+        <h2 class="display-md legal-summary-heading">This site is a front door for research, quotes, and contact.</h2>
+      </div>
+      <p class="legal-summary-copy">
+        Interstate Car Carriers uses dedicated quote and contact surfaces as part of its service
+        flow. Information submitted through those pathways may be used to prepare quotes, confirm
+        vehicle and route details, coordinate transport, and respond to support requests.
+      </p>
+    </div>
+  </section>
+
+  <section class="section legal-content" aria-labelledby="privacy-heading">
+    <div class="container legal-grid">
+      <aside class="legal-side">
+        <p class="legal-side-label">On this page</p>
+        <ul class="legal-side-links" role="list">
+          <li><a href="#information-collection">Information we collect</a></li>
+          <li><a href="#cookies-and-usage">Cookies and website usage</a></li>
+          <li><a href="#use-and-disclosure">Use and disclosure</a></li>
+          <li><a href="#security-and-retention">Security and retention</a></li>
+          <li><a href="#privacy-contact">Access, corrections and contact</a></li>
+        </ul>
+      </aside>
+
+      <div class="legal-main">
+        <div class="legal-head">
+          <p class="eyebrow">Policy detail</p>
+          <h2 id="privacy-heading" class="display-md">A plain-language privacy policy for quotes, contact, and support.</h2>
+        </div>
+
+        <article id="information-collection" class="legal-card">
+          <h3>What information do we collect?</h3>
+          <p>
+            We may collect personal information that you choose to provide when you use the website,
+            request a quote, contact the team, or otherwise interact with our transport services.
+            That can include your name, email address, phone number, pickup and delivery locations,
+            vehicle details, timing preferences, and other information relevant to an interstate
+            transport enquiry.
+          </p>
+          <p>
+            If you submit details through a quote or contact form, we may also collect technical
+            information such as IP address, device information, and submission metadata to help with
+            platform security, spam prevention, and support follow-up.
+          </p>
+        </article>
+
+        <article id="cookies-and-usage" class="legal-card">
+          <h3>Cookies and website usage</h3>
+          <p>
+            Like most websites, we may use cookies, analytics tools, and basic server logs to
+            understand how the site is being used, which pages help customers most, and where
+            technical issues or drop-offs occur.
+          </p>
+          <p>
+            This usage data is generally used to improve the website, the quote flow, internal
+            reporting, and the quality of support. It is not intended to identify you personally
+            unless combined with information you deliberately submit through the site.
+          </p>
+        </article>
+
+        <article id="use-and-disclosure" class="legal-card">
+          <h3>How do we use and disclose information?</h3>
+          <p>
+            We use personal information to respond to quote requests, discuss contact enquiries,
+            prepare transport options, coordinate bookings, clarify route or vehicle details, and
+            provide customer support before and after transport.
+          </p>
+          <p>
+            Information may also be shared with service providers, quote systems, contracted
+            carriers, platform operators, or support partners where that is reasonably necessary to
+            prepare, coordinate, or fulfil a vehicle transport request. We do not treat your details
+            as a general marketing asset; we use them in connection with legitimate transport,
+            support, and operational activity.
+          </p>
+        </article>
+
+        <article id="security-and-retention" class="legal-card">
+          <h3>Security and retention</h3>
+          <p>
+            We take reasonable steps to protect personal information from misuse, interference, loss,
+            unauthorised access, modification, or disclosure. No online system is completely risk
+            free, but we aim to use practical technical and operational safeguards appropriate to the
+            nature of the service.
+          </p>
+          <p>
+            We retain information for as long as it is reasonably needed for quote preparation,
+            service coordination, customer support, record-keeping, legal compliance, dispute
+            handling, and legitimate business administration.
+          </p>
+        </article>
+
+        <article id="privacy-contact" class="legal-card">
+          <h3>Access, corrections and further information</h3>
+          <p>
+            If you want to access or correct personal information we hold about you, or if you have
+            a question or concern about how your information is handled, please use the main contact
+            pathway so the request can be directed appropriately.
+          </p>
+          <p>
+            This policy is intended to align with Australian privacy expectations, including the
+            Privacy Act 1988 (Cth), where applicable. We may update this page from time to time if
+            our website, quote systems, or transport workflows change.
+          </p>
+          <p>
+            Contact page:
+            <a href={site.secondaryCta.href} target="_blank" rel="noreferrer">Contact the quote team</a>
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+</SiteDocument>
+
+<style>
+  .legal-hero {
+    background:
+      radial-gradient(circle at top right, rgba(59, 143, 214, 0.16), transparent 22rem),
+      linear-gradient(180deg, #11161d 0%, #0c0f13 100%);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .legal-hero-inner {
+    max-width: 56rem;
+    padding-block: var(--space-24) var(--space-22);
+  }
+
+  .legal-title {
+    max-width: 14ch;
+    margin-bottom: var(--space-6);
+  }
+
+  .legal-intro {
+    max-width: 44rem;
+    margin: 0 0 var(--space-8);
+    color: var(--color-ink-secondary);
+    line-height: 1.8;
+    font-size: clamp(1rem, 0.95rem + 0.15vw, 1.1rem);
+  }
+
+  .legal-updated {
+    margin: 0;
+    font-size: var(--text-sm);
+    color: var(--color-ink-muted);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+  }
+
+  .legal-summary {
+    background:
+      radial-gradient(circle at top right, rgba(59, 143, 214, 0.08), transparent 20rem),
+      #F2FBF5;
+    border-top: 1px solid rgba(15, 24, 34, 0.08);
+    border-bottom: 1px solid rgba(15, 24, 34, 0.08);
+  }
+
+  .legal-summary-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.95fr);
+    gap: var(--space-10);
+    align-items: start;
+    padding-block: var(--space-18);
+  }
+
+  .legal-summary-heading {
+    color: #111823;
+    max-width: 16ch;
+    margin-bottom: var(--space-4);
+  }
+
+  .legal-summary-copy {
+    margin: 0;
+    color: #4b5968;
+    line-height: 1.8;
+    max-width: 36rem;
+  }
+
+  .legal-grid {
+    display: grid;
+    grid-template-columns: minmax(16rem, 0.34fr) minmax(0, 1fr);
+    gap: var(--space-8);
+  }
+
+  .legal-side {
+    position: sticky;
+    top: calc(var(--nav-height) + var(--space-6));
+    align-self: start;
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent),
+      var(--color-surface-raised);
+  }
+
+  .legal-side-label {
+    margin: 0 0 var(--space-4);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-widest);
+    color: var(--color-accent);
+  }
+
+  .legal-side-links {
+    display: grid;
+    gap: var(--space-3);
+    margin: 0;
+    padding: 0;
+  }
+
+  .legal-side-links a {
+    color: var(--color-ink-secondary);
+  }
+
+  .legal-main {
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  .legal-head {
+    margin-bottom: var(--space-2);
+  }
+
+  .legal-card {
+    padding: var(--space-8);
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent),
+      var(--color-surface-raised);
+  }
+
+  .legal-card h3 {
+    margin: 0 0 var(--space-4);
+    font-family: var(--font-display);
+    font-size: clamp(1.3rem, 1.15rem + 0.3vw, 1.6rem);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+  }
+
+  .legal-card p {
+    margin: 0 0 var(--space-4);
+    color: var(--color-ink-secondary);
+    line-height: 1.8;
+  }
+
+  .legal-card p:last-child {
+    margin-bottom: 0;
+  }
+
+  .legal-card a {
+    color: #9fcbef;
+  }
+
+  @media (max-width: 960px) {
+    .legal-summary-inner,
+    .legal-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .legal-side {
+      position: static;
+    }
+  }
+</style>

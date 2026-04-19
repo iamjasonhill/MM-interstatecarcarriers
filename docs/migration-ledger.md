@@ -28,6 +28,7 @@ Current position:
 - treat `https://quoting.interstatecarcarriers.com.au/contact` as the main contact handoff
 - wire `@jdevalk/astro-seo-graph` into the scaffold from the beginning
 - use `/car-transport-sydney-melbourne/` as the first route-page prototype and the base pattern for the indexed route lane
+- add first-class `/terms/` and `/privacy-policy/` pages so legal/support basics are present in the Astro build from the start
 
 ## Still To Be Done
 
@@ -35,6 +36,7 @@ Current position:
 - decide which WordPress URLs become Astro pages versus redirects
 - build any required service, FAQ, and route templates
 - reuse the Sydney-to-Melbourne route pattern for the next indexed `car-transport-*` pages, then vary content by corridor rather than inventing a fresh layout each time
+- keep privacy and terms in the current repo contract and write that expectation back into the starter standard
 - confirm deployment target and create the real live repo/project linkage
 - perform live cutover only after coverage and redirect evidence are complete
 

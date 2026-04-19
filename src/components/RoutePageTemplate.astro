@@ -1,0 +1,750 @@
+---
+import { site } from '../config/site';
+
+interface TextCard {
+  title: string;
+  body: string;
+}
+
+interface PlanningCard {
+  heading: string;
+  copy: string;
+}
+
+interface CorridorJob {
+  title: string;
+  detail: string;
+}
+
+interface Props {
+  heroEyebrow: string;
+  title: string;
+  intro: string;
+  panelRouteTitle: string;
+  panelRouteCopy: string;
+  panelBadge?: string;
+  panelBestStep: string;
+  panelUseContact: string;
+  bridgeEyebrow?: string;
+  bridgeHeading: string;
+  bridgeCopy: string;
+  benefitsEyebrow?: string;
+  benefitsHeading: string;
+  benefits: TextCard[];
+  whyEyebrow?: string;
+  whyHeading: string;
+  whyLeadTitle: string;
+  whyLeadBody: string;
+  corridorNoteTitle: string;
+  corridorNoteBody: string;
+  whyCards: TextCard[];
+  planningEyebrow?: string;
+  planningHeading: string;
+  planningIntro: string;
+  planningSignals: PlanningCard[];
+  advantageEyebrow?: string;
+  advantageHeading: string;
+  advantageIntro: string;
+  corridorJobs: CorridorJob[];
+  advantages: string[];
+  checklistEyebrow?: string;
+  checklistHeading: string;
+  checklistIntro: string;
+  checklist: string[];
+  ctaHeading: string;
+  ctaSub: string;
+}
+
+const {
+  heroEyebrow,
+  title,
+  intro,
+  panelRouteTitle,
+  panelRouteCopy,
+  panelBadge = 'Core corridor',
+  panelBestStep,
+  panelUseContact,
+  bridgeEyebrow = 'Why this route matters',
+  bridgeHeading,
+  bridgeCopy,
+  benefitsEyebrow = 'What makes this corridor different',
+  benefitsHeading,
+  benefits,
+  whyEyebrow = 'Why use a transport company',
+  whyHeading,
+  whyLeadTitle,
+  whyLeadBody,
+  corridorNoteTitle,
+  corridorNoteBody,
+  whyCards,
+  planningEyebrow = 'Booking logic',
+  planningHeading,
+  planningIntro,
+  planningSignals,
+  advantageEyebrow = 'Typical booking fit',
+  advantageHeading,
+  advantageIntro,
+  corridorJobs,
+  advantages,
+  checklistEyebrow = 'Before you quote',
+  checklistHeading,
+  checklistIntro,
+  checklist,
+  ctaHeading,
+  ctaSub,
+} = Astro.props as Props;
+---
+
+<section class="route-hero">
+  <div class="container route-hero-inner">
+    <div class="route-copy">
+      <span class="section-rule" aria-hidden="true"></span>
+      <p class="eyebrow">{heroEyebrow}</p>
+      <h1 class="display-lg route-title">{title}</h1>
+      <p class="route-intro">{intro}</p>
+      <div class="route-actions">
+        <a href={site.primaryCta.href} class="btn btn--primary">Get a vehicle quote</a>
+        <a href={site.secondaryCta.href} class="btn btn--ghost">Contact the quote team</a>
+      </div>
+    </div>
+
+    <div class="route-panel" aria-hidden="true">
+      <div class="route-panel-card">
+        <div class="route-panel-top">
+          <p class="route-panel-label">Route snapshot</p>
+          <span>{panelBadge}</span>
+        </div>
+        <div class="route-lane-card">
+          <strong>{panelRouteTitle}</strong>
+          <p>{panelRouteCopy}</p>
+        </div>
+        <div class="route-panel-grid">
+          <div>
+            <span>Best first step</span>
+            <p>{panelBestStep}</p>
+          </div>
+          <div>
+            <span>Use contact when</span>
+            <p>{panelUseContact}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="route-bridge">
+  <div class="container route-bridge-inner">
+    <div>
+      <p class="eyebrow">{bridgeEyebrow}</p>
+      <h2 class="display-md route-bridge-heading">{bridgeHeading}</h2>
+    </div>
+    <p class="route-bridge-copy">{bridgeCopy}</p>
+  </div>
+</section>
+
+<section class="section route-benefits" aria-labelledby="route-benefits-heading">
+  <div class="container">
+    <div class="route-benefits-head">
+      <p class="eyebrow">{benefitsEyebrow}</p>
+      <h2 id="route-benefits-heading" class="display-md">{benefitsHeading}</h2>
+    </div>
+
+    <div class="route-benefits-grid">
+      {benefits.map(({ title, body }) => (
+        <article class="route-benefit-card">
+          <h3>{title}</h3>
+          <p>{body}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="section route-why" aria-labelledby="route-why-heading">
+  <div class="container">
+    <div class="route-why-head">
+      <p class="eyebrow">{whyEyebrow}</p>
+      <h2 id="route-why-heading" class="display-md">{whyHeading}</h2>
+    </div>
+
+    <div class="route-why-layout">
+      <article class="route-why-lead">
+        <p class="route-why-label">Lead reason</p>
+        <h3>{whyLeadTitle}</h3>
+        <p>{whyLeadBody}</p>
+      </article>
+
+      <aside class="route-why-note">
+        <p class="route-why-label">Corridor note</p>
+        <h3>{corridorNoteTitle}</h3>
+        <p>{corridorNoteBody}</p>
+      </aside>
+    </div>
+
+    <div class="route-why-grid">
+      {whyCards.map(({ title, body }) => (
+        <article class="route-why-card">
+          <h3>{title}</h3>
+          <p>{body}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="route-planning">
+  <div class="container">
+    <div class="route-planning-head">
+      <p class="eyebrow">{planningEyebrow}</p>
+      <h2 class="display-md route-planning-heading">{planningHeading}</h2>
+      <p class="route-planning-intro">{planningIntro}</p>
+    </div>
+
+    <div class="route-planning-grid">
+      {planningSignals.map(({ heading, copy }) => (
+        <article class="route-planning-card">
+          <h3>{heading}</h3>
+          <p>{copy}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="route-advantage">
+  <div class="container route-advantage-inner">
+    <div>
+      <p class="eyebrow">{advantageEyebrow}</p>
+      <h2 class="display-md route-advantage-heading">{advantageHeading}</h2>
+    </div>
+
+    <div class="route-advantage-panel">
+      <p class="route-advantage-intro">{advantageIntro}</p>
+      <div class="route-advantage-jobs">
+        {corridorJobs.map(({ title, detail }) => (
+          <article class="route-advantage-job">
+            <h3>{title}</h3>
+            <p>{detail}</p>
+          </article>
+        ))}
+      </div>
+      <ul class="route-advantage-list" role="list">
+        {advantages.map((item) => <li>{item}</li>)}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="route-checklist">
+  <div class="container route-checklist-inner">
+    <div class="route-checklist-copy">
+      <p class="eyebrow">{checklistEyebrow}</p>
+      <h2 class="display-md route-checklist-heading">{checklistHeading}</h2>
+      <p class="route-checklist-intro">{checklistIntro}</p>
+    </div>
+
+    <div class="route-checklist-panel">
+      <p class="route-checklist-label">Quick checklist</p>
+      <ul class="route-checklist-list" role="list">
+        {checklist.map((item) => <li>{item}</li>)}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band cta-band--route" id="contact" aria-labelledby="route-cta-heading">
+  <div class="container cta-inner">
+    <div>
+      <h2 id="route-cta-heading" class="display-md cta-heading">{ctaHeading}</h2>
+      <p class="cta-sub">{ctaSub}</p>
+    </div>
+    <div class="cta-actions">
+      <a href={site.primaryCta.href} class="btn btn--primary btn--lg">Get a vehicle quote</a>
+      <a href={site.secondaryCta.href} class="btn btn--ghost btn--lg">Contact the quote team</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .route-hero {
+    background:
+      radial-gradient(circle at top right, rgba(59, 143, 214, 0.16), transparent 22rem),
+      linear-gradient(180deg, #11161d 0%, #0c0f13 100%);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .route-hero-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(20rem, 0.95fr);
+    gap: var(--space-12);
+    align-items: center;
+    padding-block: var(--space-24) var(--space-26);
+  }
+
+  .route-copy {
+    max-width: 46rem;
+  }
+
+  .route-title {
+    max-width: 11ch;
+    margin-bottom: var(--space-6);
+  }
+
+  .route-intro {
+    max-width: 41rem;
+    color: var(--color-ink-secondary);
+    font-size: clamp(1rem, 0.95rem + 0.15vw, 1.1rem);
+    line-height: 1.75;
+    margin: 0 0 var(--space-10);
+  }
+
+  .route-actions {
+    display: flex;
+    gap: var(--space-5);
+    flex-wrap: wrap;
+  }
+
+  .route-panel-card {
+    padding: var(--space-8);
+    border-radius: calc(var(--radius-lg) + 0.2rem);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)),
+      rgba(9, 13, 18, 0.92);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
+  }
+
+  .route-panel-top {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-3);
+    align-items: center;
+    margin-bottom: var(--space-5);
+  }
+
+  .route-panel-label,
+  .route-checklist-label {
+    margin: 0;
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-widest);
+    color: var(--color-accent);
+  }
+
+  .route-panel-top span {
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-widest);
+    color: var(--color-ink-muted);
+  }
+
+  .route-lane-card {
+    padding: var(--space-5);
+    border-radius: var(--radius-lg);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    margin-bottom: var(--space-5);
+  }
+
+  .route-lane-card strong {
+    display: block;
+    margin-bottom: var(--space-3);
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 1.45rem + 0.45vw, 2rem);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: white;
+  }
+
+  .route-lane-card p,
+  .route-panel-grid p {
+    margin: 0;
+    color: var(--color-ink-secondary);
+    line-height: 1.75;
+  }
+
+  .route-panel-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-4);
+  }
+
+  .route-panel-grid span {
+    display: block;
+    margin-bottom: var(--space-2);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-widest);
+    color: #9fcbef;
+  }
+
+  .route-bridge {
+    background:
+      radial-gradient(circle at top right, rgba(59, 143, 214, 0.08), transparent 20rem),
+      #F2FBF5;
+    border-top: 1px solid rgba(15, 24, 34, 0.08);
+    border-bottom: 1px solid rgba(15, 24, 34, 0.08);
+  }
+
+  .route-planning {
+    background:
+      radial-gradient(circle at top right, rgba(59, 143, 214, 0.06), transparent 20rem),
+      linear-gradient(180deg, #fbfdfa 0%, #f6faf7 100%);
+    border-bottom: 1px solid rgba(15, 24, 34, 0.08);
+  }
+
+  .route-bridge-inner,
+  .route-checklist-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.95fr);
+    gap: var(--space-10);
+    align-items: start;
+    padding-block: var(--space-20);
+  }
+
+  .route-bridge-heading,
+  .route-planning-heading,
+  .route-checklist-heading {
+    color: #111823;
+    max-width: 16ch;
+    margin-bottom: var(--space-4);
+  }
+
+  .route-planning-head {
+    max-width: 44rem;
+    margin-bottom: var(--space-12);
+  }
+
+  .route-planning-intro {
+    margin: 0;
+    color: #4b5968;
+    line-height: 1.8;
+    max-width: 38rem;
+  }
+
+  .route-bridge-copy,
+  .route-checklist-intro {
+    margin: 0;
+    color: #4b5968;
+    line-height: 1.8;
+    max-width: 35rem;
+  }
+
+  .route-benefits {
+    background: linear-gradient(180deg, #10151c 0%, #0d1117 100%);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .route-benefits-head {
+    margin-bottom: var(--space-12);
+  }
+
+  .route-benefits-grid,
+  .route-planning-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-6);
+  }
+
+  .route-why-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-6);
+  }
+
+  .route-benefit-card,
+  .route-why-card,
+  .route-planning-card {
+    padding: var(--space-8);
+    border-radius: var(--radius-lg);
+  }
+
+  .route-benefit-card {
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent),
+      var(--color-surface-raised);
+  }
+
+  .route-why {
+    background:
+      radial-gradient(circle at top right, rgba(59, 143, 214, 0.08), transparent 20rem),
+      #F2FBF5;
+    border-bottom: 1px solid rgba(15, 24, 34, 0.08);
+  }
+
+  .route-why-head {
+    margin-bottom: var(--space-12);
+  }
+
+  .route-why .eyebrow {
+    color: #356fa3;
+  }
+
+  .route-why-head .display-md {
+    color: #111823;
+  }
+
+  .route-why-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(18rem, 0.9fr);
+    gap: var(--space-6);
+    margin-bottom: var(--space-6);
+  }
+
+  .route-why-lead,
+  .route-why-note {
+    padding: var(--space-8);
+    border-radius: calc(var(--radius-lg) + 0.15rem);
+    border: 1px solid rgba(15, 24, 34, 0.08);
+    background: rgba(255, 255, 255, 0.72);
+    box-shadow: 0 18px 40px rgba(15, 24, 34, 0.08);
+  }
+
+  .route-why-label {
+    margin: 0 0 var(--space-3);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-widest);
+    color: #356fa3;
+  }
+
+  .route-why-lead h3,
+  .route-why-note h3 {
+    margin: 0 0 var(--space-4);
+    font-family: var(--font-display);
+    font-size: clamp(1.55rem, 1.35rem + 0.45vw, 2rem);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: #111823;
+    max-width: 18ch;
+  }
+
+  .route-why-lead p:last-child,
+  .route-why-note p:last-child {
+    margin: 0;
+    color: #4b5968;
+    line-height: 1.85;
+  }
+
+  .route-why-card {
+    border: 1px solid rgba(15, 24, 34, 0.08);
+    background: rgba(255, 255, 255, 0.72);
+    box-shadow: 0 18px 40px rgba(15, 24, 34, 0.08);
+  }
+
+  .route-planning-card,
+  .route-checklist-panel,
+  .route-advantage-panel {
+    border: 1px solid rgba(15, 24, 34, 0.08);
+    background: rgba(255, 255, 255, 0.72);
+    box-shadow: 0 18px 40px rgba(15, 24, 34, 0.08);
+  }
+
+  .route-benefit-card h3,
+  .route-why-card h3,
+  .route-planning-card h3 {
+    margin: 0 0 var(--space-4);
+    font-family: var(--font-display);
+    font-size: clamp(1.25rem, 1.1rem + 0.35vw, 1.6rem);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+  }
+
+  .route-benefit-card h3 {
+    color: var(--color-ink-primary);
+  }
+
+  .route-why-card h3,
+  .route-planning-card h3 {
+    color: #111823;
+  }
+
+  .route-planning-card:first-child {
+    grid-column: span 2;
+    background:
+      linear-gradient(180deg, rgba(59, 143, 214, 0.08), rgba(255, 255, 255, 0.86)),
+      rgba(255, 255, 255, 0.86);
+    border-color: rgba(53, 111, 163, 0.14);
+  }
+
+  .route-planning-card:first-child h3 {
+    font-size: clamp(1.45rem, 1.2rem + 0.45vw, 1.9rem);
+    max-width: 22ch;
+  }
+
+  .route-planning-card:first-child p {
+    max-width: 42rem;
+  }
+
+  .route-benefit-card p {
+    margin: 0;
+    color: var(--color-ink-secondary);
+    line-height: 1.8;
+  }
+
+  .route-why-card p,
+  .route-planning-card p {
+    margin: 0;
+    color: #4b5968;
+    line-height: 1.8;
+  }
+
+  .route-advantage {
+    background: linear-gradient(180deg, #10151c 0%, #0d1117 100%);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .route-advantage-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: var(--space-10);
+    align-items: start;
+    padding-block: var(--space-20);
+  }
+
+  .route-advantage-heading {
+    max-width: 15ch;
+  }
+
+  .route-advantage-panel {
+    padding: var(--space-8);
+    border-radius: calc(var(--radius-lg) + 0.15rem);
+  }
+
+  .route-advantage-jobs {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+  }
+
+  .route-advantage-job {
+    padding: var(--space-5);
+    border-radius: var(--radius-base);
+    background: rgba(15, 24, 34, 0.04);
+    border: 1px solid rgba(15, 24, 34, 0.08);
+  }
+
+  .route-advantage-job h3 {
+    margin: 0 0 var(--space-3);
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: #111823;
+  }
+
+  .route-advantage-job p {
+    margin: 0;
+    color: #4b5968;
+    line-height: 1.75;
+  }
+
+  .route-advantage-intro {
+    margin: 0 0 var(--space-5);
+    color: #4b5968;
+    line-height: 1.8;
+  }
+
+  .route-advantage-list {
+    display: grid;
+    gap: var(--space-4);
+    margin: 0;
+    padding: 0;
+  }
+
+  .route-advantage-list li {
+    position: relative;
+    padding-left: var(--space-5);
+    color: #4b5968;
+    line-height: 1.8;
+  }
+
+  .route-advantage-list li::before {
+    content: "";
+    position: absolute;
+    top: 0.7rem;
+    left: 0;
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 999px;
+    background: var(--color-accent);
+  }
+
+  .route-checklist {
+    background: #F2FBF5;
+    border-bottom: 1px solid rgba(15, 24, 34, 0.08);
+  }
+
+  .route-checklist-panel {
+    padding: var(--space-8);
+    border-radius: calc(var(--radius-lg) + 0.15rem);
+  }
+
+  .route-checklist-list {
+    display: grid;
+    gap: var(--space-4);
+    margin: var(--space-4) 0 0;
+    padding: 0;
+  }
+
+  .route-checklist-list li {
+    position: relative;
+    padding-left: var(--space-5);
+    color: #4b5968;
+    line-height: 1.8;
+  }
+
+  .route-checklist-list li::before {
+    content: "";
+    position: absolute;
+    top: 0.7rem;
+    left: 0;
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 999px;
+    background: var(--color-accent);
+  }
+
+  .cta-band--route {
+    border-top: 0;
+    padding-block: var(--space-20);
+  }
+
+  .cta-band--route .cta-inner {
+    padding-block: var(--space-8);
+  }
+
+  .cta-band--route .cta-heading {
+    margin-bottom: var(--space-5);
+  }
+
+  .cta-band--route .cta-sub {
+    max-width: 42rem;
+  }
+
+  .cta-band--route .cta-actions {
+    margin-top: var(--space-8);
+  }
+
+  @media (max-width: 960px) {
+    .route-hero-inner,
+    .route-panel-grid,
+    .route-bridge-inner,
+    .route-why-layout,
+    .route-benefits-grid,
+    .route-why-grid,
+    .route-planning-grid,
+    .route-advantage-inner,
+    .route-advantage-jobs,
+    .route-checklist-inner {
+      grid-template-columns: 1fr;
+    }
+
+    .route-planning-card:first-child {
+      grid-column: auto;
+    }
+  }
+</style>

@@ -45,6 +45,10 @@ export interface SupportAction extends PublicPage {
   external?: boolean;
 }
 
+export interface LegalPage extends SiteLink {
+  description?: string;
+}
+
 export interface SiteConfig {
   name: string;
   shortName: string;
@@ -69,6 +73,7 @@ export interface SiteConfig {
   reasons: ReasonCard[];
   publicPages: PublicPage[];
   supportActions: SupportAction[];
+  legalPages: LegalPage[];
   seoAssets: {
     ogImage: string;
     favicon: string;
@@ -123,6 +128,8 @@ export const site: SiteConfig = {
       heading: 'Site pages',
       links: [
         { label: 'Home', href: '/' },
+        { label: 'Privacy Policy', href: '/privacy-policy/' },
+        { label: 'Terms Of Use', href: '/terms/' },
         { label: 'HTML Sitemap', href: '/sitemap/' },
       ],
     },
@@ -183,7 +190,7 @@ export const site: SiteConfig = {
     { route: 'Sydney to Melbourne', note: 'High-frequency east-coast vehicle lane', href: '/car-transport-sydney-melbourne/' },
     { route: 'Brisbane to Sydney', note: 'Private moves, dealer transfers, and relocation demand' },
     { route: 'Melbourne to Brisbane', note: 'Strong household and prestige transport corridor' },
-    { route: 'Perth to Adelaide', note: 'Long-haul interstate vehicle movements' },
+    { route: 'Perth to Adelaide', note: 'Long-haul interstate vehicle movements', href: '/car-transport-perth-adelaide/' },
     { route: 'Adelaide to Melbourne', note: 'Regular south-east freight planning' },
     { route: 'Sydney to Brisbane', note: 'Fast-moving corridor for standard vehicle transport' },
   ],
@@ -246,6 +253,31 @@ export const site: SiteConfig = {
       description: 'Route page for interstate car transport from Sydney to Melbourne.',
     },
     {
+      label: 'Perth To Adelaide Car Transport',
+      href: '/car-transport-perth-adelaide/',
+      description: 'Route page for interstate car transport from Perth to Adelaide.',
+    },
+    {
+      label: 'Brisbane To Melbourne Car Transport',
+      href: '/car-transport-brisbane-melbourne/',
+      description: 'Route page for interstate car transport from Brisbane to Melbourne.',
+    },
+    {
+      label: 'Sydney To Hobart Car Transport',
+      href: '/car-transport-sydney-hobart/',
+      description: 'Route page for interstate car transport from Sydney to Hobart.',
+    },
+    {
+      label: 'Privacy Policy',
+      href: '/privacy-policy/',
+      description: 'Privacy policy explaining how Interstate Car Carriers handles website, quote, and contact information.',
+    },
+    {
+      label: 'Terms Of Use',
+      href: '/terms/',
+      description: 'Website and transport-use terms for quotes, bookings, timing, and carrier coordination.',
+    },
+    {
       label: 'HTML Sitemap',
       href: '/sitemap/',
       description: 'Human-readable sitemap for the current Interstate Car Carriers website.',
@@ -263,6 +295,18 @@ export const site: SiteConfig = {
       href: 'https://quoting.interstatecarcarriers.com.au/contact',
       description: 'Contact handoff for specialist or higher-touch transport requests.',
       external: true,
+    },
+  ],
+  legalPages: [
+    {
+      label: 'Privacy Policy',
+      href: '/privacy-policy/',
+      description: 'How Interstate Car Carriers handles personal information and website usage data.',
+    },
+    {
+      label: 'Terms Of Use',
+      href: '/terms/',
+      description: 'Website terms covering quotes, bookings, timing, and transport assumptions.',
     },
   ],
   seoAssets: {

@@ -28,6 +28,8 @@ These are the first working assumptions based on the live-site checks from 2026-
 
 - `/`
 - `/sitemap/`
+- `/terms/`
+- `/privacy-policy/`
 
 ### Redirect to quoting/contact surface
 

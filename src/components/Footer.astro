@@ -17,6 +17,20 @@ const onPageLinks: SiteLink[] = currentPath === '/enclosed-car-transport-quote/'
         { label: 'Questions', href: '#faq-heading' },
         { label: 'Next step', href: '#page-cta-heading' },
       ]
+    : currentPath === '/terms/'
+      ? [
+          { label: 'Top of page', href: '#main-content' },
+          { label: 'Website use', href: '#website-use' },
+          { label: 'Bookings', href: '#bookings' },
+          { label: 'Contact', href: '#contact-and-updates' },
+        ]
+      : currentPath === '/privacy-policy/'
+        ? [
+            { label: 'Top of page', href: '#main-content' },
+            { label: 'Information', href: '#information-collection' },
+            { label: 'Use and disclosure', href: '#use-and-disclosure' },
+            { label: 'Contact', href: '#privacy-contact' },
+          ]
     : [
         { label: 'Top of page', href: '#main-content' },
         { label: 'Home', href: '/' },
@@ -35,6 +49,7 @@ const footerSections: FooterSection[] = isHome
           { label: 'Home', href: '/' },
           { label: 'Enclosed Transport', href: '/enclosed-car-transport-quote/' },
           { label: 'Vehicle Questions', href: '/vehicle-transport-questions/' },
+          ...site.legalPages.map(({ label, href }) => ({ label, href })),
           { label: 'HTML Sitemap', href: '/sitemap/' },
         ],
       },
@@ -129,6 +144,9 @@ const footerSections: FooterSection[] = isHome
         &copy; {currentYear} {site.name}. Australia-wide vehicle transport for standard, prestige, and specialist vehicles.
       </p>
       <div class="footer-bottom-links">
+        {site.legalPages.map(({ label, href }) => (
+          <a href={href} class="footer-bottom-link">{label}</a>
+        ))}
         <a href="/sitemap/" class="footer-bottom-link">Sitemap</a>
         <a href="#main-content" class="footer-bottom-link">Back to content</a>
       </div>

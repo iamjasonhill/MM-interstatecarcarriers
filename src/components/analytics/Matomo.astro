@@ -1,0 +1,35 @@
+---
+interface Props {
+  baseUrl?: string;
+  siteId?: string;
+}
+
+const {
+  baseUrl = '',
+  siteId = '',
+} = Astro.props;
+
+const matomoBaseUrl = baseUrl.replace(/\/$/, '');
+const matomoSiteId = siteId;
+const trackingPixelUrl =
+  matomoBaseUrl && matomoSiteId
+    ? `${matomoBaseUrl}/piwik.php?idsite=${encodeURIComponent(matomoSiteId)}&rec=1`
+    : '';
+---
+{
+  import.meta.env.PROD && matomoBaseUrl && matomoSiteId && (
+    <>
+      <link rel="preconnect" href={matomoBaseUrl} />
+      <link rel="dns-prefetch" href={matomoBaseUrl} />
+      <script
+        is:inline
+        set:html={`var _paq = window._paq = window._paq || []; _paq.push(['trackPageView']); _paq.push(['enableLinkTracking']); (function() { var u='${matomoBaseUrl}/'; _paq.push(['setTrackerUrl', u + 'piwik.php']); _paq.push(['setSiteId', '${matomoSiteId}']); var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.async=true; g.src=u + 'piwik.js'; s.parentNode.insertBefore(g,s); })();`}
+      />
+      <noscript>
+        <p>
+          <img src={trackingPixelUrl} style="border:0;" alt="" referrerpolicy="no-referrer-when-downgrade" />
+        </p>
+      </noscript>
+    </>
+  )
+}

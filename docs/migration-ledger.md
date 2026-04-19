@@ -11,6 +11,7 @@ Current position:
 - live public site remains WordPress
 - Astro rebuild now exists locally at `/Users/jasonhill/Projects/websites/MM-interstatecarcarriers.com.au`
 - canonical new-build baseline includes `@jdevalk/astro-seo-graph`, sitemap generation, dynamic robots, and fleet-standard repo paperwork
+- canonical new-build baseline now also includes the shared analytics adapter and repo-contract validation so analytics cannot silently drift out of the build
 
 ## Source Inputs Used
 
@@ -33,6 +34,7 @@ Current position:
 - add first-class `/terms/` and `/privacy-policy/` pages so legal/support basics are present in the Astro build from the start
 - use the WordPress route-post importer to preserve original route content into structured source files before rolling out bulk route pages
 - use a dynamic route renderer backed by imported source JSON for the indexed route estate instead of hand-authoring hundreds of individual Astro pages
+- adopt the shared analytics adapter from the fleet starter and expose a local `check:contract` command so analytics presence is enforced in code, not just described in docs
 
 ## Completed In Repo
 
@@ -57,8 +59,10 @@ Current position:
     - `/car-transport-express-service/`
     - `/car-transport-personal-items-allowed/`
 - `npm run check` passes
+- `npm run check:contract` passes
 - `npm run build` passes
 - `@jdevalk/astro-seo-graph` checks are clean on the full build
+- the shared analytics adapter is now wired into the document shell and ready for provider values
 
 ## Still To Be Done
 
@@ -66,7 +70,7 @@ Current position:
 - decide whether deployment protection should remain on during the review phase or be relaxed for broader stakeholder preview access
 - extend preview verification beyond the first sampled checks
 - finalize redirect behavior for any legacy URLs that will not remain as first-class Astro pages
-- verify analytics on preview / production-linked output
+- confirm the canonical analytics provider and values, then verify analytics on preview / production-linked output
 - perform live cutover only after preview, redirect, and controller evidence are complete
 - update `_wp-house` and cutover paperwork after Astro becomes the live controller
 

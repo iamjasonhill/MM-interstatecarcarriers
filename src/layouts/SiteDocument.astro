@@ -2,6 +2,7 @@
 import { assembleGraph } from '@jdevalk/seo-graph-core';
 import type { GraphEntity } from '@jdevalk/seo-graph-core';
 import Seo from '@jdevalk/astro-seo-graph/Seo.astro';
+import Analytics from '../components/analytics/Analytics.astro';
 import '../styles/tokens.css';
 import '../styles/global.css';
 import Nav from '../components/Nav.astro';
@@ -85,6 +86,7 @@ const resolvedGraph = schemas.length
       href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Inter:wght@400;500&display=swap"
       rel="stylesheet"
     />
+    <Analytics />
     <slot name="head" />
   </head>
   <body class={bodyClass}>

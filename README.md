@@ -32,6 +32,7 @@ npm install
 npm run dev
 npm run build
 npm run check
+npm run check:contract
 npm run check:seo
 npm run import:routes
 npm run import:routes:batches
@@ -51,6 +52,8 @@ npm run import:routes:batches
 ## Migration Notes
 
 This repo is now beyond the initial scaffold stage. The core support pages, legal pages, and indexed route archive are in place locally, and the remaining work is now preview, redirect, deploy-linkage, and live cutover rather than basic migration setup.
+
+Analytics is now enforced at the repo-contract level too. The shared analytics adapter is present in the document shell, `.env.example` exposes the expected analytics variables, and `npm run check:contract` verifies that contract locally. What is still outstanding is the actual provider decision and live values for this site.
 
 ## Repo Paperwork
 

@@ -49,6 +49,12 @@ export interface LegalPage extends SiteLink {
   description?: string;
 }
 
+export interface AnalyticsConfig {
+  enabled: boolean;
+  provider: string | null;
+  config: Record<string, string>;
+}
+
 export interface SiteConfig {
   name: string;
   shortName: string;
@@ -81,6 +87,60 @@ export interface SiteConfig {
   brand: {
     primary: string;
     accent: string;
+  };
+  analytics: AnalyticsConfig;
+}
+
+function parseJsonRecord(value: string | undefined) {
+  if (!value) {
+    return null;
+  }
+
+  try {
+    const parsed = JSON.parse(value);
+    if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
+      return null;
+    }
+
+    return Object.fromEntries(
+      Object.entries(parsed).map(([key, item]) => [key, item == null ? '' : String(item)]),
+    );
+  } catch {
+    return null;
+  }
+}
+
+function resolveAnalyticsConfig(): AnalyticsConfig {
+  const analyticsEnabled = import.meta.env.PUBLIC_ANALYTICS_ENABLED;
+  const analyticsProvider = import.meta.env.PUBLIC_ANALYTICS_PROVIDER;
+  const analyticsConfig = parseJsonRecord(import.meta.env.PUBLIC_ANALYTICS_CONFIG);
+
+  if (analyticsProvider && analyticsConfig) {
+    return {
+      enabled: analyticsEnabled ? analyticsEnabled === 'true' : true,
+      provider: analyticsProvider,
+      config: analyticsConfig,
+    };
+  }
+
+  const matomoBaseUrl = import.meta.env.PUBLIC_MATOMO_BASE_URL || '';
+  const matomoSiteId = import.meta.env.PUBLIC_MATOMO_SITE_ID || '';
+
+  if (matomoBaseUrl && matomoSiteId) {
+    return {
+      enabled: true,
+      provider: 'matomo',
+      config: {
+        base_url: matomoBaseUrl,
+        site_id: matomoSiteId,
+      },
+    };
+  }
+
+  return {
+    enabled: false,
+    provider: null,
+    config: {},
   };
 }
 
@@ -317,6 +377,7 @@ export const site: SiteConfig = {
     primary: '#3a8fd6',
     accent: '#ffb04c',
   },
+  analytics: resolveAnalyticsConfig(),
 };
 
 export function toAbsoluteUrl(path: string): string {

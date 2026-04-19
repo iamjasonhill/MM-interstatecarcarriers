@@ -29,6 +29,7 @@ This repo now has:
 - dynamic route system backed by imported WordPress source content
 - `686` imported route source files under `src/data/routes/source/`
 - `@jdevalk/astro-seo-graph`
+- shared analytics adapter in the document shell
 - generated sitemap index
 - dynamic robots route
 - generated `llms.txt`
@@ -37,12 +38,20 @@ This repo now has:
 Validation status:
 
 - `npm run check` passes
+- `npm run check:contract` passes
 - `npm run build` passes
 - current build emits `696` pages
 - metadata, H1, internal-link, and image-alt checks are clean in the latest build
 - repo is now linked to a real Vercel project
 - first Vercel deployment reached `Ready`
 - authenticated preview checks confirmed homepage, robots, sitemap index, and representative route output
+
+Analytics note:
+
+- the shared analytics adapter is now present in code
+- `.env.example` now exposes the analytics contract variables for this repo
+- no provider values are configured yet for this site, so no analytics snippet currently renders
+- remaining gate is provider confirmation plus preview verification, not component implementation
 
 Preview access note:
 

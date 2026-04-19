@@ -1,0 +1,18 @@
+---
+import Matomo from './Matomo.astro';
+import { site } from '../../config/site';
+
+const analytics = site.analytics;
+
+if (!import.meta.env.PROD || !analytics.enabled || !analytics.provider) {
+  return null;
+}
+---
+{
+  analytics.provider === 'matomo' && (
+    <Matomo
+      baseUrl={analytics.config.base_url}
+      siteId={analytics.config.site_id}
+    />
+  )
+}

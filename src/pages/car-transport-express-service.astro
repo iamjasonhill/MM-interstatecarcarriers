@@ -1,0 +1,512 @@
+---
+import SiteDocument from '../layouts/SiteDocument.astro';
+import { site, toAbsoluteUrl } from '../config/site';
+
+const fitPoints = [
+  {
+    title: 'Moves with tighter timing',
+    body: 'A better fit when the collection or delivery window matters more than waiting for the cheapest available lane.',
+  },
+  {
+    title: 'Dealer, auction, or handover deadlines',
+    body: 'Useful when a vehicle needs to move quickly after purchase, sale, or a time-sensitive handover.',
+  },
+  {
+    title: 'Customers who need a clearer ETA conversation',
+    body: 'Express requests usually work best when route fit and timing are discussed early, not after the booking is already assumed.',
+  },
+];
+
+const decisionPoints = [
+  {
+    heading: 'When express transport is worth considering',
+    copy: 'Use express transport when timing pressure is real and the move needs faster planning than a standard interstate lane can usually offer.',
+  },
+  {
+    heading: 'When standard transport is still the smarter fit',
+    copy: 'If the move is flexible, the route is common, and delivery timing is not urgent, standard vehicle transport is often the more practical and economical option.',
+  },
+];
+
+const reassurancePoints = [
+  'Start in the same vehicle quote wizard used for standard and specialist transport jobs.',
+  'Use the contact path when timing, pickup access, or route conditions need extra discussion.',
+  'Treat express as a route-and-availability decision, not just a label.',
+];
+
+const urgencySignals = [
+  {
+    title: 'Vehicle purchase or auction pickup',
+    timing: 'Good express candidate',
+    detail: 'The timing is usually tied to collection deadlines, settlement windows, or a handover that cannot drift too far.',
+  },
+  {
+    title: 'Dealer, fleet, or business handover',
+    timing: 'Good express candidate',
+    detail: 'Express planning helps when the vehicle needs to be in place for a handover, replacement, or commercial deadline.',
+  },
+  {
+    title: 'Flexible private relocation',
+    timing: 'Often standard is enough',
+    detail: 'If the delivery window is broad and the route is common, a standard lane may still be the more practical option.',
+  },
+];
+
+const serviceSchemas = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    '@id': toAbsoluteUrl('/#organization'),
+    name: site.name,
+    url: site.url,
+    description: site.defaultDescription,
+    logo: toAbsoluteUrl(site.seoAssets.favicon),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    '@id': toAbsoluteUrl('/#website'),
+    url: site.url,
+    name: site.name,
+    description: site.defaultDescription,
+    publisher: {
+      '@id': toAbsoluteUrl('/#organization'),
+    },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': toAbsoluteUrl('/car-transport-express-service/#webpage'),
+    url: toAbsoluteUrl('/car-transport-express-service/'),
+    name: `Car Transport Express Service | ${site.name}`,
+    description:
+      'Guide to express interstate car transport when timing matters more than waiting for the cheapest available lane.',
+    isPartOf: {
+      '@id': toAbsoluteUrl('/#website'),
+    },
+    about: {
+      '@id': toAbsoluteUrl('/#organization'),
+    },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    '@id': toAbsoluteUrl('/car-transport-express-service/#service'),
+    name: 'Express interstate vehicle transport',
+    description:
+      'Interstate car transport guidance for urgent or time-sensitive moves that need faster planning.',
+    provider: {
+      '@id': toAbsoluteUrl('/#organization'),
+    },
+    areaServed: 'Australia',
+    serviceType: 'Express interstate vehicle transport',
+  },
+];
+---
+
+<SiteDocument
+  title={`Car Transport Express Service | ${site.name}`}
+  description="Guide to express interstate car transport when timing matters more than waiting for the cheapest available lane."
+  canonicalPath="/car-transport-express-service/"
+  schemas={serviceSchemas}
+>
+  <section class="service-hero">
+    <div class="container service-hero-inner">
+      <div class="service-copy">
+        <span class="section-rule" aria-hidden="true"></span>
+        <p class="eyebrow">Faster transport planning</p>
+        <h1 class="display-lg service-title">Express car transport when timing matters more than the cheapest lane.</h1>
+        <p class="service-intro">
+          Some interstate vehicle moves simply need a faster response. Express transport is there
+          for the jobs where timing is tighter, the handover matters, or the booking needs to move
+          with less delay than a standard lane usually allows.
+        </p>
+        <div class="service-actions">
+          <a href={site.primaryCta.href} class="btn btn--primary">Get a vehicle quote</a>
+          <a href={site.secondaryCta.href} class="btn btn--ghost">Contact the quote team</a>
+        </div>
+      </div>
+
+      <div class="service-panel" aria-hidden="true">
+        <div class="service-panel-card">
+          <p class="service-panel-label">Best suited to</p>
+          <ul class="service-panel-list" role="list">
+            <li>Tighter pickup or delivery timing</li>
+            <li>Auction, purchase, or handover deadlines</li>
+            <li>Moves that need early timing confirmation</li>
+          </ul>
+          <div class="service-panel-note">
+            Start with the standard quote wizard, then use contact if the route or timing needs more discussion.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="service-bridge">
+    <div class="container service-bridge-inner">
+      <div>
+        <p class="eyebrow">How to think about express</p>
+        <h2 class="display-md bridge-heading">Express is about route fit and timing pressure, not just speed for the sake of it.</h2>
+      </div>
+      <p class="bridge-copy">
+        Not every move needs express handling. The right choice depends on the lane, availability,
+        and how fixed the delivery window really is.
+      </p>
+    </div>
+  </section>
+
+  <section class="section service-fit" aria-labelledby="service-fit-heading">
+    <div class="container">
+      <div class="fit-head">
+        <p class="eyebrow">Who it suits</p>
+        <h2 id="service-fit-heading" class="display-md">When express transport is the stronger option</h2>
+      </div>
+
+      <div class="fit-grid">
+        {fitPoints.map(({ title, body }) => (
+          <article class="fit-card">
+            <h3>{title}</h3>
+            <p>{body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="decision-bridge">
+    <div class="container decision-bridge-inner">
+      {decisionPoints.map(({ heading, copy }) => (
+        <article class="decision-card">
+          <h2 class="display-md decision-heading">{heading}</h2>
+          <p>{copy}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="urgency-section" aria-labelledby="urgency-heading">
+    <div class="container">
+      <div class="urgency-head">
+        <p class="eyebrow">When urgency is real</p>
+        <h2 id="urgency-heading" class="display-md">Three situations where express planning usually matters more</h2>
+      </div>
+
+      <div class="urgency-grid">
+        {urgencySignals.map(({ title, timing, detail }) => (
+          <article class="urgency-card">
+            <p class="urgency-timing">{timing}</p>
+            <h3>{title}</h3>
+            <p>{detail}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="service-reassurance" aria-labelledby="service-reassurance-heading">
+    <div class="container service-reassurance-inner">
+      <div class="service-reassurance-copy">
+        <p class="eyebrow">Booking guide</p>
+        <h2 id="service-reassurance-heading" class="display-md reassurance-heading">
+          Start with the quote, then confirm the urgency properly.
+        </h2>
+        <p class="reassurance-intro">
+          Standard and specialist quote requests can all begin through the same vehicle quote
+          wizard. If the route is unusual, the pickup conditions are awkward, or the timing is
+          unusually tight, use the contact route so the team can confirm the best path early.
+        </p>
+      </div>
+
+      <div class="reassurance-panel">
+        <p class="reassurance-label">What this gives you</p>
+        <ul class="reassurance-list" role="list">
+          {reassurancePoints.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band cta-band--service" aria-labelledby="service-cta-heading">
+    <div class="container cta-inner">
+      <div>
+        <h2 id="service-cta-heading" class="display-md cta-heading">Ready to quote an interstate move with tighter timing?</h2>
+        <p class="cta-sub">
+          Start with the vehicle quote if the move is otherwise clear, or use the contact path if
+          the route or delivery window needs a more detailed discussion.
+        </p>
+      </div>
+      <div class="cta-actions">
+        <a href={site.primaryCta.href} class="btn btn--primary btn--lg">Get a vehicle quote</a>
+        <a href={site.secondaryCta.href} class="btn btn--ghost btn--lg">Contact the quote team</a>
+      </div>
+    </div>
+  </section>
+</SiteDocument>
+
+<style>
+  .service-hero {
+    background:
+      radial-gradient(circle at top right, rgba(59, 143, 214, 0.16), transparent 22rem),
+      linear-gradient(180deg, #11161d 0%, #0c0f13 100%);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .service-hero-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(20rem, 0.9fr);
+    gap: var(--space-12);
+    align-items: center;
+    padding-block: var(--space-24) var(--space-26);
+  }
+
+  .service-copy {
+    max-width: 46rem;
+  }
+
+  .service-title {
+    max-width: 11ch;
+    margin-bottom: var(--space-6);
+  }
+
+  .service-intro {
+    max-width: 40rem;
+    color: var(--color-ink-secondary);
+    font-size: clamp(1rem, 0.95rem + 0.15vw, 1.1rem);
+    line-height: 1.75;
+    margin: 0 0 var(--space-10);
+  }
+
+  .service-actions {
+    display: flex;
+    gap: var(--space-5);
+    flex-wrap: wrap;
+    margin-top: var(--space-2);
+  }
+
+  .service-panel-card,
+  .fit-card,
+  .reassurance-panel {
+    border-radius: calc(var(--radius-lg) + 0.15rem);
+  }
+
+  .service-panel-card {
+    padding: var(--space-8);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)),
+      rgba(9, 13, 18, 0.92);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
+  }
+
+  .service-panel-label,
+  .reassurance-label {
+    margin: 0 0 var(--space-4);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-widest);
+    color: var(--color-accent);
+  }
+
+  .service-panel-list,
+  .reassurance-list {
+    display: grid;
+    gap: var(--space-3);
+    margin: 0;
+    padding: 0;
+  }
+
+  .service-panel-list li {
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-base);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    color: var(--color-ink-primary);
+  }
+
+  .service-panel-note,
+  .bridge-copy,
+  .fit-card p,
+  .decision-card p,
+  .reassurance-intro,
+  .reassurance-list li {
+    color: var(--color-ink-secondary);
+    line-height: 1.8;
+  }
+
+  .service-bridge,
+  .service-reassurance {
+    background:
+      radial-gradient(circle at top right, rgba(59, 143, 214, 0.08), transparent 20rem),
+      #F2FBF5;
+    border-top: 1px solid rgba(15, 24, 34, 0.08);
+    border-bottom: 1px solid rgba(15, 24, 34, 0.08);
+  }
+
+  .service-bridge-inner,
+  .service-reassurance-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.95fr);
+    gap: var(--space-10);
+    align-items: start;
+    padding-block: var(--space-20);
+  }
+
+  .bridge-heading,
+  .reassurance-heading,
+  .decision-heading {
+    color: #111823;
+    margin-bottom: var(--space-4);
+  }
+
+  .bridge-heading {
+    max-width: 16ch;
+  }
+
+  .service-fit {
+    background: linear-gradient(180deg, #10151c 0%, #0d1117 100%);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .fit-head {
+    margin-bottom: var(--space-12);
+  }
+
+  .fit-grid,
+  .decision-bridge-inner {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-6);
+  }
+
+  .fit-card {
+    padding: var(--space-8);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent),
+      var(--color-surface-raised);
+  }
+
+  .fit-card h3 {
+    margin: 0 0 var(--space-4);
+    font-family: var(--font-display);
+    font-size: clamp(1.25rem, 1.1rem + 0.35vw, 1.65rem);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--color-ink-primary);
+  }
+
+  .decision-bridge {
+    background: #F2FBF5;
+    border-bottom: 1px solid rgba(15, 24, 34, 0.08);
+  }
+
+  .decision-bridge-inner {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding-block: var(--space-20);
+  }
+
+  .decision-card,
+  .reassurance-panel {
+    padding: var(--space-8);
+    border: 1px solid rgba(15, 24, 34, 0.08);
+    background: rgba(255, 255, 255, 0.72);
+    box-shadow: 0 18px 40px rgba(15, 24, 34, 0.08);
+  }
+
+  .urgency-section {
+    background: linear-gradient(180deg, #10151c 0%, #0d1117 100%);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .urgency-head {
+    margin-bottom: var(--space-12);
+  }
+
+  .urgency-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-6);
+  }
+
+  .urgency-card {
+    padding: var(--space-8);
+    border-radius: calc(var(--radius-lg) + 0.15rem);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent),
+      var(--color-surface-raised);
+  }
+
+  .urgency-timing {
+    margin: 0 0 var(--space-3);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-widest);
+    color: var(--color-accent);
+  }
+
+  .urgency-card h3 {
+    margin: 0 0 var(--space-4);
+    font-family: var(--font-display);
+    font-size: clamp(1.2rem, 1.08rem + 0.3vw, 1.5rem);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--color-ink-primary);
+  }
+
+  .urgency-card p:last-child {
+    margin: 0;
+    color: var(--color-ink-secondary);
+    line-height: 1.8;
+  }
+
+  .reassurance-list li {
+    padding-left: var(--space-5);
+    position: relative;
+    color: #4b5968;
+  }
+
+  .reassurance-list li::before {
+    content: "";
+    position: absolute;
+    top: 0.7rem;
+    left: 0;
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 999px;
+    background: var(--color-accent);
+  }
+
+  .cta-band--service {
+    border-top: 0;
+    padding-block: var(--space-20);
+  }
+
+  .cta-band--service .cta-inner {
+    padding-block: var(--space-6);
+  }
+
+  .cta-band--service .cta-heading {
+    margin-bottom: var(--space-5);
+  }
+
+  .cta-band--service .cta-sub {
+    max-width: 42rem;
+  }
+
+  .cta-band--service .cta-actions {
+    margin-top: var(--space-8);
+  }
+
+  @media (max-width: 960px) {
+    .service-hero-inner,
+    .service-bridge-inner,
+    .service-reassurance-inner,
+    .fit-grid,
+    .decision-bridge-inner,
+    .urgency-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

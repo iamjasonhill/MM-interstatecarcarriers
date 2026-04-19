@@ -220,6 +220,26 @@ export const site: SiteConfig = {
       description: 'FAQ page covering common interstate vehicle transport questions.',
     },
     {
+      label: 'Personal Items In Car Transport',
+      href: '/car-transport-personal-items-allowed/',
+      description: 'Guide to what can and cannot travel inside the vehicle during interstate transport.',
+    },
+    {
+      label: 'Express Car Transport',
+      href: '/car-transport-express-service/',
+      description: 'Service page for express interstate car transport when timing is a higher priority.',
+    },
+    {
+      label: 'Interstate Car Transport By Rail',
+      href: '/interstate-car-transport-by-rail/',
+      description: 'Guide to when rail can suit interstate car transport and what tradeoffs to consider.',
+    },
+    {
+      label: 'Cheapest Interstate Car Transport',
+      href: '/cheapest-interstate-car-transport/',
+      description: 'Guide to finding the most practical low-cost interstate car transport option.',
+    },
+    {
       label: 'HTML Sitemap',
       href: '/sitemap/',
       description: 'Human-readable sitemap for the current Interstate Car Carriers website.',

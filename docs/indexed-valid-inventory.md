@@ -4,56 +4,102 @@ Last updated: 2026-04-19
 
 ## Status
 
-Not yet complete.
+Coverage export reviewed.
 
-This repo currently contains the homepage/controller scaffold only. The indexed valid WordPress estate still needs to be audited and imported into a proper working inventory.
+The indexed-valid export from `interstatecarcarriers.com.au-Coverage-Valid-2026-04-19.zip` shows that this property is overwhelmingly route-led. We now have a reliable count for the current indexed-valid estate and can split it into the right migration lanes.
 
-## What We Know Already
+## Indexed Valid Summary
 
-- the current public site is route-heavy
-- there are many long-tail `car-transport-*` pages on the WordPress build
-- those URLs must be reviewed before cutover so we do not lose coverage unnecessarily
-- search results still show historical URLs such as:
-  - `/contact-icc/`
-  - `/vehicle-transport-questions/`
-  - `/enclosed-car-transport-quote/`
-  - many `car-transport-{origin}-{destination}/` routes
+- total indexed-valid URLs in the export: `698`
+- main domain indexed-valid URLs: `695`
+- related subdomain login URLs indexed-valid: `3`
+- main domain homepage: `1`
+- main domain clearly non-route utility/content pages: `6`
+- main domain `car-transport-*` URLs: `688`
 
-## Seed URL Groups
+## Related Subdomain URLs
 
-### Core utility and commercial pages
+These are in the indexed-valid export but should not be treated as part of the public content import:
+
+- `https://transport.interstatecarcarriers.com.au/login`
+- `https://quotes.interstatecarcarriers.com.au/login`
+- `https://routecalc.interstatecarcarriers.com.au/login`
+
+They are a separate technical SEO cleanup issue.
+
+## Main Domain Indexed Pages
+
+### Homepage
 
 - `/`
+
+### Clearly indexed utility and commercial pages
+
 - `/contact-icc/`
 - `/vehicle-transport-questions/`
 - `/enclosed-car-transport-quote/`
+- `/cheapest-interstate-car-transport/`
+- `/interstate-car-transport-by-rail/`
+- `/terms/`
 
-### Legacy article / advice pages linked from the homepage
+### `car-transport-*` estate
 
+The export contains `688` indexed-valid URLs under the `car-transport-*` pattern.
+
+That bucket includes:
+
+- the large origin/destination route estate
+- at least some evergreen advice/commercial pages that also use the `car-transport-*` prefix, including:
+  - `/car-transport-personal-items-allowed/`
+  - `/car-transport-express-service/`
+
+So the route-pattern bucket should not be treated as one thing. It contains both:
+
+- pages we likely want to rebuild as evergreen content
+- pages that belong to the dedicated route-lane migration
+
+## What This Means
+
+- the site is not mainly a homepage-plus-few-pages migration
+- it is primarily a route-estate migration with a smaller content/core-page layer around it
+- the next import batch should focus on the indexed evergreen/content pages before touching the bulk route lane
+- route pages need their own preservation and consolidation strategy, not ad hoc page-by-page importing
+
+## First Import Candidates From Indexed Valid
+
+These are the strongest next candidates because they are indexed-valid and fit the page patterns we have already built:
+
+- `/cheapest-interstate-car-transport/`
+- `/interstate-car-transport-by-rail/`
 - `/car-transport-personal-items-allowed/`
 - `/car-transport-express-service/`
-- `/interstate-car-transport-by-rail/`
-- `/cheapest-interstate-car-transport/`
 
-### Route estate
+The already-started Astro pages in the current repo also line up with indexed-valid reality:
 
-- many pages under `car-transport-*`
-- examples surfaced in search on 2026-04-19 include:
-  - `/car-transport-cairns-warrnambool/`
-  - `/car-transport-melbourne-sydney/`
-  - `/car-transport-melbourne-ballina/`
-  - `/car-transport-hobart-geelong/`
-  - `/car-transport-adelaide-geelong/`
+- `/vehicle-transport-questions/`
+- `/enclosed-car-transport-quote/`
+
+## Route Lane Note
+
+The `688` indexed-valid `car-transport-*` URLs should be exported again into a dedicated route inventory later, then grouped by:
+
+- top-value corridors
+- duplicate or near-duplicate route patterns
+- redirect candidates
+- pages worth preserving as standalone route landers
+
+Do not mix that route audit into the next small content import batch.
 
 ## Next Inventory Steps
 
-1. export indexed valid URLs from available Search Console or fleet state evidence
-2. separate homepage, utility, quote, FAQ, and route URLs
-3. mark each URL as:
+1. keep the indexed-valid core/content set separate from the route estate
+2. import the next small batch of indexed evergreen/content pages into Astro
+3. mark each imported URL as:
    - rebuild in Astro
    - redirect to a stronger kept page
    - retire only if there is no SEO or user value
-4. attach destination decisions to `docs/redirect-map.md`
+4. create a separate route inventory for the `car-transport-*` bulk estate
+5. attach destination decisions to `docs/redirect-map.md`
 
 ## Working Port Recommendation
 

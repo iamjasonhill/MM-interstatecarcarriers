@@ -1,0 +1,349 @@
+---
+import SiteDocument from '../layouts/SiteDocument.astro';
+import { site, toAbsoluteUrl } from '../config/site';
+
+const rules = [
+  {
+    title: 'Pack only sensible personal items',
+    body: 'Small household items, clothing, and securely packed belongings are often the best fit. Keep it practical and easy to inspect.',
+  },
+  {
+    title: 'No dangerous or restricted goods',
+    body: 'Fuel containers, ammunition, weapons, gas bottles, and other hazardous items should never be left in the vehicle for transport.',
+  },
+  {
+    title: 'Use boxes or suitcases that stay put',
+    body: 'Pack belongings into suitable boxes or luggage and keep them low in the vehicle, ideally in the boot or below rear-window height.',
+  },
+  {
+    title: 'Treat personal effects as owner risk',
+    body: 'Personal items inside the car should be treated separately from the transport itself, so it is important to declare them clearly and pack them properly.',
+  },
+];
+
+const questions = [
+  {
+    question: 'Can I leave personal items in the car during interstate transport?',
+    answer:
+      'Often yes, but only within the carrier rules for that route and vehicle type. The safest approach is to start with the vehicle quote and then confirm the packing conditions if you plan to leave goods inside the car.',
+  },
+  {
+    question: 'What items should never be left in the vehicle?',
+    answer:
+      'Dangerous goods, fuel containers, firearms, ammunition, gas cylinders, perishables, rubbish, and live plants should all stay out of the vehicle. Those items create safety, quarantine, or damage risks in transit.',
+  },
+  {
+    question: 'How should belongings be packed?',
+    answer:
+      'Use proper boxes or suitcases, keep the load tidy, and avoid loose items moving around the cabin. Packing should be stable, low, and unlikely to obstruct visibility or damage the vehicle interior.',
+  },
+  {
+    question: 'Is there a weight limit for items left in the car?',
+    answer:
+      'There can be. Total allowable weight depends on the carrier and route, so it is best to treat personal items as something to confirm during quoting rather than assume every load will be accepted.',
+  },
+  {
+    question: 'Should I use the quote path or the contact path for this?',
+    answer:
+      'If the move is otherwise straightforward, start with the vehicle quote. If the vehicle is already non-drivable, heavily packed, or needs extra clarification, use the contact path so the team can confirm the right loading conditions first.',
+  },
+];
+
+const pageSchemas = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    '@id': toAbsoluteUrl('/#organization'),
+    name: site.name,
+    url: site.url,
+    description: site.defaultDescription,
+    logo: toAbsoluteUrl(site.seoAssets.favicon),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    '@id': toAbsoluteUrl('/#website'),
+    url: site.url,
+    name: site.name,
+    description: site.defaultDescription,
+    publisher: {
+      '@id': toAbsoluteUrl('/#organization'),
+    },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': toAbsoluteUrl('/car-transport-personal-items-allowed/#webpage'),
+    url: toAbsoluteUrl('/car-transport-personal-items-allowed/'),
+    name: `Personal Items In Car Transport | ${site.name}`,
+    description:
+      'Guide to leaving personal items in the car during interstate transport, including what to avoid and how to pack safely.',
+    isPartOf: {
+      '@id': toAbsoluteUrl('/#website'),
+    },
+    about: {
+      '@id': toAbsoluteUrl('/#organization'),
+    },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    '@id': toAbsoluteUrl('/car-transport-personal-items-allowed/#faq'),
+    url: toAbsoluteUrl('/car-transport-personal-items-allowed/'),
+    name: 'Interstate Car Transport With Personal Items Allowed',
+    mainEntity: questions.map(({ question, answer }) => ({
+      '@type': 'Question',
+      name: question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: answer,
+      },
+    })),
+  },
+];
+---
+
+<SiteDocument
+  title={`Personal Items In Car Transport | ${site.name}`}
+  description="Guide to leaving personal items in the car during interstate transport, including what to avoid and how to pack safely."
+  canonicalPath="/car-transport-personal-items-allowed/"
+  schemas={pageSchemas}
+>
+  <section class="page-hero">
+    <div class="container page-hero-inner">
+      <span class="section-rule" aria-hidden="true"></span>
+      <p class="eyebrow">Packing guide</p>
+      <h1 class="display-lg page-title">Interstate car transport with personal items allowed</h1>
+      <p class="page-intro">
+        Leaving a few belongings in the vehicle can make an interstate move easier, but it needs to
+        be done properly. The safest approach is to pack neatly, avoid restricted goods, and confirm
+        the carrier rules before the booking is locked in.
+      </p>
+      <div class="page-actions">
+        <a href={site.primaryCta.href} class="btn btn--primary">Get a vehicle quote</a>
+        <a href={site.secondaryCta.href} class="btn btn--ghost">Contact the quote team</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="question-summary">
+    <div class="container question-summary-inner">
+      <div>
+        <p class="eyebrow">The practical rule</p>
+        <h2 class="display-md summary-heading">Pack lightly, pack securely, and leave out anything risky.</h2>
+      </div>
+      <p class="summary-copy">
+        Most issues with personal items come down to unsafe packing, prohibited goods, or assuming
+        every carrier accepts the same conditions. A tidy load and an accurate quote makes the move
+        much smoother.
+      </p>
+    </div>
+  </section>
+
+  <section class="section rules-section" aria-labelledby="rules-heading">
+    <div class="container">
+      <div class="rules-head">
+        <p class="eyebrow">What to keep in mind</p>
+        <h2 id="rules-heading" class="display-md">Four simple rules for moving belongings inside the car</h2>
+      </div>
+
+      <div class="rules-grid">
+        {rules.map(({ title, body }) => (
+          <article class="rule-card">
+            <h3>{title}</h3>
+            <p>{body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-bridge">
+    <div class="container contact-bridge-inner">
+      <div>
+        <p class="eyebrow">When to ask first</p>
+        <h2 class="display-md contact-bridge-heading">Use the contact path if the car is heavily packed or needs special handling.</h2>
+      </div>
+      <p class="contact-bridge-copy">
+        If the vehicle is non-drivable, heavily loaded, or the items inside are unusual, speak with
+        the team before assuming the booking can stay on a standard quote path.
+      </p>
+    </div>
+  </section>
+
+  <section class="section faq-section" aria-labelledby="faq-heading">
+    <div class="container">
+      <div class="faq-head">
+        <p class="eyebrow">Common questions</p>
+        <h2 id="faq-heading" class="display-md">What people usually ask about belongings inside the vehicle</h2>
+      </div>
+
+      <div class="faq-grid">
+        {questions.map(({ question, answer }) => (
+          <article class="faq-card">
+            <h3>{question}</h3>
+            <p>{answer}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band cta-band--page" aria-labelledby="page-cta-heading">
+    <div class="container cta-inner">
+      <div>
+        <h2 id="page-cta-heading" class="display-md cta-heading">Ready to quote the vehicle and confirm the packing details?</h2>
+        <p class="cta-sub">
+          Start with the vehicle quote if the job is otherwise straightforward, or use the contact
+          route if the load needs a more careful check first.
+        </p>
+      </div>
+      <div class="cta-actions">
+        <a href={site.primaryCta.href} class="btn btn--primary btn--lg">Get a vehicle quote</a>
+        <a href={site.secondaryCta.href} class="btn btn--ghost btn--lg">Contact the quote team</a>
+      </div>
+    </div>
+  </section>
+</SiteDocument>
+
+<style>
+  .page-hero {
+    background:
+      radial-gradient(circle at top right, rgba(59, 143, 214, 0.16), transparent 22rem),
+      linear-gradient(180deg, #11161d 0%, #0c0f13 100%);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .page-hero-inner {
+    padding-block: var(--space-24);
+    max-width: 54rem;
+  }
+
+  .page-title {
+    max-width: 11ch;
+    margin-bottom: var(--space-6);
+  }
+
+  .page-intro {
+    max-width: 44rem;
+    color: var(--color-ink-secondary);
+    font-size: clamp(1rem, 0.95rem + 0.15vw, 1.1rem);
+    line-height: 1.75;
+    margin: 0 0 var(--space-10);
+  }
+
+  .page-actions {
+    display: flex;
+    gap: var(--space-5);
+    flex-wrap: wrap;
+    padding-top: var(--space-2);
+  }
+
+  .question-summary,
+  .contact-bridge {
+    background:
+      radial-gradient(circle at top right, rgba(59, 143, 214, 0.08), transparent 20rem),
+      #F2FBF5;
+    border-top: 1px solid rgba(15, 24, 34, 0.08);
+    border-bottom: 1px solid rgba(15, 24, 34, 0.08);
+  }
+
+  .question-summary-inner,
+  .contact-bridge-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.9fr);
+    gap: var(--space-10);
+    align-items: start;
+    padding-block: var(--space-20);
+  }
+
+  .summary-heading,
+  .contact-bridge-heading {
+    color: #111823;
+    max-width: 16ch;
+    margin-bottom: var(--space-4);
+  }
+
+  .summary-copy,
+  .contact-bridge-copy {
+    margin: 0;
+    color: #4b5968;
+    line-height: 1.8;
+    max-width: 34rem;
+  }
+
+  .rules-section,
+  .faq-section {
+    background: linear-gradient(180deg, #10151c 0%, #0d1117 100%);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .rules-head,
+  .faq-head {
+    margin-bottom: var(--space-12);
+  }
+
+  .rules-grid,
+  .faq-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-6);
+  }
+
+  .rule-card,
+  .faq-card {
+    padding: var(--space-8);
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent),
+      var(--color-surface-raised);
+  }
+
+  .rule-card h3,
+  .faq-card h3 {
+    margin: 0 0 var(--space-4);
+    font-family: var(--font-display);
+    font-size: clamp(1.25rem, 1.1rem + 0.35vw, 1.6rem);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--color-ink-primary);
+  }
+
+  .rule-card p,
+  .faq-card p {
+    margin: 0;
+    color: var(--color-ink-secondary);
+    line-height: 1.8;
+  }
+
+  .cta-band--page {
+    border-top: 0;
+    padding-block: var(--space-20);
+  }
+
+  .cta-band--page .cta-inner {
+    padding-block: var(--space-8);
+  }
+
+  .cta-band--page .cta-heading {
+    margin-bottom: var(--space-5);
+  }
+
+  .cta-band--page .cta-sub {
+    max-width: 42rem;
+  }
+
+  .cta-band--page .cta-actions {
+    margin-top: var(--space-8);
+  }
+
+  @media (max-width: 960px) {
+    .question-summary-inner,
+    .contact-bridge-inner,
+    .rules-grid,
+    .faq-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

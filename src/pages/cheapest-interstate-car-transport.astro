@@ -1,0 +1,430 @@
+---
+import SiteDocument from '../layouts/SiteDocument.astro';
+import { site, toAbsoluteUrl } from '../config/site';
+
+const valuePoints = [
+  {
+    title: 'Compare the real total cost',
+    body: 'Driving the vehicle yourself can mean fuel, accommodation, time off work, wear and tear, and a much longer trip than the headline map distance suggests.',
+  },
+  {
+    title: 'Choose the lane that matches the route',
+    body: 'The cheapest transport option is usually the one that fits the route, timing, and vehicle type cleanly instead of forcing extra handling or delays.',
+  },
+  {
+    title: 'Be careful with “cheapest” promises',
+    body: 'A lower number is not always better if collection points, timing uncertainty, or weak handling conditions make the move more difficult overall.',
+  },
+];
+
+const checklist = [
+  {
+    heading: 'Route and availability',
+    copy: 'Common interstate corridors often have more competitive pricing because there is better carrier coverage and more predictable demand.',
+  },
+  {
+    heading: 'Vehicle type',
+    copy: 'Standard drivable vehicles are usually the most straightforward to quote. Modified, non-drivable, or prestige vehicles can change the price because the handling requirements change.',
+  },
+  {
+    heading: 'Pickup and delivery conditions',
+    copy: 'Difficult access, tight timing, or unusual collection points can all push a move away from the cheapest available lane.',
+  },
+  {
+    heading: 'What you are actually saving',
+    copy: 'The best-value option should save money without quietly creating more cost, hassle, or risk at the edges of the job.',
+  },
+];
+
+const valueCompare = [
+  {
+    label: 'Headline price',
+    cheap: 'Looks lower upfront',
+    value: 'Only useful if the route and delivery conditions still fit cleanly',
+  },
+  {
+    label: 'Drive-it-yourself costs',
+    cheap: 'Easy to underestimate',
+    value: 'Fuel, accommodation, time away from work, and wear on the vehicle all count',
+  },
+  {
+    label: 'Route fit',
+    cheap: 'May ignore awkward access or timing limits',
+    value: 'A better-fit lane often saves money by reducing handling problems and delays',
+  },
+];
+
+const pageSchemas = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    '@id': toAbsoluteUrl('/#organization'),
+    name: site.name,
+    url: site.url,
+    description: site.defaultDescription,
+    logo: toAbsoluteUrl(site.seoAssets.favicon),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    '@id': toAbsoluteUrl('/#website'),
+    url: site.url,
+    name: site.name,
+    description: site.defaultDescription,
+    publisher: {
+      '@id': toAbsoluteUrl('/#organization'),
+    },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': toAbsoluteUrl('/cheapest-interstate-car-transport/#webpage'),
+    url: toAbsoluteUrl('/cheapest-interstate-car-transport/'),
+    name: `Cheapest Interstate Car Transport | ${site.name}`,
+    description:
+      'Guide to finding the most practical low-cost interstate car transport option without overlooking timing, handling, or route fit.',
+    isPartOf: {
+      '@id': toAbsoluteUrl('/#website'),
+    },
+    about: {
+      '@id': toAbsoluteUrl('/#organization'),
+    },
+  },
+];
+---
+
+<SiteDocument
+  title={`Cheapest Interstate Car Transport | ${site.name}`}
+  description="Guide to finding the most practical low-cost interstate car transport option without overlooking timing, handling, or route fit."
+  canonicalPath="/cheapest-interstate-car-transport/"
+  schemas={pageSchemas}
+>
+  <section class="page-hero">
+    <div class="container page-hero-inner">
+      <span class="section-rule" aria-hidden="true"></span>
+      <p class="eyebrow">Value guide</p>
+      <h1 class="display-lg page-title">Cheapest interstate car transport</h1>
+      <p class="page-intro">
+        The cheapest interstate move is not always the one with the boldest price claim. Real value
+        comes from choosing the transport lane that fits the route, the vehicle, and the timing
+        without adding unnecessary cost somewhere else.
+      </p>
+      <div class="page-actions">
+        <a href={site.primaryCta.href} class="btn btn--primary">Get a vehicle quote</a>
+        <a href={site.secondaryCta.href} class="btn btn--ghost">Contact the quote team</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="value-bridge">
+    <div class="container value-bridge-inner">
+      <div>
+        <p class="eyebrow">The practical view</p>
+        <h2 class="display-md value-heading">A good low-cost move should save money without creating more hassle.</h2>
+      </div>
+      <p class="value-copy">
+        Self-driving can mean fuel, accommodation, time away from work, and more wear on the
+        vehicle. A transport quote often makes more sense when the full cost of doing it yourself is
+        weighed up properly.
+      </p>
+    </div>
+  </section>
+
+  <section class="section value-section" aria-labelledby="value-points-heading">
+    <div class="container">
+      <div class="value-head">
+        <p class="eyebrow">What affects value</p>
+        <h2 id="value-points-heading" class="display-md">How to think about cheap interstate transport the right way</h2>
+      </div>
+
+      <div class="value-grid">
+        {valuePoints.map(({ title, body }) => (
+          <article class="value-card">
+            <h3>{title}</h3>
+            <p>{body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="value-compare" aria-labelledby="value-compare-heading">
+    <div class="container value-compare-inner">
+      <div>
+        <p class="eyebrow">Cheap headline vs real value</p>
+        <h2 id="value-compare-heading" class="display-md value-compare-heading">A lower number only helps if the move still works properly.</h2>
+      </div>
+
+      <div class="value-compare-table" role="table" aria-label="Cheap headline versus real value">
+        {valueCompare.map(({ label, cheap, value }) => (
+          <div class="value-compare-row" role="row">
+            <div class="value-compare-label" role="cell">
+              <strong>{label}</strong>
+            </div>
+            <div class="value-compare-cell" role="cell">
+              <span>Cheap headline</span>
+              <p>{cheap}</p>
+            </div>
+            <div class="value-compare-cell" role="cell">
+              <span>Real value</span>
+              <p>{value}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="checklist-section">
+    <div class="container checklist-inner">
+      <div>
+        <p class="eyebrow">Before you compare quotes</p>
+        <h2 class="display-md checklist-heading">Check the route, the vehicle, and the conditions first.</h2>
+      </div>
+
+      <div class="checklist-grid">
+        {checklist.map(({ heading, copy }) => (
+          <article class="checklist-card">
+            <h3>{heading}</h3>
+            <p>{copy}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band cta-band--page" aria-labelledby="page-cta-heading">
+    <div class="container cta-inner">
+      <div>
+        <h2 id="page-cta-heading" class="display-md cta-heading">Ready to see the most practical quote for your route?</h2>
+        <p class="cta-sub">
+          Start with the vehicle quote if the job is clear, or use the contact route if timing,
+          access, or handling details need more discussion before the price is judged properly.
+        </p>
+      </div>
+      <div class="cta-actions">
+        <a href={site.primaryCta.href} class="btn btn--primary btn--lg">Get a vehicle quote</a>
+        <a href={site.secondaryCta.href} class="btn btn--ghost btn--lg">Contact the quote team</a>
+      </div>
+    </div>
+  </section>
+</SiteDocument>
+
+<style>
+  .page-hero {
+    background:
+      radial-gradient(circle at top right, rgba(59, 143, 214, 0.16), transparent 22rem),
+      linear-gradient(180deg, #11161d 0%, #0c0f13 100%);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .page-hero-inner {
+    padding-block: var(--space-24);
+    max-width: 54rem;
+  }
+
+  .page-title {
+    max-width: 10ch;
+    margin-bottom: var(--space-6);
+  }
+
+  .page-intro {
+    max-width: 44rem;
+    color: var(--color-ink-secondary);
+    font-size: clamp(1rem, 0.95rem + 0.15vw, 1.1rem);
+    line-height: 1.75;
+    margin: 0 0 var(--space-10);
+  }
+
+  .page-actions {
+    display: flex;
+    gap: var(--space-5);
+    flex-wrap: wrap;
+    padding-top: var(--space-2);
+  }
+
+  .value-bridge,
+  .checklist-section {
+    background:
+      radial-gradient(circle at top right, rgba(59, 143, 214, 0.08), transparent 20rem),
+      #F2FBF5;
+    border-top: 1px solid rgba(15, 24, 34, 0.08);
+    border-bottom: 1px solid rgba(15, 24, 34, 0.08);
+  }
+
+  .value-bridge-inner,
+  .checklist-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.9fr);
+    gap: var(--space-10);
+    align-items: start;
+    padding-block: var(--space-20);
+  }
+
+  .value-heading,
+  .checklist-heading {
+    color: #111823;
+    max-width: 16ch;
+    margin-bottom: var(--space-4);
+  }
+
+  .value-copy {
+    margin: 0;
+    color: #4b5968;
+    line-height: 1.8;
+    max-width: 34rem;
+  }
+
+  .value-section {
+    background: linear-gradient(180deg, #10151c 0%, #0d1117 100%);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .value-head {
+    margin-bottom: var(--space-12);
+  }
+
+  .value-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-6);
+  }
+
+  .value-card,
+  .checklist-card {
+    padding: var(--space-8);
+    border-radius: var(--radius-lg);
+  }
+
+  .value-card {
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent),
+      var(--color-surface-raised);
+  }
+
+  .checklist-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-6);
+  }
+
+  .checklist-card {
+    border: 1px solid rgba(15, 24, 34, 0.08);
+    background: rgba(255, 255, 255, 0.72);
+  }
+
+  .value-card h3,
+  .checklist-card h3 {
+    margin: 0 0 var(--space-4);
+    font-family: var(--font-display);
+    font-size: clamp(1.25rem, 1.1rem + 0.35vw, 1.6rem);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+  }
+
+  .value-card h3 {
+    color: var(--color-ink-primary);
+  }
+
+  .checklist-card h3 {
+    color: #111823;
+  }
+
+  .value-card p {
+    margin: 0;
+    color: var(--color-ink-secondary);
+    line-height: 1.8;
+  }
+
+  .checklist-card p {
+    margin: 0;
+    color: #4b5968;
+    line-height: 1.8;
+  }
+
+  .value-compare {
+    background: #F2FBF5;
+    border-bottom: 1px solid rgba(15, 24, 34, 0.08);
+  }
+
+  .value-compare-inner {
+    padding-block: var(--space-20);
+  }
+
+  .value-compare-heading {
+    color: #111823;
+    max-width: 15ch;
+    margin-bottom: var(--space-8);
+  }
+
+  .value-compare-table {
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .value-compare-row {
+    display: grid;
+    grid-template-columns: minmax(10rem, 0.7fr) minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--space-4);
+    padding: var(--space-5);
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(15, 24, 34, 0.08);
+    background: rgba(255, 255, 255, 0.72);
+  }
+
+  .value-compare-label strong {
+    display: block;
+    color: #111823;
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+  }
+
+  .value-compare-cell span {
+    display: block;
+    margin-bottom: var(--space-2);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-widest);
+    color: #356fa3;
+  }
+
+  .value-compare-cell p {
+    margin: 0;
+    color: #4b5968;
+    line-height: 1.8;
+  }
+
+  .cta-band--page {
+    border-top: 0;
+    padding-block: var(--space-20);
+  }
+
+  .cta-band--page .cta-inner {
+    padding-block: var(--space-8);
+  }
+
+  .cta-band--page .cta-heading {
+    margin-bottom: var(--space-5);
+  }
+
+  .cta-band--page .cta-sub {
+    max-width: 42rem;
+  }
+
+  .cta-band--page .cta-actions {
+    margin-top: var(--space-8);
+  }
+
+  @media (max-width: 960px) {
+    .value-bridge-inner,
+    .value-grid,
+    .value-compare-row,
+    .checklist-inner,
+    .checklist-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -95,10 +95,17 @@ function readIndexedRouteSlugs(zipPath) {
   });
 
   const urls = parseCsvLines(csv);
-  return urls
+  return [...new Set(urls
     .filter((url) => url.includes('/car-transport-'))
-    .map((url) => url.split('/car-transport-')[1]?.replace(/\/$/, ''))
-    .filter(Boolean);
+    .map((url) => {
+      try {
+        const pathname = new URL(url).pathname.replace(/^\/|\/$/g, '');
+        return pathname.startsWith('car-transport-') ? pathname : null;
+      } catch {
+        return null;
+      }
+    })
+    .filter(Boolean))];
 }
 
 function readManifest(manifestPath) {
@@ -260,6 +267,30 @@ async function writeJson(filePath, value) {
   await fs.writeFile(filePath, `${JSON.stringify(value, null, 2)}\n`, 'utf8');
 }
 
+async function buildOutputIndex(outputDir) {
+  const fileNames = await fs.readdir(outputDir);
+  const imported = [];
+
+  for (const fileName of fileNames.filter((name) => name.endsWith('.json') && name !== 'index.json').sort()) {
+    const fullPath = path.join(outputDir, fileName);
+    const raw = await fs.readFile(fullPath, 'utf8');
+    const record = JSON.parse(raw);
+
+    imported.push({
+      slug: record.post?.slug ?? fileName.replace(/\.json$/, ''),
+      imported: true,
+      outputPath: fullPath,
+      title: record.route?.title ?? record.post?.title ?? null,
+    });
+  }
+
+  return {
+    generatedAt: new Date().toISOString(),
+    count: imported.length,
+    imported,
+  };
+}
+
 async function main() {
   const args = parseArgs(process.argv.slice(2));
   const manifest = await readManifest(args.manifest);
@@ -270,40 +301,23 @@ async function main() {
     slugs = slugs.slice(0, args.limit);
   }
 
-  const imported = [];
-
   for (const slug of slugs) {
     const post = getPostRecord(manifest, slug);
 
     if (!post) {
-      imported.push({
-        slug,
-        imported: false,
-        reason: 'missing_wp_post',
-      });
       continue;
     }
 
     const record = parseRouteContent(post, manifest.site_url);
     const outputPath = path.join(args.outputDir, `${slug}.json`);
     await writeJson(outputPath, record);
-
-    imported.push({
-      slug,
-      imported: true,
-      outputPath,
-      title: record.route.title,
-    });
   }
 
   const indexPath = path.join(args.outputDir, 'index.json');
-  await writeJson(indexPath, {
-    generatedAt: new Date().toISOString(),
-    count: imported.length,
-    imported,
-  });
+  const index = await buildOutputIndex(args.outputDir);
+  await writeJson(indexPath, index);
 
-  console.log(`Imported ${imported.filter((item) => item.imported).length} route source record(s).`);
+  console.log(`Route source index now contains ${index.count} record(s).`);
   console.log(`Index written to ${indexPath}`);
 }
 

@@ -25,7 +25,11 @@ if (!source || !content) {
   throw new Error(`Unknown route slug: ${routeSlug}`);
 }
 
-const documentTitle = `${content.panelRouteTitle} Car Transport | ${site.name}`;
+const keywordDocumentTitle = `${content.panelRouteTitle} Car Transport | ${site.shortName}`;
+const documentTitle =
+  keywordDocumentTitle.length <= 65
+    ? keywordDocumentTitle
+    : `${content.panelRouteTitle} | ${site.shortName}`;
 
 const pageSchemas = [
   {

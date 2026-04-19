@@ -13,6 +13,7 @@
     "check": "astro check",
     "check:seo": "node ./scripts/check-seo.mjs",
     "import:routes": "node ./scripts/import-icc-route-sources.mjs",
+    "import:routes:batches": "node ./scripts/import-icc-route-batches.mjs",
     "lint": "astro check",
     "format:check": "prettier --check ."
   },

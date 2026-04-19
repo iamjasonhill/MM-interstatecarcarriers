@@ -109,6 +109,7 @@ function cleanCopy(value: string) {
 
 function titleCase(value: string) {
   return value
+    .replace(/-/g, ' ')
     .split(/\s+/)
     .filter(Boolean)
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
@@ -302,7 +303,7 @@ function buildRoutePageContent(record: RouteSourceRecord): RoutePageContent {
 
   return {
     slug: record.post.slug,
-    title: record.route.title,
+    title: `Car transport from ${from} to ${to}`,
     description: `Interstate car transport guide for the ${from} to ${to} route, including when to quote online and when to contact the team first.`,
     canonicalPath: `/${record.post.slug}/`,
     heroEyebrow,

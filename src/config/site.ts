@@ -206,6 +206,11 @@ export const site: SiteConfig = {
       description: 'Homepage for Interstate Car Carriers with the primary vehicle-transport positioning and quote CTAs.',
     },
     {
+      label: 'Vehicle Transport Questions',
+      href: '/vehicle-transport-questions/',
+      description: 'Single-page FAQ pattern covering common interstate vehicle transport questions.',
+    },
+    {
       label: 'HTML Sitemap',
       href: '/sitemap/',
       description: 'Human-readable sitemap for the current Astro scaffold.',

@@ -1,0 +1,336 @@
+---
+import SiteDocument from '../layouts/SiteDocument.astro';
+import { site, toAbsoluteUrl } from '../config/site';
+
+const questions = [
+  {
+    question: 'How far ahead should I book interstate car transport?',
+    answer:
+      'A little lead time gives you more flexibility on pickup windows and carrier type, especially on busy east-coast lanes. If the move is time-sensitive, it is better to start the quote early and confirm the timing in the contact flow.',
+  },
+  {
+    question: 'Do you move prestige, classic, or specialist vehicles?',
+    answer:
+      'Yes. Standard open-carrier transport suits many vehicles, but enclosed or higher-touch handling is the better fit when the vehicle needs more protection, presentation care, or specialist coordination.',
+  },
+  {
+    question: 'Can I leave personal items in the vehicle?',
+    answer:
+      'That depends on the job and the carrier requirements. Some moves can accommodate limited items, while others cannot. Use the quote or contact path for the current rules on your route and vehicle type.',
+  },
+  {
+    question: 'What if the vehicle is not drivable?',
+    answer:
+      'Non-drivable and specialist vehicles usually need a more tailored handling plan. That is exactly the sort of job where the contact pathway is the better first step so the team can confirm loading requirements before booking.',
+  },
+  {
+    question: 'Is enclosed transport always necessary?',
+    answer:
+      'No. Many standard vehicles are fine on open carriers, especially on high-frequency interstate lanes. Enclosed transport makes more sense when protection, presentation, or vehicle value changes the priorities of the move.',
+  },
+  {
+    question: 'What happens after I request a quote?',
+    answer:
+      'The quote flow captures the vehicle and route basics first, then the team can confirm timing, handling requirements, and the right transport pathway for the job. That is why the new site design pushes more directly into quoting instead of making people dig through weak old content first.',
+  },
+];
+
+const pageSchemas = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    '@id': toAbsoluteUrl('/#organization'),
+    name: site.name,
+    url: site.url,
+    description: site.defaultDescription,
+    logo: toAbsoluteUrl(site.seoAssets.favicon),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    '@id': toAbsoluteUrl('/#website'),
+    url: site.url,
+    name: site.name,
+    description: site.defaultDescription,
+    publisher: {
+      '@id': toAbsoluteUrl('/#organization'),
+    },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': toAbsoluteUrl('/vehicle-transport-questions/#webpage'),
+    url: toAbsoluteUrl('/vehicle-transport-questions/'),
+    name: `Vehicle Transport Questions | ${site.name}`,
+    description:
+      'Common questions about interstate vehicle transport, enclosed transport, specialist handling, and when to use the contact team.',
+    isPartOf: {
+      '@id': toAbsoluteUrl('/#website'),
+    },
+    about: {
+      '@id': toAbsoluteUrl('/#organization'),
+    },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    '@id': toAbsoluteUrl('/vehicle-transport-questions/#faq'),
+    url: toAbsoluteUrl('/vehicle-transport-questions/'),
+    name: 'Vehicle Transport Questions',
+    mainEntity: questions.map(({ question, answer }) => ({
+      '@type': 'Question',
+      name: question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: answer,
+      },
+    })),
+  },
+];
+---
+
+<SiteDocument
+  title={`Vehicle Transport Questions | ${site.name}`}
+  description="Common questions about interstate vehicle transport, enclosed transport, specialist handling, and when to use the contact team."
+  canonicalPath="/vehicle-transport-questions/"
+  schemas={pageSchemas}
+>
+  <section class="page-hero">
+    <div class="container page-hero-inner">
+      <span class="section-rule" aria-hidden="true"></span>
+      <p class="eyebrow">Question page pattern</p>
+      <h1 class="display-lg page-title">Vehicle transport questions</h1>
+      <p class="page-intro">
+        This is the first real single-page pattern for the Interstate Car Carriers rebuild. It is
+        designed to answer common transport questions clearly, keep the copy useful, and still move
+        people toward the quote or contact flow when the job needs a real next step.
+      </p>
+      <div class="page-actions">
+        <a href={site.primaryCta.href} class="btn btn--primary">Get a vehicle quote</a>
+        <a href={site.secondaryCta.href} class="btn btn--ghost">Contact the quote team</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="question-summary">
+    <div class="container question-summary-inner">
+      <div>
+        <p class="eyebrow">What this page should do</p>
+        <h2 class="display-md summary-heading">Answer the real questions, then route the next action.</h2>
+      </div>
+      <p class="summary-copy">
+        For the rollout, this kind of page should replace broken or thin WordPress content with
+        something clearer and more useful. It does not need to become a massive article every time.
+        Its job is to answer, reassure, and send the visitor to the right next step.
+      </p>
+    </div>
+  </section>
+
+  <section class="section faq-section" aria-labelledby="faq-heading">
+    <div class="container">
+      <div class="faq-head">
+        <p class="eyebrow">Common questions</p>
+        <h2 id="faq-heading" class="display-md">A cleaner FAQ page model</h2>
+      </div>
+
+      <div class="faq-grid">
+        {questions.map(({ question, answer }) => (
+          <article class="faq-card">
+            <h3>{question}</h3>
+            <p>{answer}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-bridge">
+    <div class="container contact-bridge-inner">
+      <div>
+        <p class="eyebrow">When to contact the team</p>
+        <h2 class="display-md contact-bridge-heading">Use the contact path when the move needs more than a standard quote.</h2>
+      </div>
+      <p class="contact-bridge-copy">
+        Non-drivable vehicles, prestige handling, unusual pickup conditions, or anything that needs
+        more coordination should go straight to the contact team instead of being forced through a
+        generic self-serve path.
+      </p>
+    </div>
+  </section>
+
+  <section class="cta-band cta-band--page" aria-labelledby="page-cta-heading">
+    <div class="container cta-inner">
+      <div>
+        <h2 id="page-cta-heading" class="display-md cta-heading">Ready to move from questions to a real quote?</h2>
+        <p class="cta-sub">
+          Start with the vehicle quote if the job is straightforward, or use the contact route if it
+          needs more planning.
+        </p>
+      </div>
+      <div class="cta-actions">
+        <a href={site.primaryCta.href} class="btn btn--primary btn--lg">Get a vehicle quote</a>
+        <a href={site.secondaryCta.href} class="btn btn--ghost btn--lg">Contact the quote team</a>
+      </div>
+    </div>
+  </section>
+</SiteDocument>
+
+<style>
+  .page-hero {
+    background:
+      radial-gradient(circle at top right, rgba(59, 143, 214, 0.16), transparent 22rem),
+      linear-gradient(180deg, #11161d 0%, #0c0f13 100%);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .page-hero-inner {
+    padding-block: var(--space-24) var(--space-20);
+    max-width: 54rem;
+  }
+
+  .page-title {
+    max-width: 10ch;
+    margin-bottom: var(--space-6);
+  }
+
+  .page-intro {
+    max-width: 44rem;
+    color: var(--color-ink-secondary);
+    font-size: clamp(1rem, 0.95rem + 0.15vw, 1.1rem);
+    line-height: 1.75;
+    margin: 0 0 var(--space-10);
+  }
+
+  .page-actions {
+    display: flex;
+    gap: var(--space-5);
+    flex-wrap: wrap;
+  }
+
+  .question-summary {
+    background:
+      radial-gradient(circle at top right, rgba(59, 143, 214, 0.08), transparent 20rem),
+      #F2FBF5;
+    border-top: 1px solid rgba(15, 24, 34, 0.08);
+    border-bottom: 1px solid rgba(15, 24, 34, 0.08);
+  }
+
+  .question-summary-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.9fr);
+    gap: var(--space-10);
+    align-items: start;
+    padding-block: var(--space-16);
+  }
+
+  .summary-heading {
+    color: #111823;
+    max-width: 16ch;
+    margin-bottom: var(--space-4);
+  }
+
+  .summary-copy {
+    margin: 0;
+    color: #4b5968;
+    line-height: 1.8;
+    max-width: 34rem;
+  }
+
+  .faq-section {
+    background: linear-gradient(180deg, #10151c 0%, #0d1117 100%);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .faq-head {
+    margin-bottom: var(--space-10);
+  }
+
+  .faq-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-5);
+  }
+
+  .faq-card {
+    padding: var(--space-8);
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent),
+      var(--color-surface-raised);
+  }
+
+  .faq-card h3 {
+    margin: 0 0 var(--space-4);
+    font-family: var(--font-display);
+    font-size: clamp(1.25rem, 1.1rem + 0.3vw, 1.6rem);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--color-ink-primary);
+  }
+
+  .faq-card p {
+    margin: 0;
+    color: var(--color-ink-secondary);
+    line-height: 1.75;
+  }
+
+  .contact-bridge {
+    background: #F2FBF5;
+    border-bottom: 1px solid rgba(15, 24, 34, 0.08);
+  }
+
+  .contact-bridge-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.9fr);
+    gap: var(--space-10);
+    align-items: start;
+    padding-block: var(--space-16);
+  }
+
+  .contact-bridge .eyebrow {
+    color: #356fa3;
+  }
+
+  .contact-bridge-heading {
+    color: #111823;
+    max-width: 16ch;
+    margin-bottom: var(--space-4);
+  }
+
+  .contact-bridge-copy {
+    margin: 0;
+    color: #4b5968;
+    line-height: 1.8;
+    max-width: 34rem;
+  }
+
+  .cta-band--page {
+    border-top: 0;
+    padding-block: var(--space-20);
+  }
+
+  .cta-band--page .cta-inner {
+    padding-block: var(--space-4);
+  }
+
+  .cta-band--page .cta-heading {
+    margin-bottom: var(--space-4);
+  }
+
+  .cta-band--page .cta-sub {
+    max-width: 42rem;
+  }
+
+  .cta-band--page .cta-actions {
+    margin-top: var(--space-6);
+  }
+
+  @media (max-width: 960px) {
+    .question-summary-inner,
+    .contact-bridge-inner,
+    .faq-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -2,6 +2,21 @@
 import SiteDocument from '../layouts/SiteDocument.astro';
 import { site, toAbsoluteUrl } from '../config/site';
 
+const planningSignals = [
+  {
+    label: 'Use quote when',
+    detail: 'The route and vehicle details are already clear and the move is relatively standard.',
+  },
+  {
+    label: 'Use contact when',
+    detail: 'The job involves prestige handling, non-drivable vehicles, or pickup details that need discussion first.',
+  },
+  {
+    label: 'Check route fit',
+    detail: 'Long-haul moves and specialist jobs often depend on matching the right transport lane, not just the cheapest number.',
+  },
+];
+
 const homepageSchemas = [
   {
     '@context': 'https://schema.org',
@@ -125,14 +140,14 @@ const homepageSchemas = [
 
   <section class="intro-bridge" aria-labelledby="intro-bridge-heading">
     <div class="container intro-bridge-inner">
-      <p class="eyebrow">A clearer first step</p>
+      <p class="eyebrow">Why people start here</p>
       <h2 id="intro-bridge-heading" class="display-md intro-bridge-heading">
-        Built to get customers from interest to quote without the usual clutter.
+        A simpler way to organise interstate vehicle transport.
       </h2>
       <p class="intro-bridge-copy">
-        This rebuild direction gives Interstate Car Carriers a stronger first impression, cleaner
-        transport positioning, and a more direct path into the quote or contact flow before we even
-        get into the wider route-page migration.
+        Whether you are moving a standard family car, a collector vehicle, or something that needs
+        more planning, the goal is the same: get you to the right quote path quickly, with less
+        confusion and less back-and-forth.
       </p>
     </div>
   </section>
@@ -154,18 +169,19 @@ const homepageSchemas = [
       <div class="section-header">
         <div>
           <p class="eyebrow">Transport options</p>
-          <h2 id="services-heading" class="display-md">Choose your service</h2>
+          <h2 id="services-heading" class="display-md">Choose the lane that fits the vehicle</h2>
         </div>
-        <a href="/sitemap/" class="text-link">View current sitemap &rarr;</a>
+        <a href="/enclosed-car-transport-quote/" class="text-link">See enclosed transport &rarr;</a>
       </div>
 
       <div class="services-grid">
-        {site.serviceCards.map(({ title, description, spec, note, featured }) => (
+        {site.serviceCards.map(({ title, description, spec, note, pathway, featured }) => (
           <article class:list={['service-card', featured && 'service-card--featured']}>
             <p class="service-card-spec">{spec}</p>
             <h3 class="service-card-title">{title}</h3>
             <p class="service-card-body">{description}</p>
             <p class="service-card-note">{note}</p>
+            <p class="service-card-path">{pathway}</p>
           </article>
         ))}
       </div>
@@ -173,21 +189,42 @@ const homepageSchemas = [
   </section>
 
   <section class="routes-section section--sm" id="routes" aria-labelledby="routes-heading">
-    <div class="container">
-      <p class="eyebrow">Popular routes</p>
-      <h2 id="routes-heading" class="display-md routes-heading">We go the distance</h2>
-      <ul class="routes-list" role="list">
-        {site.routes.map(({ route, note }) => (
-          <li class="route-item">
-            <strong>{route}</strong>
-            <span>{note}</span>
-          </li>
-        ))}
-      </ul>
-      <p class="routes-note">
-        These lanes show the intended positioning direction only. The large WordPress route-page
-        estate still needs its own indexed migration plan before cutover.
-      </p>
+    <div class="container routes-layout">
+      <div class="routes-copy">
+        <p class="eyebrow">Popular routes</p>
+        <h2 id="routes-heading" class="display-md routes-heading">We go the distance</h2>
+        <p class="routes-intro">
+          Interstate vehicle transport is not just about the lane itself. It is about choosing the
+          right path for the route, the vehicle, and the level of handling the job actually needs.
+        </p>
+
+        <aside class="route-planning-card" aria-label="Booking guidance">
+          <p class="route-planning-label">Booking guide</p>
+          <div class="route-planning-grid">
+            {planningSignals.map(({ label, detail }) => (
+              <div class="route-planning-item">
+                <strong>{label}</strong>
+                <p>{detail}</p>
+              </div>
+            ))}
+          </div>
+        </aside>
+      </div>
+
+      <div class="routes-lanes">
+        <ul class="routes-list" role="list">
+          {site.routes.map(({ route, note }) => (
+            <li class="route-item">
+              <strong>{route}</strong>
+              <span>{note}</span>
+            </li>
+          ))}
+        </ul>
+        <p class="routes-note">
+          From fast east-coast corridors to longer interstate moves, the best fit depends on the
+          route, the vehicle, and how much care the job needs from pickup through delivery.
+        </p>
+      </div>
     </div>
   </section>
 
@@ -199,7 +236,7 @@ const homepageSchemas = [
     <div class="container">
       <p class="eyebrow">Why Interstate Car Carriers</p>
       <h2 id="why-icc-heading" class="display-md section-title-spaced">
-        Built for a better next rebuild
+        Why people trust Interstate Car Carriers
       </h2>
       <div class="testimonials-grid">
         {site.reasons.map(({ title, body }) => (
@@ -609,7 +646,7 @@ const homepageSchemas = [
 
   .services-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: 1.15fr 0.925fr 0.925fr;
     gap: var(--space-5);
   }
 
@@ -621,6 +658,8 @@ const homepageSchemas = [
     background:
       linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent),
       var(--color-surface-raised);
+    display: flex;
+    flex-direction: column;
     transition:
       transform var(--duration-normal) var(--ease-standard),
       border-color var(--duration-normal) var(--ease-standard),
@@ -635,8 +674,26 @@ const homepageSchemas = [
 
   .service-card--featured {
     background:
-      linear-gradient(180deg, rgba(58, 143, 214, 0.09), transparent 45%),
+      linear-gradient(180deg, rgba(58, 143, 214, 0.14), transparent 50%),
       var(--color-surface-raised);
+    box-shadow: 0 18px 40px rgba(58, 143, 214, 0.08);
+  }
+
+  .service-card--featured::before {
+    content: "Most common pathway";
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    margin-bottom: var(--space-4);
+    padding: 0.45rem 0.75rem;
+    border-radius: 999px;
+    background: rgba(58, 143, 214, 0.1);
+    border: 1px solid rgba(58, 143, 214, 0.18);
+    color: #356fa3;
+    font-size: 0.68rem;
+    font-weight: var(--weight-medium);
+    letter-spacing: var(--tracking-widest);
+    text-transform: uppercase;
   }
 
   .service-card-spec {
@@ -669,14 +726,38 @@ const homepageSchemas = [
     margin: 0;
   }
 
+  .service-card-path {
+    margin: auto 0 0;
+    padding-top: var(--space-5);
+    border-top: 1px solid rgba(15, 24, 34, 0.08);
+    color: #356fa3;
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+  }
+
   .routes-section {
     background: linear-gradient(180deg, #10151c 0%, #0d1117 100%);
     border-top: 1px solid var(--color-border);
     border-bottom: 1px solid var(--color-border);
   }
 
+  .routes-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+    gap: var(--space-10);
+    align-items: start;
+  }
+
   .routes-heading {
-    margin-bottom: var(--space-8);
+    margin-bottom: var(--space-5);
+  }
+
+  .routes-intro {
+    max-width: 32rem;
+    margin: 0 0 var(--space-8);
+    color: var(--color-ink-secondary);
+    line-height: 1.8;
   }
 
   .routes-list {
@@ -714,6 +795,55 @@ const homepageSchemas = [
   .routes-note {
     margin-top: var(--space-6);
     max-width: 42rem;
+  }
+
+  .route-planning-card {
+    padding: var(--space-6);
+    border-radius: calc(var(--radius-lg) + 0.1rem);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02)),
+      rgba(10, 14, 19, 0.92);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.24);
+  }
+
+  .route-planning-label {
+    margin: 0 0 var(--space-4);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-widest);
+    color: var(--color-accent);
+  }
+
+  .route-planning-grid {
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .route-planning-item {
+    padding-top: var(--space-4);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .route-planning-item:first-child {
+    padding-top: 0;
+    border-top: 0;
+  }
+
+  .route-planning-item strong {
+    display: block;
+    margin-bottom: var(--space-2);
+    font-family: var(--font-display);
+    font-size: var(--text-md);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: white;
+  }
+
+  .route-planning-item p {
+    margin: 0;
+    color: var(--color-ink-secondary);
+    line-height: 1.7;
   }
 
   .section-title-spaced {
@@ -810,7 +940,8 @@ const homepageSchemas = [
     .services-grid,
     .testimonials-grid,
     .stats-inner,
-    .routes-list {
+    .routes-list,
+    .routes-layout {
       grid-template-columns: 1fr;
     }
 

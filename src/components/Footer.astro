@@ -1,7 +1,59 @@
 ---
 import { site } from '../config/site';
+import type { FooterSection, SiteLink } from '../config/site';
 
 const currentYear = new Date().getFullYear();
+const currentPath = Astro.url.pathname;
+const isHome = currentPath === '/';
+const onPageLinks: SiteLink[] = currentPath === '/enclosed-car-transport-quote/'
+  ? [
+      { label: 'Top of page', href: '#main-content' },
+      { label: 'Who it suits', href: '#service-fit-heading' },
+      { label: 'Next step', href: '#service-cta-heading' },
+    ]
+  : currentPath === '/vehicle-transport-questions/'
+    ? [
+        { label: 'Top of page', href: '#main-content' },
+        { label: 'Questions', href: '#faq-heading' },
+        { label: 'Next step', href: '#page-cta-heading' },
+      ]
+    : [
+        { label: 'Top of page', href: '#main-content' },
+        { label: 'Home', href: '/' },
+        { label: 'Sitemap', href: '/sitemap/' },
+      ];
+const footerSections: FooterSection[] = isHome
+  ? site.footerSections
+  : [
+      {
+        heading: 'On this page',
+        links: onPageLinks,
+      },
+      {
+        heading: 'Site pages',
+        links: [
+          { label: 'Home', href: '/' },
+          { label: 'Enclosed Transport', href: '/enclosed-car-transport-quote/' },
+          { label: 'Vehicle Questions', href: '/vehicle-transport-questions/' },
+          { label: 'HTML Sitemap', href: '/sitemap/' },
+        ],
+      },
+      {
+        heading: 'External actions',
+        links: [
+          {
+            label: 'Vehicle Quote',
+            href: site.primaryCta.href,
+            external: site.primaryCta.external,
+          },
+          {
+            label: 'Contact',
+            href: site.secondaryCta.href,
+            external: site.secondaryCta.external,
+          },
+        ],
+      },
+    ];
 ---
 
 <footer class="footer" aria-labelledby="footer-heading">
@@ -49,7 +101,7 @@ const currentYear = new Date().getFullYear();
       </div>
 
       <nav class="footer-nav" aria-label="Footer navigation">
-        {site.footerSections.map(({ heading, links }) => (
+        {footerSections.map(({ heading, links }) => (
           <div class="footer-nav-col">
             <h3 class="footer-nav-heading">{heading}</h3>
             <ul role="list">
@@ -74,7 +126,7 @@ const currentYear = new Date().getFullYear();
 
     <div class="footer-bottom">
       <p class="footer-legal">
-        &copy; {currentYear} {site.name}. Astro rebuild scaffold for the Interstate Car Carriers site.
+        &copy; {currentYear} {site.name}. Australia-wide vehicle transport for standard, prestige, and specialist vehicles.
       </p>
       <div class="footer-bottom-links">
         <a href="/sitemap/" class="footer-bottom-link">Sitemap</a>

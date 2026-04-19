@@ -1,0 +1,490 @@
+---
+import SiteDocument from '../layouts/SiteDocument.astro';
+import { site, toAbsoluteUrl } from '../config/site';
+
+const fitPoints = [
+  {
+    title: 'Prestige and collector vehicles',
+    body: 'A better fit when paint condition, presentation, and overall vehicle finish matter as much as the delivery itself.',
+  },
+  {
+    title: 'Long-haul interstate moves',
+    body: 'Worth considering when the route is long and you want a more protected transport environment from pickup through delivery.',
+  },
+  {
+    title: 'Owners with presentation-sensitive vehicles',
+    body: 'Ideal when the vehicle is rare, restored, high-value, or simply too important to put onto the cheapest available lane.',
+  },
+];
+
+const decisionPoints = [
+  {
+    heading: 'When enclosed transport makes sense',
+    copy: 'Choose enclosed transport when protection, presentation, and handling confidence matter more than saving every last dollar on the move.',
+  },
+  {
+    heading: 'When open transport is still the better fit',
+    copy: 'Many everyday interstate moves are well suited to open carriers. If the vehicle is standard, the route is straightforward, and extra protection is not essential, open transport is often the smarter option.',
+  },
+];
+
+const reassurancePoints = [
+  'A higher-touch enquiry path when the vehicle needs more discussion before quoting.',
+  'Clearer suitability guidance so you can choose enclosed transport for the right reasons.',
+  'A calmer handoff for prestige, collector, and presentation-sensitive vehicles.',
+];
+
+const serviceSchemas = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    '@id': toAbsoluteUrl('/#organization'),
+    name: site.name,
+    url: site.url,
+    description: site.defaultDescription,
+    logo: toAbsoluteUrl(site.seoAssets.favicon),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    '@id': toAbsoluteUrl('/#website'),
+    url: site.url,
+    name: site.name,
+    description: site.defaultDescription,
+    publisher: {
+      '@id': toAbsoluteUrl('/#organization'),
+    },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': toAbsoluteUrl('/enclosed-car-transport-quote/#webpage'),
+    url: toAbsoluteUrl('/enclosed-car-transport-quote/'),
+    name: `Enclosed Car Transport Quote | ${site.name}`,
+    description:
+      'A cleaner enclosed transport landing page for prestige, collector, and higher-protection interstate vehicle moves.',
+    isPartOf: {
+      '@id': toAbsoluteUrl('/#website'),
+    },
+    about: {
+      '@id': toAbsoluteUrl('/#organization'),
+    },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    '@id': toAbsoluteUrl('/enclosed-car-transport-quote/#service'),
+    name: 'Enclosed car transport quote',
+    description:
+      'Interstate enquiry pathway for enclosed vehicle transport when protection, presentation, or handling confidence matters.',
+    provider: {
+      '@id': toAbsoluteUrl('/#organization'),
+    },
+    areaServed: 'Australia',
+    serviceType: 'Enclosed interstate vehicle transport',
+  },
+];
+---
+
+<SiteDocument
+  title={`Enclosed Car Transport Quote | ${site.name}`}
+  description="A cleaner enclosed transport landing page for prestige, collector, and higher-protection interstate vehicle moves."
+  canonicalPath="/enclosed-car-transport-quote/"
+  schemas={serviceSchemas}
+>
+  <section class="service-hero">
+    <div class="container service-hero-inner">
+      <div class="service-copy">
+        <span class="section-rule" aria-hidden="true"></span>
+        <p class="eyebrow">Protected vehicle transport</p>
+        <h1 class="display-lg service-title">Enclosed car transport for prestige, collector, and presentation-sensitive vehicles.</h1>
+        <p class="service-intro">
+          Enclosed transport is the stronger fit when finish, presentation, and protection matter
+          more than simply finding the cheapest interstate lane. It gives owners of higher-value
+          vehicles a more careful starting point and a clearer path into the right enquiry.
+        </p>
+        <div class="service-actions">
+          <a href={site.secondaryCta.href} class="btn btn--primary">Contact the quote team</a>
+          <a href={site.primaryCta.href} class="btn btn--ghost">Start a vehicle quote</a>
+        </div>
+      </div>
+
+      <div class="service-panel" aria-hidden="true">
+        <div class="service-panel-card">
+          <p class="service-panel-label">Best suited to</p>
+          <ul class="service-panel-list" role="list">
+            <li>Prestige and collector vehicles</li>
+            <li>Long-haul interstate transport</li>
+            <li>Moves where presentation matters</li>
+          </ul>
+          <div class="service-panel-note">
+            Use the contact route when the vehicle or route needs a little more discussion before quoting.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="service-bridge">
+    <div class="container service-bridge-inner">
+      <div>
+        <p class="eyebrow">When it is worth it</p>
+        <h2 class="display-md bridge-heading">Choose enclosed transport when care and protection matter more than the cheapest lane.</h2>
+      </div>
+      <p class="bridge-copy">
+        Not every vehicle needs enclosed transport. This option is there for the jobs where finish,
+        presentation, rarity, or peace of mind make the extra protection worth it.
+      </p>
+    </div>
+  </section>
+
+  <section class="section service-fit" aria-labelledby="service-fit-heading">
+    <div class="container">
+      <div class="fit-head">
+        <p class="eyebrow">Who it suits</p>
+        <h2 id="service-fit-heading" class="display-md">Who enclosed transport is really for</h2>
+      </div>
+
+      <div class="fit-grid">
+        {fitPoints.map(({ title, body }) => (
+          <article class="fit-card">
+            <h3>{title}</h3>
+            <p>{body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="decision-bridge">
+    <div class="container decision-bridge-inner">
+      {decisionPoints.map(({ heading, copy }) => (
+        <article class="decision-card">
+          <h2 class="display-md decision-heading">{heading}</h2>
+          <p>{copy}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="cta-band cta-band--service" aria-labelledby="service-cta-heading">
+    <div class="container cta-inner">
+      <div>
+        <h2 id="service-cta-heading" class="display-md cta-heading">Ready to talk through an enclosed transport move?</h2>
+        <p class="cta-sub">
+          Use the contact path when the move needs a more careful conversation, or start a quote if
+          you already know the route and vehicle details.
+        </p>
+      </div>
+      <div class="cta-actions">
+        <a href={site.secondaryCta.href} class="btn btn--primary btn--lg">Contact the quote team</a>
+        <a href={site.primaryCta.href} class="btn btn--ghost btn--lg">Start a vehicle quote</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="service-reassurance" aria-labelledby="service-reassurance-heading">
+    <div class="container service-reassurance-inner">
+      <div class="service-reassurance-copy">
+        <p class="eyebrow">A higher-touch option</p>
+        <h2 id="service-reassurance-heading" class="display-md reassurance-heading">
+          A better choice when the vehicle needs a little more care from the start.
+        </h2>
+        <p class="reassurance-intro">
+          For many customers, the biggest value in enclosed transport is not hype. It is knowing the
+          job is being assessed against the condition of the vehicle, the route, and the level of
+          protection you actually want.
+        </p>
+      </div>
+
+      <div class="reassurance-panel">
+        <p class="reassurance-label">What this gives you</p>
+        <ul class="reassurance-list" role="list">
+          {reassurancePoints.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+</SiteDocument>
+
+<style>
+  .service-hero {
+    background:
+      radial-gradient(circle at top right, rgba(59, 143, 214, 0.16), transparent 22rem),
+      linear-gradient(180deg, #11161d 0%, #0c0f13 100%);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .service-hero-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(20rem, 0.9fr);
+    gap: var(--space-12);
+    align-items: center;
+    padding-block: var(--space-24) var(--space-28);
+  }
+
+  .service-copy {
+    max-width: 46rem;
+  }
+
+  .service-title {
+    max-width: 11ch;
+    margin-bottom: var(--space-6);
+  }
+
+  .service-intro {
+    max-width: 40rem;
+    color: var(--color-ink-secondary);
+    font-size: clamp(1rem, 0.95rem + 0.15vw, 1.1rem);
+    line-height: 1.75;
+    margin: 0 0 var(--space-10);
+  }
+
+  .service-actions {
+    display: flex;
+    gap: var(--space-5);
+    flex-wrap: wrap;
+    margin-top: var(--space-2);
+  }
+
+  .service-panel-card {
+    padding: var(--space-8);
+    border-radius: calc(var(--radius-lg) + 0.25rem);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)),
+      rgba(9, 13, 18, 0.92);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
+  }
+
+  .service-panel-label {
+    margin: 0 0 var(--space-4);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-widest);
+    color: var(--color-accent);
+  }
+
+  .service-panel-list {
+    display: grid;
+    gap: var(--space-3);
+    margin: 0 0 var(--space-6);
+    padding: 0;
+  }
+
+  .service-panel-list li {
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-base);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    color: var(--color-ink-primary);
+  }
+
+  .service-panel-note {
+    color: var(--color-ink-secondary);
+    line-height: 1.7;
+  }
+
+  .service-bridge {
+    background:
+      radial-gradient(circle at top right, rgba(59, 143, 214, 0.08), transparent 20rem),
+      #F2FBF5;
+    border-top: 1px solid rgba(15, 24, 34, 0.08);
+    border-bottom: 1px solid rgba(15, 24, 34, 0.08);
+  }
+
+  .service-bridge-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.95fr);
+    gap: var(--space-10);
+    align-items: start;
+    padding-block: var(--space-20);
+  }
+
+  .bridge-heading {
+    color: #111823;
+    max-width: 17ch;
+    margin-bottom: var(--space-4);
+  }
+
+  .bridge-copy {
+    margin: 0;
+    max-width: 35rem;
+    color: #4b5968;
+    line-height: 1.85;
+  }
+
+  .service-fit {
+    background: linear-gradient(180deg, #10151c 0%, #0d1117 100%);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .fit-head {
+    margin-bottom: var(--space-12);
+  }
+
+  .fit-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-6);
+  }
+
+  .fit-card {
+    padding: var(--space-8);
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent),
+      var(--color-surface-raised);
+  }
+
+  .fit-card h3 {
+    margin: 0 0 var(--space-4);
+    font-family: var(--font-display);
+    font-size: clamp(1.25rem, 1.1rem + 0.35vw, 1.65rem);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--color-ink-primary);
+  }
+
+  .fit-card p {
+    margin: 0;
+    color: var(--color-ink-secondary);
+    line-height: 1.8;
+  }
+
+  .decision-bridge {
+    background: #F2FBF5;
+    border-bottom: 1px solid rgba(15, 24, 34, 0.08);
+  }
+
+  .decision-bridge-inner {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-6);
+    padding-block: var(--space-20);
+  }
+
+  .decision-card {
+    padding: var(--space-8);
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(15, 24, 34, 0.08);
+    background: rgba(255, 255, 255, 0.72);
+  }
+
+  .decision-heading {
+    color: #111823;
+    margin-bottom: var(--space-4);
+    max-width: 15ch;
+  }
+
+  .decision-card p {
+    margin: 0;
+    color: #4b5968;
+    line-height: 1.8;
+  }
+
+  .service-reassurance {
+    background:
+      radial-gradient(circle at top right, rgba(59, 143, 214, 0.08), transparent 20rem),
+      #F2FBF5;
+    border-top: 1px solid rgba(15, 24, 34, 0.08);
+    border-bottom: 1px solid rgba(15, 24, 34, 0.08);
+  }
+
+  .service-reassurance-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(19rem, 0.95fr);
+    gap: var(--space-10);
+    align-items: start;
+    padding-block: var(--space-20);
+  }
+
+  .service-reassurance-copy {
+    max-width: 42rem;
+  }
+
+  .reassurance-heading {
+    color: #111823;
+    max-width: 16ch;
+    margin-bottom: var(--space-5);
+  }
+
+  .reassurance-intro {
+    margin: 0;
+    color: #4b5968;
+    line-height: 1.85;
+  }
+
+  .reassurance-panel {
+    padding: var(--space-8);
+    border-radius: calc(var(--radius-lg) + 0.15rem);
+    border: 1px solid rgba(15, 24, 34, 0.08);
+    background: rgba(255, 255, 255, 0.72);
+    box-shadow: 0 18px 40px rgba(15, 24, 34, 0.08);
+  }
+
+  .reassurance-label {
+    margin: 0 0 var(--space-4);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-widest);
+    color: var(--color-accent);
+  }
+
+  .reassurance-list {
+    display: grid;
+    gap: var(--space-4);
+    margin: 0;
+    padding: 0;
+  }
+
+  .reassurance-list li {
+    padding-left: var(--space-5);
+    position: relative;
+    color: #4b5968;
+    line-height: 1.75;
+  }
+
+  .reassurance-list li::before {
+    content: "";
+    position: absolute;
+    top: 0.7rem;
+    left: 0;
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 999px;
+    background: var(--color-accent);
+  }
+
+  .cta-band--service {
+    border-top: 0;
+    padding-block: var(--space-20);
+  }
+
+  .cta-band--service .cta-inner {
+    padding-block: var(--space-6);
+  }
+
+  .cta-band--service .cta-heading {
+    margin-bottom: var(--space-5);
+  }
+
+  .cta-band--service .cta-sub {
+    max-width: 42rem;
+  }
+
+  .cta-band--service .cta-actions {
+    margin-top: var(--space-8);
+  }
+
+  @media (max-width: 960px) {
+    .service-hero-inner,
+    .service-bridge-inner,
+    .fit-grid,
+    .decision-bridge-inner,
+    .service-reassurance-inner {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

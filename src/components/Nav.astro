@@ -2,26 +2,48 @@
 import { site } from '../config/site';
 
 const currentPath = Astro.url.pathname;
+const isHome = currentPath === '/';
+const navigationLinks = isHome
+  ? site.navigation
+  : [
+      { label: 'Home', href: '/' },
+      { label: 'Enclosed Transport', href: '/enclosed-car-transport-quote/' },
+      { label: 'Questions', href: '/vehicle-transport-questions/' },
+      { label: 'Sitemap', href: '/sitemap/' },
+    ];
+
+function isActiveLink(href: string) {
+  if (href.startsWith('#')) {
+    return false;
+  }
+
+  if (href === '/') {
+    return currentPath === '/';
+  }
+
+  return currentPath.startsWith(href);
+}
 ---
 
 <header class="nav-header" role="banner">
   <div class="nav-inner">
     <a href="/" class="nav-logo" aria-label={`${site.name} home`}>
       <span class="nav-logo-dot" aria-hidden="true"></span>
-      {site.name}
+      <span class="nav-logo-full">{site.name}</span>
+      <span class="nav-logo-short">{site.shortName}</span>
     </a>
 
     <nav class="nav-links" aria-label="Primary navigation">
       <ul role="list">
-        {site.navigation.map(({ label, href, external }) => (
+        {navigationLinks.map(({ label, href, external }) => (
           <li>
             <a
               href={href}
               class:list={[
                 'nav-link',
-                { 'nav-link--active': href.startsWith('/') && currentPath.startsWith(href) },
+                { 'nav-link--active': isActiveLink(href) },
               ]}
-              aria-current={href.startsWith('/') && currentPath.startsWith(href) ? 'page' : undefined}
+              aria-current={isActiveLink(href) ? 'page' : undefined}
               target={external ? '_blank' : undefined}
               rel={external ? 'noreferrer' : undefined}
             >
@@ -58,13 +80,13 @@ const currentPath = Astro.url.pathname;
 
   <div class="nav-mobile" id="mobile-menu" aria-hidden="true">
     <ul role="list">
-      {site.navigation.map(({ label, href, external }) => (
+      {navigationLinks.map(({ label, href, external }) => (
         <li>
           <a
             href={href}
             class:list={[
               'nav-mobile-link',
-              { 'nav-mobile-link--active': href.startsWith('/') && currentPath.startsWith(href) },
+              { 'nav-mobile-link--active': isActiveLink(href) },
             ]}
             target={external ? '_blank' : undefined}
             rel={external ? 'noreferrer' : undefined}
@@ -92,9 +114,10 @@ const currentPath = Astro.url.pathname;
     position: sticky;
     top: 0;
     z-index: 100;
-    background: var(--color-surface);
+    background: rgba(15, 18, 21, 0.94);
     border-bottom: 1px solid var(--color-border);
     height: var(--nav-height);
+    backdrop-filter: blur(12px);
   }
 
   .nav-inner {
@@ -121,6 +144,10 @@ const currentPath = Astro.url.pathname;
     align-items: center;
     gap: var(--space-2);
     flex-shrink: 0;
+  }
+
+  .nav-logo-short {
+    display: none;
   }
 
   .nav-logo-dot {
@@ -214,9 +241,12 @@ const currentPath = Astro.url.pathname;
     top: var(--nav-height);
     left: 0;
     right: 0;
-    background: var(--color-surface);
+    background: rgba(15, 18, 21, 0.98);
     border-bottom: 1px solid var(--color-border);
     padding: var(--space-4) var(--space-6) var(--space-6);
+    max-height: calc(100vh - var(--nav-height));
+    overflow-y: auto;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.28);
   }
 
   .nav-mobile ul {
@@ -264,6 +294,15 @@ const currentPath = Astro.url.pathname;
 
   /* Responsive */
   @media (max-width: 768px) {
+    .nav-header {
+      height: 52px;
+    }
+
+    .nav-inner {
+      padding-inline: var(--space-4);
+      gap: var(--space-4);
+    }
+
     .nav-links {
       display: none;
     }
@@ -274,10 +313,41 @@ const currentPath = Astro.url.pathname;
 
     .nav-burger {
       display: flex;
+      width: 36px;
+      height: 36px;
     }
 
     .nav-mobile.is-open {
       display: block;
+    }
+
+    .nav-logo {
+      font-size: 0.98rem;
+      letter-spacing: 0.04em;
+      max-width: calc(100vw - 5.75rem);
+    }
+  }
+
+  @media (max-width: 560px) {
+    .nav-logo-full {
+      display: none;
+    }
+
+    .nav-logo-short {
+      display: inline;
+    }
+
+    .nav-mobile {
+      padding: var(--space-3) var(--space-4) var(--space-5);
+    }
+
+    .nav-mobile-link {
+      padding-block: var(--space-4);
+    }
+
+    .nav-mobile-cta {
+      margin-top: var(--space-5);
+      padding-block: 0.95rem;
     }
   }
 </style>
@@ -307,5 +377,14 @@ const currentPath = Astro.url.pathname;
     menu?.classList.remove('is-open');
     burger?.setAttribute('aria-expanded', 'false');
     menu?.setAttribute('aria-hidden', 'true');
+  });
+
+  menu?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      menu?.classList.remove('is-open');
+      burger?.setAttribute('aria-expanded', 'false');
+      menu?.setAttribute('aria-hidden', 'true');
+      burger?.setAttribute('aria-label', 'Open navigation menu');
+    });
   });
 </script>

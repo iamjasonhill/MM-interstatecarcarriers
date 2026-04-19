@@ -17,7 +17,7 @@ const schemas = [
     '@id': toAbsoluteUrl('/sitemap/#webpage'),
     url: toAbsoluteUrl('/sitemap/'),
     name: 'Interstate Car Carriers HTML Sitemap',
-    description: 'Human-readable sitemap for the Interstate Car Carriers Astro scaffold.',
+    description: 'Human-readable sitemap listing the current public pages and quote actions on the Interstate Car Carriers website.',
     isPartOf: {
       '@id': toAbsoluteUrl('/#website'),
     },
@@ -27,7 +27,7 @@ const schemas = [
 
 <SiteDocument
   title={`HTML Sitemap | ${site.name}`}
-  description="Human-readable sitemap for the Interstate Car Carriers Astro scaffold."
+  description="Human-readable sitemap listing the current public pages and quote actions on the Interstate Car Carriers website."
   canonicalPath="/sitemap/"
   noindex={true}
   schemas={schemas}
@@ -38,8 +38,8 @@ const schemas = [
       <p class="eyebrow">Support page</p>
       <h1 class="display-lg sitemap-title">HTML sitemap</h1>
       <p class="sitemap-intro">
-        This scaffold currently ships a branded homepage plus the main external quote and contact
-        handoffs. Expand this page as the real Astro route set grows.
+        Browse the current public pages and key quote actions available on the Interstate Car
+        Carriers website.
       </p>
 
       <div class="sitemap-card">

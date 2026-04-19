@@ -15,6 +15,7 @@ export interface ServiceCard {
   description: string;
   spec: string;
   note: string;
+  pathway: string;
   featured?: boolean;
 }
 
@@ -156,7 +157,8 @@ export const site: SiteConfig = {
       description:
         'Open-carrier transport for standard sedans, SUVs, utes, and everyday vehicles moving between major Australian corridors.',
       spec: 'Best for common vehicle types',
-      note: 'The most efficient option when timing and value matter more than premium enclosure.',
+      note: 'Usually the most practical option when the move is straightforward and cost matters.',
+      pathway: 'Best for standard interstate vehicle moves',
       featured: true,
     },
     {
@@ -164,14 +166,16 @@ export const site: SiteConfig = {
       description:
         'For prestige, classic, collector, and high-value vehicles that need extra protection in transit.',
       spec: 'Protected vehicle handling',
-      note: 'A stronger fit when presentation, paint protection, or collection-value care matters.',
+      note: 'A stronger fit when finish, presentation, and extra protection are part of the decision.',
+      pathway: 'Built for prestige and presentation-sensitive vehicles',
     },
     {
       title: 'Specialist And Non-Drivable',
       description:
         'Support for vehicles that need extra planning, modified-vehicle handling, or specialist loading coordination.',
       spec: 'Special handling pathways',
-      note: 'Use the contact pathway when the job needs more than a standard online quote.',
+      note: 'A better option for modified, non-drivable, or more unusual transport jobs.',
+      pathway: 'Speak with the team before booking',
     },
   ],
   routes: [
@@ -184,19 +188,19 @@ export const site: SiteConfig = {
   ],
   reasons: [
     {
-      title: 'Quote flow built around real transport jobs',
+      title: 'Straightforward jobs can move quickly',
       body:
-        'The homepage now pushes straight into the vehicle quote and contact handoffs instead of making people dig through generic WordPress content first.',
+        'For standard vehicle moves with a known route and vehicle type, the online quote is usually the fastest and cleanest first step.',
     },
     {
-      title: 'Designed for both standard and specialist moves',
+      title: 'Some vehicles need a proper conversation first',
       body:
-        'The scaffold makes room for standard transport, enclosed transport, and specialist jobs without forcing every enquiry into the same bland lane.',
+        'Non-drivable vehicles, prestige handling, and unusual pickup conditions are better discussed with the team before the booking path is locked in.',
     },
     {
-      title: 'Ready for the route migration work to follow',
+      title: 'Good transport planning is more than just a cheap number',
       body:
-        'This controller starts with the right SEO and deployment contract so we can add route templates and redirects without rebuilding the foundation again.',
+        'The right transport lane depends on the corridor, the vehicle, and how much care the move needs from pickup through delivery.',
     },
   ],
   publicPages: [
@@ -206,14 +210,19 @@ export const site: SiteConfig = {
       description: 'Homepage for Interstate Car Carriers with the primary vehicle-transport positioning and quote CTAs.',
     },
     {
+      label: 'Enclosed Car Transport',
+      href: '/enclosed-car-transport-quote/',
+      description: 'Service page for enclosed interstate vehicle transport when protection and presentation matter most.',
+    },
+    {
       label: 'Vehicle Transport Questions',
       href: '/vehicle-transport-questions/',
-      description: 'Single-page FAQ pattern covering common interstate vehicle transport questions.',
+      description: 'FAQ page covering common interstate vehicle transport questions.',
     },
     {
       label: 'HTML Sitemap',
       href: '/sitemap/',
-      description: 'Human-readable sitemap for the current Astro scaffold.',
+      description: 'Human-readable sitemap for the current Interstate Car Carriers website.',
     },
   ],
   supportActions: [

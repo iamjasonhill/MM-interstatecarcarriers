@@ -29,6 +29,7 @@ Current position:
 - wire `@jdevalk/astro-seo-graph` into the scaffold from the beginning
 - use `/car-transport-sydney-melbourne/` as the first route-page prototype and the base pattern for the indexed route lane
 - add first-class `/terms/` and `/privacy-policy/` pages so legal/support basics are present in the Astro build from the start
+- use the WordPress route-post importer to preserve original route content into structured source files before rolling out bulk route pages
 
 ## Still To Be Done
 
@@ -37,6 +38,7 @@ Current position:
 - build any required service, FAQ, and route templates
 - reuse the Sydney-to-Melbourne route pattern for the next indexed `car-transport-*` pages, then vary content by corridor rather than inventing a fresh layout each time
 - keep privacy and terms in the current repo contract and write that expectation back into the starter standard
+- keep route imports source-led: extract the original WordPress route text into structured JSON, then map it into the Astro route template instead of generating route copy from scratch
 - confirm deployment target and create the real live repo/project linkage
 - perform live cutover only after coverage and redirect evidence are complete
 

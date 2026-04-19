@@ -1,0 +1,126 @@
+---
+import SiteDocument from '../layouts/SiteDocument.astro';
+import RoutePageTemplate from '../components/RoutePageTemplate.astro';
+import { site, toAbsoluteUrl } from '../config/site';
+import { getAllRouteSourceRecords, getRoutePageContent, getRouteSourceRecord } from '../data/routes';
+
+export function getStaticPaths() {
+  return getAllRouteSourceRecords().map((record) => ({
+    params: {
+      routeSlug: record.post.slug,
+    },
+  }));
+}
+
+const { routeSlug } = Astro.params;
+
+if (!routeSlug) {
+  throw new Error('Missing route slug.');
+}
+
+const source = getRouteSourceRecord(routeSlug);
+const content = getRoutePageContent(routeSlug);
+
+if (!source || !content) {
+  throw new Error(`Unknown route slug: ${routeSlug}`);
+}
+
+const documentTitle = `${content.panelRouteTitle} Car Transport | ${site.name}`;
+
+const pageSchemas = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    '@id': toAbsoluteUrl('/#organization'),
+    name: site.name,
+    url: site.url,
+    description: site.defaultDescription,
+    logo: toAbsoluteUrl(site.seoAssets.favicon),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    '@id': toAbsoluteUrl('/#website'),
+    url: site.url,
+    name: site.name,
+    description: site.defaultDescription,
+    publisher: {
+      '@id': toAbsoluteUrl('/#organization'),
+    },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': toAbsoluteUrl(`${content.canonicalPath}#webpage`),
+    url: toAbsoluteUrl(content.canonicalPath),
+    name: documentTitle,
+    description: content.description,
+    isPartOf: {
+      '@id': toAbsoluteUrl('/#website'),
+    },
+    about: {
+      '@id': toAbsoluteUrl('/#organization'),
+    },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    '@id': toAbsoluteUrl(`${content.canonicalPath}#service`),
+    name: content.title,
+    description: content.description,
+    provider: {
+      '@id': toAbsoluteUrl('/#organization'),
+    },
+    areaServed: 'Australia',
+    serviceType: 'Interstate vehicle transport',
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'CreativeWork',
+    '@id': toAbsoluteUrl(`${content.canonicalPath}#source`),
+    name: `Imported source content for ${content.title}`,
+    url: source.sourceUrl,
+    datePublished: source.post.date,
+  },
+];
+---
+
+<SiteDocument
+  title={documentTitle}
+  description={content.description}
+  canonicalPath={content.canonicalPath}
+  schemas={pageSchemas}
+>
+  <RoutePageTemplate
+    heroEyebrow={content.heroEyebrow}
+    title={content.title}
+    intro={content.intro}
+    panelRouteTitle={content.panelRouteTitle}
+    panelRouteCopy={content.panelRouteCopy}
+    panelBadge={content.panelBadge}
+    panelBestStep={content.panelBestStep}
+    panelUseContact={content.panelUseContact}
+    bridgeHeading={content.bridgeHeading}
+    bridgeCopy={content.bridgeCopy}
+    benefitsHeading={content.benefitsHeading}
+    benefits={content.benefits}
+    whyHeading={content.whyHeading}
+    whyLeadTitle={content.whyLeadTitle}
+    whyLeadBody={content.whyLeadBody}
+    corridorNoteTitle={content.corridorNoteTitle}
+    corridorNoteBody={content.corridorNoteBody}
+    whyCards={content.whyCards}
+    planningHeading={content.planningHeading}
+    planningIntro={content.planningIntro}
+    planningSignals={content.planningSignals}
+    advantageHeading={content.advantageHeading}
+    advantageIntro={content.advantageIntro}
+    corridorJobs={content.corridorJobs}
+    advantages={content.advantages}
+    checklistHeading={content.checklistHeading}
+    checklistIntro={content.checklistIntro}
+    checklist={content.checklist}
+    ctaHeading={content.ctaHeading}
+    ctaSub={content.ctaSub}
+  />
+</SiteDocument>

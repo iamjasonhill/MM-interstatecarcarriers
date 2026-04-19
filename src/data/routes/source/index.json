@@ -1,0 +1,30 @@
+{
+  "generatedAt": "2026-04-19T05:12:37.770Z",
+  "count": 4,
+  "imported": [
+    {
+      "slug": "car-transport-sydney-melbourne",
+      "imported": true,
+      "outputPath": "/Users/jasonhill/Projects/websites/MM-interstatecarcarriers.com.au/src/data/routes/source/car-transport-sydney-melbourne.json",
+      "title": "Car transport from Sydney to Melbourne"
+    },
+    {
+      "slug": "car-transport-perth-adelaide",
+      "imported": true,
+      "outputPath": "/Users/jasonhill/Projects/websites/MM-interstatecarcarriers.com.au/src/data/routes/source/car-transport-perth-adelaide.json",
+      "title": "Car transport from Perth to Adelaide"
+    },
+    {
+      "slug": "car-transport-brisbane-melbourne",
+      "imported": true,
+      "outputPath": "/Users/jasonhill/Projects/websites/MM-interstatecarcarriers.com.au/src/data/routes/source/car-transport-brisbane-melbourne.json",
+      "title": "Car transport from Brisbane to Melbourne"
+    },
+    {
+      "slug": "car-transport-sydney-hobart",
+      "imported": true,
+      "outputPath": "/Users/jasonhill/Projects/websites/MM-interstatecarcarriers.com.au/src/data/routes/source/car-transport-sydney-hobart.json",
+      "title": "Car transport from Sydney to Hobart"
+    }
+  ]
+}

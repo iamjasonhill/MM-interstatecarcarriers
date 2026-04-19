@@ -27,12 +27,14 @@ Current position:
 - treat `https://quoting.interstatecarcarriers.com.au/quote/vehicle` as the main quote handoff
 - treat `https://quoting.interstatecarcarriers.com.au/contact` as the main contact handoff
 - wire `@jdevalk/astro-seo-graph` into the scaffold from the beginning
+- use `/car-transport-sydney-melbourne/` as the first route-page prototype and the base pattern for the indexed route lane
 
 ## Still To Be Done
 
 - inventory the indexed WordPress route estate
 - decide which WordPress URLs become Astro pages versus redirects
 - build any required service, FAQ, and route templates
+- reuse the Sydney-to-Melbourne route pattern for the next indexed `car-transport-*` pages, then vary content by corridor rather than inventing a fresh layout each time
 - confirm deployment target and create the real live repo/project linkage
 - perform live cutover only after coverage and redirect evidence are complete
 

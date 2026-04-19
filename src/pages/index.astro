@@ -213,12 +213,18 @@ const homepageSchemas = [
 
       <div class="routes-lanes">
         <ul class="routes-list" role="list">
-          {site.routes.map(({ route, note }) => (
-            <li class="route-item">
+        {site.routes.map(({ route, note, href }) => (
+          <li class="route-item">
+            {href ? (
+              <a href={href} class="route-link">
+                <strong>{route}</strong>
+              </a>
+            ) : (
               <strong>{route}</strong>
-              <span>{note}</span>
-            </li>
-          ))}
+            )}
+            <span>{note}</span>
+          </li>
+        ))}
         </ul>
         <p class="routes-note">
           From fast east-coast corridors to longer interstate moves, the best fit depends on the
@@ -785,6 +791,14 @@ const homepageSchemas = [
     letter-spacing: var(--tracking-wide);
     text-transform: uppercase;
     color: white;
+  }
+
+  .route-link {
+    width: fit-content;
+  }
+
+  .route-link:hover strong {
+    color: #9fcbef;
   }
 
   .route-item span,

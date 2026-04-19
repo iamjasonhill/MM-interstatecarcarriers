@@ -48,8 +48,9 @@ These should not be blindly restored one-for-one without checking search demand 
 ### Route pages
 
 - `car-transport-*`
-  decision not yet made
   working assumption: keep the strongest indexed routes, consolidate weak duplicates, redirect anything thin or broken
+  current prototype: `/car-transport-sydney-melbourne/`
+  pattern decision: use this page as the base route template for the indexed route lane, then adapt the content and planning logic by corridor
 
 ## Technical SEO Replacements Required On Day One
 

@@ -22,6 +22,7 @@ export interface ServiceCard {
 export interface RouteCard {
   route: string;
   note: string;
+  href?: string;
 }
 
 export interface ReasonCard {
@@ -179,7 +180,7 @@ export const site: SiteConfig = {
     },
   ],
   routes: [
-    { route: 'Sydney to Melbourne', note: 'High-frequency east-coast vehicle lane' },
+    { route: 'Sydney to Melbourne', note: 'High-frequency east-coast vehicle lane', href: '/car-transport-sydney-melbourne/' },
     { route: 'Brisbane to Sydney', note: 'Private moves, dealer transfers, and relocation demand' },
     { route: 'Melbourne to Brisbane', note: 'Strong household and prestige transport corridor' },
     { route: 'Perth to Adelaide', note: 'Long-haul interstate vehicle movements' },
@@ -238,6 +239,11 @@ export const site: SiteConfig = {
       label: 'Cheapest Interstate Car Transport',
       href: '/cheapest-interstate-car-transport/',
       description: 'Guide to finding the most practical low-cost interstate car transport option.',
+    },
+    {
+      label: 'Sydney To Melbourne Car Transport',
+      href: '/car-transport-sydney-melbourne/',
+      description: 'Route page for interstate car transport from Sydney to Melbourne.',
     },
     {
       label: 'HTML Sitemap',

@@ -62,13 +62,33 @@ Current position:
 
 ## Still To Be Done
 
-- confirm production deployment target and create the real live repo/project linkage
-- produce and verify a preview deployment
-- verify homepage, representative support pages, representative route pages, and quote/contact handoff on preview
+- confirm whether the current Vercel project should remain the canonical production target for this site
+- decide whether deployment protection should remain on during the review phase or be relaxed for broader stakeholder preview access
+- extend preview verification beyond the first sampled checks
 - finalize redirect behavior for any legacy URLs that will not remain as first-class Astro pages
-- verify robots, sitemap, schema, and analytics on preview
+- verify analytics on preview / production-linked output
 - perform live cutover only after preview, redirect, and controller evidence are complete
 - update `_wp-house` and cutover paperwork after Astro becomes the live controller
+
+## Deployment And Preview Progress
+
+Completed on 2026-04-19:
+
+- created Vercel project `mm-interstatecarcarriers`
+- linked the local repo with `.vercel/project.json`
+- produced the first Vercel deployment:
+  `https://mm-interstatecarcarriers-17s1p7h1p-iamjasonhills-projects.vercel.app`
+- verified through authenticated Vercel requests that:
+  - homepage renders
+  - `/robots.txt` renders
+  - `/sitemap-index.xml` renders
+  - representative route page `/car-transport-sydney-melbourne/` renders
+  - quote and contact links are present in the output
+
+Current caveat:
+
+- direct public access to the Vercel deployment is protected and returns `401` without a bypass token
+- the deployment itself is healthy; the remaining question is whether to keep that protection in place during review or relax it for easier checking
 
 ## Live Production Findings On 2026-04-19
 

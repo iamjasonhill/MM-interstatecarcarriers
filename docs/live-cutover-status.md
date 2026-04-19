@@ -12,6 +12,8 @@ Current reality:
 - current live controller: WordPress
 - current Astro scaffold: `/Users/jasonhill/Projects/websites/MM-interstatecarcarriers.com.au`
 - local manifest: `/Users/jasonhill/Projects/websites/MM-interstatecarcarriers.com.au/brain.manifest.json`
+- Vercel project: `mm-interstatecarcarriers`
+- first linked Vercel deployment: `https://mm-interstatecarcarriers-17s1p7h1p-iamjasonhills-projects.vercel.app`
 
 Conclusion:
 
@@ -38,6 +40,14 @@ Validation status:
 - `npm run build` passes
 - current build emits `696` pages
 - metadata, H1, internal-link, and image-alt checks are clean in the latest build
+- repo is now linked to a real Vercel project
+- first Vercel deployment reached `Ready`
+- authenticated preview checks confirmed homepage, robots, sitemap index, and representative route output
+
+Preview access note:
+
+- direct browser requests to the Vercel deployment currently return deployment protection `401` without a bypass token
+- Vercel-authenticated checks succeed, so the deployment itself is healthy
 
 ## Remaining Cutover Gates
 
@@ -45,6 +55,7 @@ Validation status:
 - test public behavior on a preview deployment
 - verify homepage, support pages, representative route pages, and quote/contact handoff on the preview
 - verify robots, sitemap, schema, and analytics on the preview
+- decide whether deployment protection should remain on during the broader review phase or be relaxed for easier stakeholder checks
 - finalize redirect behavior for any legacy URLs that will not remain Astro-owned
 - perform live production cutover and then update tracker / `_wp-house` state
 

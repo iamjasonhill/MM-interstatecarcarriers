@@ -57,9 +57,9 @@
   --color-ink-muted:     #3a4550;   /* labels, attribution, disabled */
 
   /* Accent — steel blue */
-  --color-accent:        #3a8fd6;
-  --color-accent-hover:  #2e7bbf;
-  --color-accent-subtle: #0e1e30;   /* accent-tinted surface, icon backgrounds */
+  --color-accent:        #3B8FD6;
+  --color-accent-hover:  #2F7FC1;
+  --color-accent-subtle: #10263C;   /* accent-tinted surface, icon backgrounds */
   --color-accent-text:   #f0f6ff;   /* text on accent backgrounds */
 
   /* Border */

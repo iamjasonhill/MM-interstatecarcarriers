@@ -18,6 +18,7 @@ Current position:
 - `_wp-house/sites/interstatecarcarriers-com-au.json`
 - `fleet-control/data/state/properties.json`
 - hardened Meridian transport starter from `/Users/jasonhill/Projects/websites/tmp/meridian-transport`
+- live production header checks run on 2026-04-19 against homepage, contact, FAQ/content links, `robots.txt`, and `sitemap_index.xml`
 
 ## Decisions Made In This Pass
 
@@ -34,3 +35,28 @@ Current position:
 - build any required service, FAQ, and route templates
 - confirm deployment target and create the real live repo/project linkage
 - perform live cutover only after coverage and redirect evidence are complete
+
+## Live Production Findings On 2026-04-19
+
+Confirmed with direct public checks:
+
+- homepage `/` returns `200`
+- homepage exposes a `link rel="https://api.w.org/"` header pointing at `https://interstatecarcarriers.com.au/wp-json/`
+- `https://interstatecarcarriers.com.au/contact-icc/` returns `301` to `https://quoting.interstatecarcarriers.com.au/contact`
+- `https://interstatecarcarriers.com.au/robots.txt` returns `404`
+- `https://interstatecarcarriers.com.au/sitemap_index.xml` returns `404`
+
+Homepage-linked content URLs checked on 2026-04-19:
+
+- `/vehicle-transport-questions/` -> `404`
+- `/car-transport-personal-items-allowed/` -> `404`
+- `/car-transport-express-service/` -> `404`
+- `/interstate-car-transport-by-rail/` -> `404`
+- `/cheapest-interstate-car-transport/` -> `404`
+- `/enclosed-car-transport-quote/` -> `404`
+
+Operational interpretation:
+
+- the current live site is not a stable content surface
+- quote and contact handoff already belong to the quoting platform, not the WordPress site
+- rebuilding this property in Astro is not only a design migration, it is also a production cleanup of broken technical SEO and broken internal-link paths

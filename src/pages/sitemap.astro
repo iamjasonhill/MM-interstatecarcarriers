@@ -1,0 +1,137 @@
+---
+import SiteDocument from '../layouts/SiteDocument.astro';
+import { site, toAbsoluteUrl } from '../config/site';
+
+const schemas = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    '@id': toAbsoluteUrl('/#website'),
+    url: site.url,
+    name: site.name,
+    description: site.defaultDescription,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    '@id': toAbsoluteUrl('/sitemap/#webpage'),
+    url: toAbsoluteUrl('/sitemap/'),
+    name: 'Interstate Car Carriers HTML Sitemap',
+    description: 'Human-readable sitemap for the Interstate Car Carriers Astro scaffold.',
+    isPartOf: {
+      '@id': toAbsoluteUrl('/#website'),
+    },
+  },
+];
+---
+
+<SiteDocument
+  title={`HTML Sitemap | ${site.name}`}
+  description="Human-readable sitemap for the Interstate Car Carriers Astro scaffold."
+  canonicalPath="/sitemap/"
+  noindex={true}
+  schemas={schemas}
+>
+  <section class="sitemap-page">
+    <div class="container sitemap-inner">
+      <span class="section-rule" aria-hidden="true"></span>
+      <p class="eyebrow">Support page</p>
+      <h1 class="display-lg sitemap-title">HTML sitemap</h1>
+      <p class="sitemap-intro">
+        This scaffold currently ships a branded homepage plus the main external quote and contact
+        handoffs. Expand this page as the real Astro route set grows.
+      </p>
+
+      <div class="sitemap-card">
+        <h2 class="display-sm">Local Astro pages</h2>
+        <ul class="sitemap-list" role="list">
+          {site.publicPages.map(({ label, href, description }) => (
+            <li class="sitemap-item">
+              <a href={href} class="sitemap-link">{label}</a>
+              <p>{description}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="sitemap-card">
+        <h2 class="display-sm">External actions</h2>
+        <ul class="sitemap-list" role="list">
+          {site.supportActions.map(({ label, href, description, external }) => (
+            <li class="sitemap-item">
+              <a
+                href={href}
+                class="sitemap-link"
+                target={external ? '_blank' : undefined}
+                rel={external ? 'noreferrer' : undefined}
+              >
+                {label}
+              </a>
+              <p>{description}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+</SiteDocument>
+
+<style>
+  .sitemap-page {
+    padding-block: var(--space-16);
+  }
+
+  .sitemap-inner {
+    display: grid;
+    gap: var(--space-8);
+  }
+
+  .sitemap-title {
+    margin-bottom: var(--space-4);
+  }
+
+  .sitemap-intro {
+    max-width: 44rem;
+    color: var(--color-ink-secondary);
+    margin: 0;
+  }
+
+  .sitemap-card {
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+    background: var(--color-surface-raised);
+  }
+
+  .sitemap-card h2 {
+    margin-bottom: var(--space-5);
+  }
+
+  .sitemap-list {
+    list-style: none;
+    display: grid;
+    gap: var(--space-4);
+    margin: 0;
+    padding: 0;
+  }
+
+  .sitemap-item {
+    padding: var(--space-4);
+    border-radius: var(--radius-base);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .sitemap-item p {
+    margin: var(--space-2) 0 0;
+    color: var(--color-ink-secondary);
+  }
+
+  .sitemap-link {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--color-ink-primary);
+  }
+</style>

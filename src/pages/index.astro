@@ -1,0 +1,762 @@
+---
+import SiteDocument from '../layouts/SiteDocument.astro';
+import { site, toAbsoluteUrl } from '../config/site';
+
+const homepageSchemas = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    '@id': toAbsoluteUrl('/#organization'),
+    name: site.name,
+    url: site.url,
+    description: site.defaultDescription,
+    logo: toAbsoluteUrl(site.seoAssets.favicon),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    '@id': toAbsoluteUrl('/#website'),
+    url: site.url,
+    name: site.name,
+    description: site.defaultDescription,
+    publisher: {
+      '@id': toAbsoluteUrl('/#organization'),
+    },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': toAbsoluteUrl('/#webpage'),
+    url: site.url,
+    name: site.defaultTitle,
+    description: site.defaultDescription,
+    isPartOf: {
+      '@id': toAbsoluteUrl('/#website'),
+    },
+    about: {
+      '@id': toAbsoluteUrl('/#organization'),
+    },
+  },
+];
+---
+
+<SiteDocument
+  title={site.defaultTitle}
+  description={site.defaultDescription}
+  canonicalPath="/"
+  schemas={homepageSchemas}
+>
+  <section class="hero" aria-labelledby="hero-heading">
+    <div class="container hero-inner">
+      <div class="hero-copy">
+        <span class="section-rule" aria-hidden="true"></span>
+        <p class="eyebrow">Australia-wide vehicle transport</p>
+        <h1 id="hero-heading" class="display-xl hero-heading">
+          Interstate car transport without the guesswork.
+        </h1>
+        <p class="hero-sub">
+          Interstate Car Carriers helps move standard, prestige, and specialist vehicles across
+          Australia with open transport, enclosed options, and clearer quote handoffs from the
+          start.
+        </p>
+        <div class="hero-actions">
+          <a href={site.primaryCta.href} class="btn btn--primary">Get a vehicle quote</a>
+          <a href={site.secondaryCta.href} class="btn btn--ghost">Contact the quote team</a>
+        </div>
+        <div class="hero-proof" aria-label="Key service signals">
+          {site.heroProof.map((item) => <span>{item}</span>)}
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <div class="hero-frame">
+          <div class="hero-frame-top">
+            <span class="hero-chip">Open + enclosed</span>
+            <span class="hero-chip hero-chip--muted">National corridors</span>
+          </div>
+
+          <div class="hero-board">
+            <div class="hero-board-header">
+              <p>Dispatch board</p>
+              <span>Core lanes</span>
+            </div>
+
+            <div class="hero-lane hero-lane--primary">
+              <div>
+                <strong>Sydney to Melbourne</strong>
+                <span>High-frequency interstate vehicle demand</span>
+              </div>
+              <em>48h</em>
+            </div>
+
+            <div class="hero-lane">
+              <div>
+                <strong>Brisbane to Sydney</strong>
+                <span>Private vehicles, relocations, and dealer transfers</span>
+              </div>
+              <em>72h</em>
+            </div>
+
+            <div class="hero-lane">
+              <div>
+                <strong>Perth to Adelaide</strong>
+                <span>Long-haul planning for interstate vehicle movements</span>
+              </div>
+              <em>5d</em>
+            </div>
+          </div>
+
+          <div class="hero-rig">
+            <div class="hero-rig-track"></div>
+            <div class="hero-rig-cab"></div>
+            <div class="hero-rig-trailer">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <div class="hero-rig-wheel hero-rig-wheel--front"></div>
+            <div class="hero-rig-wheel hero-rig-wheel--rear"></div>
+            <div class="hero-rig-wheel hero-rig-wheel--tail"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="stats-strip" aria-label="Company statistics">
+    <div class="container stats-inner">
+      {site.heroStats.map(({ value, label, detail }) => (
+        <div class="stat">
+          <span class="stat-value">{value}</span>
+          <span class="stat-label">{label}</span>
+          <span class="stat-detail">{detail}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <section class="section" id="services" aria-labelledby="services-heading">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Transport options</p>
+          <h2 id="services-heading" class="display-md">Choose your service</h2>
+        </div>
+        <a href="/sitemap/" class="text-link">View current sitemap &rarr;</a>
+      </div>
+
+      <div class="services-grid">
+        {site.serviceCards.map(({ title, description, spec, note, featured }) => (
+          <article class:list={['service-card', featured && 'service-card--featured']}>
+            <p class="service-card-spec">{spec}</p>
+            <h3 class="service-card-title">{title}</h3>
+            <p class="service-card-body">{description}</p>
+            <p class="service-card-note">{note}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="routes-section section--sm" id="routes" aria-labelledby="routes-heading">
+    <div class="container">
+      <p class="eyebrow">Popular routes</p>
+      <h2 id="routes-heading" class="display-md routes-heading">We go the distance</h2>
+      <ul class="routes-list" role="list">
+        {site.routes.map(({ route, note }) => (
+          <li class="route-item">
+            <strong>{route}</strong>
+            <span>{note}</span>
+          </li>
+        ))}
+      </ul>
+      <p class="routes-note">
+        These lanes show the intended positioning direction only. The large WordPress route-page
+        estate still needs its own indexed migration plan before cutover.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--sm" id="why-icc" aria-labelledby="why-icc-heading">
+    <div class="container">
+      <p class="eyebrow">Why Interstate Car Carriers</p>
+      <h2 id="why-icc-heading" class="display-md section-title-spaced">
+        Built for a better next rebuild
+      </h2>
+      <div class="testimonials-grid">
+        {site.reasons.map(({ title, body }) => (
+          <article class="testimonial">
+            <p class="testimonial-name">{title}</p>
+            <p class="testimonial-quote">{body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band" id="contact" aria-labelledby="cta-heading">
+    <div class="container cta-inner">
+      <div>
+        <h2 id="cta-heading" class="display-md cta-heading">Ready to move a vehicle interstate?</h2>
+        <p class="cta-sub">
+          Start with the quote flow for standard vehicle transport or use the contact path when the
+          job needs more detail.
+        </p>
+      </div>
+      <div class="cta-actions">
+        <a href={site.primaryCta.href} class="btn btn--primary btn--lg">Get a vehicle quote</a>
+        <a href={site.secondaryCta.href} class="btn btn--ghost btn--lg">Contact the quote team</a>
+      </div>
+    </div>
+  </section>
+</SiteDocument>
+
+<style>
+  .hero {
+    position: relative;
+    overflow: clip;
+    background:
+      radial-gradient(circle at top right, rgba(58, 143, 214, 0.18), transparent 22rem),
+      radial-gradient(circle at bottom left, rgba(255, 176, 76, 0.1), transparent 18rem),
+      linear-gradient(180deg, #11161d 0%, #0c0f13 100%);
+    padding-block: var(--space-24) var(--space-18);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 8rem 8rem;
+    mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.7), transparent 85%);
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(22rem, 0.95fr);
+    gap: var(--space-12);
+    align-items: center;
+  }
+
+  .hero-copy {
+    max-width: 40rem;
+    animation: rise-in 700ms var(--ease-standard);
+  }
+
+  .hero-heading {
+    max-width: 11ch;
+    margin-bottom: var(--space-5);
+  }
+
+  .hero-sub {
+    max-width: 34rem;
+    font-size: clamp(1rem, 0.95rem + 0.2vw, 1.125rem);
+    line-height: 1.75;
+    color: var(--color-ink-secondary);
+    margin-bottom: var(--space-7);
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    margin-bottom: var(--space-7);
+  }
+
+  .hero-proof {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+
+  .hero-proof span {
+    padding: 0.7rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--color-ink-secondary);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+  }
+
+  .hero-visual {
+    animation: drift-in 900ms var(--ease-standard);
+  }
+
+  .hero-frame {
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: calc(var(--radius-lg) + 0.4rem);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01)),
+      rgba(7, 10, 14, 0.92);
+    padding: var(--space-6);
+    box-shadow: 0 28px 80px rgba(0, 0, 0, 0.35);
+    overflow: hidden;
+  }
+
+  .hero-frame::after {
+    content: "";
+    position: absolute;
+    inset: auto -20% -35% 15%;
+    height: 14rem;
+    background: radial-gradient(circle, rgba(58, 143, 214, 0.28), transparent 65%);
+    filter: blur(24px);
+    pointer-events: none;
+  }
+
+  .hero-frame-top {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-3);
+    margin-bottom: var(--space-6);
+  }
+
+  .hero-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wider);
+    color: var(--color-ink-primary);
+    padding: 0.65rem 0.9rem;
+    border-radius: 999px;
+    background: rgba(255, 176, 76, 0.14);
+    border: 1px solid rgba(255, 176, 76, 0.22);
+  }
+
+  .hero-chip--muted {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.08);
+    color: var(--color-ink-secondary);
+  }
+
+  .hero-board {
+    position: relative;
+    z-index: 1;
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(14, 18, 23, 0.95);
+    padding: var(--space-5);
+    margin-bottom: 9.5rem;
+  }
+
+  .hero-board-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-4);
+    margin-bottom: var(--space-4);
+  }
+
+  .hero-board-header p,
+  .hero-board-header span {
+    margin: 0;
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-widest);
+    color: var(--color-ink-muted);
+  }
+
+  .hero-lane {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding: var(--space-4) 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .hero-lane:first-of-type {
+    border-top: 0;
+    padding-top: 0;
+  }
+
+  .hero-lane strong {
+    display: block;
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--color-ink-primary);
+    margin-bottom: var(--space-1);
+  }
+
+  .hero-lane span,
+  .hero-lane em {
+    color: var(--color-ink-secondary);
+    font-style: normal;
+  }
+
+  .hero-lane em {
+    align-self: center;
+    font-family: var(--font-display);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--color-accent);
+  }
+
+  .hero-lane--primary strong {
+    color: white;
+  }
+
+  .hero-rig {
+    position: absolute;
+    inset: auto -1.75rem 1.75rem 3.5rem;
+    height: 7rem;
+    z-index: 0;
+  }
+
+  .hero-rig-track {
+    position: absolute;
+    inset: auto 0 0 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.22), transparent);
+  }
+
+  .hero-rig-cab {
+    position: absolute;
+    bottom: 1.25rem;
+    left: 0;
+    width: 5.5rem;
+    height: 2.8rem;
+    background: linear-gradient(180deg, #4b95d7, #1c446d);
+    border-radius: 0.4rem 0.85rem 0.25rem 0.25rem;
+    box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.14);
+  }
+
+  .hero-rig-trailer {
+    position: absolute;
+    bottom: 1.45rem;
+    left: 4.8rem;
+    right: 1rem;
+    height: 2rem;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-2);
+  }
+
+  .hero-rig-trailer span {
+    display: block;
+    border-radius: 0.45rem;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.06));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .hero-rig-wheel {
+    position: absolute;
+    bottom: 0.4rem;
+    width: 1.2rem;
+    height: 1.2rem;
+    border-radius: 50%;
+    background: #0e1115;
+    border: 3px solid #2d3946;
+  }
+
+  .hero-rig-wheel--front {
+    left: 0.75rem;
+  }
+
+  .hero-rig-wheel--rear {
+    left: 8rem;
+  }
+
+  .hero-rig-wheel--tail {
+    right: 2.25rem;
+  }
+
+  .stats-strip {
+    background: #0f141b;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .stats-inner {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-6);
+    padding-block: var(--space-7);
+  }
+
+  .stat {
+    padding-right: var(--space-6);
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .stat:last-child {
+    border-right: none;
+    padding-right: 0;
+  }
+
+  .stat-value {
+    display: block;
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 1.8rem + 1vw, 2.8rem);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: white;
+    margin-bottom: var(--space-2);
+  }
+
+  .stat-label {
+    display: block;
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-widest);
+    color: var(--color-accent);
+    margin-bottom: var(--space-2);
+  }
+
+  .stat-detail {
+    display: block;
+    color: var(--color-ink-secondary);
+    max-width: 20ch;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: var(--space-6);
+    margin-bottom: var(--space-8);
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-5);
+  }
+
+  .service-card {
+    position: relative;
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent),
+      var(--color-surface-raised);
+    transition:
+      transform var(--duration-normal) var(--ease-standard),
+      border-color var(--duration-normal) var(--ease-standard),
+      box-shadow var(--duration-normal) var(--ease-standard);
+  }
+
+  .service-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(255, 176, 76, 0.32);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.18);
+  }
+
+  .service-card--featured {
+    background:
+      linear-gradient(180deg, rgba(58, 143, 214, 0.09), transparent 45%),
+      var(--color-surface-raised);
+  }
+
+  .service-card-spec {
+    margin: 0 0 var(--space-3);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-widest);
+    color: var(--color-accent);
+  }
+
+  .service-card-title {
+    margin: 0 0 var(--space-4);
+    font-family: var(--font-display);
+    font-size: clamp(1.4rem, 1.2rem + 0.5vw, 1.9rem);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--color-ink-primary);
+  }
+
+  .service-card-body,
+  .service-card-note {
+    color: var(--color-ink-secondary);
+  }
+
+  .service-card-body {
+    margin-bottom: var(--space-4);
+  }
+
+  .service-card-note {
+    margin: 0;
+  }
+
+  .routes-section {
+    background: linear-gradient(180deg, #10151c 0%, #0d1117 100%);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .routes-heading {
+    margin-bottom: var(--space-8);
+  }
+
+  .routes-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-4);
+  }
+
+  .route-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: var(--space-5);
+    border-radius: var(--radius-base);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .route-item strong {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: white;
+  }
+
+  .route-item span,
+  .routes-note {
+    color: var(--color-ink-secondary);
+  }
+
+  .routes-note {
+    margin-top: var(--space-6);
+    max-width: 42rem;
+  }
+
+  .section-title-spaced {
+    margin-bottom: var(--space-8);
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-5);
+  }
+
+  .testimonial {
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+    background: var(--color-surface-raised);
+  }
+
+  .testimonial-quote {
+    color: var(--color-ink-secondary);
+    line-height: var(--leading-loose);
+    margin: 0;
+  }
+
+  .testimonial-name {
+    display: block;
+    font-family: var(--font-display);
+    font-size: var(--text-md);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--color-ink-primary);
+    margin: 0 0 var(--space-3);
+  }
+
+  .cta-band {
+    background:
+      radial-gradient(circle at right center, rgba(255, 176, 76, 0.12), transparent 25rem),
+      linear-gradient(180deg, #11161d 0%, #0b0e12 100%);
+    border-top: 1px solid var(--color-border);
+    padding-block: var(--space-14);
+  }
+
+  .cta-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-8);
+  }
+
+  .cta-heading {
+    margin-bottom: var(--space-3);
+  }
+
+  .cta-sub {
+    color: var(--color-ink-secondary);
+    margin: 0;
+    max-width: 36rem;
+  }
+
+  .cta-actions {
+    display: flex;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  @keyframes rise-in {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes drift-in {
+    from {
+      opacity: 0;
+      transform: translateX(24px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @media (max-width: 960px) {
+    .hero-inner,
+    .services-grid,
+    .testimonials-grid,
+    .stats-inner,
+    .routes-list {
+      grid-template-columns: 1fr;
+    }
+
+    .hero-board {
+      margin-bottom: 8rem;
+    }
+
+    .stat {
+      border-right: none;
+      padding-right: 0;
+      padding-bottom: var(--space-5);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .stat:last-child {
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .cta-inner {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .cta-actions {
+      justify-content: flex-start;
+    }
+  }
+</style>

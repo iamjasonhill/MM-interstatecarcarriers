@@ -1,0 +1,98 @@
+---
+import { assembleGraph } from '@jdevalk/seo-graph-core';
+import type { GraphEntity } from '@jdevalk/seo-graph-core';
+import Seo from '@jdevalk/astro-seo-graph/Seo.astro';
+import '../styles/tokens.css';
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { site, toAbsoluteUrl } from '../config/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonicalPath?: string;
+  noindex?: boolean;
+  image?: string;
+  bodyClass?: string;
+  schemas?: GraphEntity[];
+}
+
+const {
+  title = site.defaultTitle,
+  description = site.defaultDescription,
+  canonicalPath = '/',
+  noindex = false,
+  image = site.seoAssets.ogImage,
+  bodyClass = '',
+  schemas = [],
+} = Astro.props;
+
+function toOgLocale(locale: string) {
+  const [language, region] = locale.split('-');
+  if (!region) {
+    return locale.replace('-', '_');
+  }
+
+  return `${language.toLowerCase()}_${region.toUpperCase()}`;
+}
+
+function stripEntityContext(schema: GraphEntity) {
+  const { '@context': _context, ...rest } = schema;
+  return rest as GraphEntity;
+}
+
+const canonicalUrl = toAbsoluteUrl(canonicalPath);
+const imageUrl = toAbsoluteUrl(image);
+const sitemapUrl = toAbsoluteUrl('/sitemap-index.xml');
+const resolvedGraph = schemas.length
+  ? assembleGraph(
+      schemas.map((schema) => stripEntityContext(schema)),
+      { warnOnDanglingReferences: true },
+    )
+  : null;
+---
+
+<!doctype html>
+<html lang={site.locale}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <Seo
+      title={title}
+      description={description}
+      canonical={canonicalUrl}
+      noindex={noindex}
+      ogType="website"
+      ogImage={imageUrl}
+      ogImageAlt={`${site.name} social card`}
+      siteName={site.name}
+      locale={toOgLocale(site.locale)}
+      twitter={{ card: 'summary_large_image' }}
+      graph={resolvedGraph}
+      extraLinks={[
+        { rel: 'icon', type: 'image/svg+xml', href: site.seoAssets.favicon },
+        { rel: 'sitemap', href: sitemapUrl },
+      ]}
+      extraMeta={[
+        { name: 'generator', content: Astro.generator },
+        { name: 'theme-color', content: site.brand.primary },
+      ]}
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Inter:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <slot name="head" />
+  </head>
+  <body class={bodyClass}>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <Nav />
+    <main id="main-content">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

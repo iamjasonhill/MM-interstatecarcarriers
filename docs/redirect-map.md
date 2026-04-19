@@ -47,12 +47,22 @@ These are the first working assumptions based on the live-site checks from 2026-
 
 These should not be blindly restored one-for-one without checking search demand and internal-link value, but they are good candidates for a smaller evergreen content set in Astro.
 
+Status update:
+
+- these pages now exist in the Astro rebuild as first-class pages
+- redirect planning for them is no longer a blocker for the Astro build itself
+
 ### Route pages
 
 - `car-transport-*`
-  working assumption: keep the strongest indexed routes, consolidate weak duplicates, redirect anything thin or broken
-  current prototype: `/car-transport-sydney-melbourne/`
-  pattern decision: use this page as the base route template for the indexed route lane, then adapt the content and planning logic by corridor
+  current implementation: imported source-led Astro route system
+  pattern decision: use the Sydney-to-Melbourne route as the originating base pattern, then render the indexed lane through the dynamic route template with corridor-aware copy logic
+  current status:
+  - `686` route source files imported
+  - `688` indexed `car-transport-*` URLs accounted for operationally
+  - the two non-route exceptions are:
+    - `/car-transport-express-service/`
+    - `/car-transport-personal-items-allowed/`
 
 ## Technical SEO Replacements Required On Day One
 
@@ -62,12 +72,12 @@ The Astro cutover must replace broken production files with working equivalents:
 - `/sitemap-index.xml`
 - internal navigation that does not point users into dead `404` content URLs
 
-## Known Redirect Planning Gap
+## Remaining Redirect Planning Gap
 
-The site has a substantial WordPress route-page estate under patterns like `car-transport-*`.
+The site still needs a final launch-ready redirect decision for any legacy URLs that will not remain Astro-owned after cutover.
 
-That estate has not been mapped in this scaffold pass yet, so no full redirect schedule should be considered complete until:
+That means the remaining redirect work is now:
 
-- indexed valid URLs are inventoried
-- keep-vs-redirect decisions are made
-- route templates or redirect rules are written and tested
+- verify whether any inherited WordPress pages outside the current Astro build need explicit redirects
+- confirm quote/contact legacy aliases on preview and production
+- verify live redirect behavior after cutover

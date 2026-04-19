@@ -22,19 +22,31 @@ Conclusion:
 This repo now has:
 
 - branded homepage shell
+- support/content pages for the main broken WordPress content URLs
+- first-class legal pages
+- dynamic route system backed by imported WordPress source content
+- `686` imported route source files under `src/data/routes/source/`
 - `@jdevalk/astro-seo-graph`
 - generated sitemap index
 - dynamic robots route
 - generated `llms.txt`
 - fleet-standard migration docs
 
+Validation status:
+
+- `npm run check` passes
+- `npm run build` passes
+- current build emits `696` pages
+- metadata, H1, internal-link, and image-alt checks are clean in the latest build
+
 ## Remaining Cutover Gates
 
-- complete indexed-page and route inventory
-- define redirect behavior for legacy quote/contact and route pages
 - confirm production deployment target and project linkage
 - test public behavior on a preview deployment
-- verify robots, sitemap, and quote handoff on the preview
+- verify homepage, support pages, representative route pages, and quote/contact handoff on the preview
+- verify robots, sitemap, schema, and analytics on the preview
+- finalize redirect behavior for any legacy URLs that will not remain Astro-owned
+- perform live production cutover and then update tracker / `_wp-house` state
 
 ## `_wp-house` Decision
 

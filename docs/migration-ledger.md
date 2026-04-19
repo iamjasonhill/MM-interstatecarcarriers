@@ -4,12 +4,12 @@ Last updated: 2026-04-19
 
 ## Scope
 
-This repo now exists as the first Astro controller scaffold for `interstatecarcarriers.com.au`.
+This repo now exists as the active Astro rebuild controller for `interstatecarcarriers.com.au`.
 
 Current position:
 
 - live public site remains WordPress
-- Astro homepage/controller scaffold now exists locally at `/Users/jasonhill/Projects/websites/MM-interstatecarcarriers.com.au`
+- Astro rebuild now exists locally at `/Users/jasonhill/Projects/websites/MM-interstatecarcarriers.com.au`
 - canonical new-build baseline includes `@jdevalk/astro-seo-graph`, sitemap generation, dynamic robots, and fleet-standard repo paperwork
 
 ## Source Inputs Used
@@ -19,6 +19,8 @@ Current position:
 - `fleet-control/data/state/properties.json`
 - hardened Meridian transport starter from `/Users/jasonhill/Projects/websites/tmp/meridian-transport`
 - live production header checks run on 2026-04-19 against homepage, contact, FAQ/content links, `robots.txt`, and `sitemap_index.xml`
+- Search Console indexed-valid export from `/Users/jasonhill/Downloads/interstatecarcarriers.com.au-Coverage-Valid-2026-04-19.zip`
+- WordPress route-post imports pulled from the live host through `wp-cli`
 
 ## Decisions Made In This Pass
 
@@ -30,17 +32,43 @@ Current position:
 - use `/car-transport-sydney-melbourne/` as the first route-page prototype and the base pattern for the indexed route lane
 - add first-class `/terms/` and `/privacy-policy/` pages so legal/support basics are present in the Astro build from the start
 - use the WordPress route-post importer to preserve original route content into structured source files before rolling out bulk route pages
+- use a dynamic route renderer backed by imported source JSON for the indexed route estate instead of hand-authoring hundreds of individual Astro pages
+
+## Completed In Repo
+
+- homepage, footer, sitemap, robots, and document shell are in place
+- quote and contact handoffs are normalized to the canonical quoting surfaces
+- support/content pages now exist for:
+  - `/vehicle-transport-questions/`
+  - `/car-transport-personal-items-allowed/`
+  - `/car-transport-express-service/`
+  - `/interstate-car-transport-by-rail/`
+  - `/cheapest-interstate-car-transport/`
+  - `/enclosed-car-transport-quote/`
+- legal/support pages now exist for:
+  - `/terms/`
+  - `/privacy-policy/`
+  - `/sitemap/`
+- the indexed route lane is now source-led and imported
+- `686` route source JSON files now exist under `src/data/routes/source/`
+- the `688` indexed `car-transport-*` URLs from Search Console are accounted for operationally:
+  - `686` as route-source imports
+  - `2` as support pages already handled separately:
+    - `/car-transport-express-service/`
+    - `/car-transport-personal-items-allowed/`
+- `npm run check` passes
+- `npm run build` passes
+- `@jdevalk/astro-seo-graph` checks are clean on the full build
 
 ## Still To Be Done
 
-- inventory the indexed WordPress route estate
-- decide which WordPress URLs become Astro pages versus redirects
-- build any required service, FAQ, and route templates
-- reuse the Sydney-to-Melbourne route pattern for the next indexed `car-transport-*` pages, then vary content by corridor rather than inventing a fresh layout each time
-- keep privacy and terms in the current repo contract and write that expectation back into the starter standard
-- keep route imports source-led: extract the original WordPress route text into structured JSON, then map it into the Astro route template instead of generating route copy from scratch
-- confirm deployment target and create the real live repo/project linkage
-- perform live cutover only after coverage and redirect evidence are complete
+- confirm production deployment target and create the real live repo/project linkage
+- produce and verify a preview deployment
+- verify homepage, representative support pages, representative route pages, and quote/contact handoff on preview
+- finalize redirect behavior for any legacy URLs that will not remain as first-class Astro pages
+- verify robots, sitemap, schema, and analytics on preview
+- perform live cutover only after preview, redirect, and controller evidence are complete
+- update `_wp-house` and cutover paperwork after Astro becomes the live controller
 
 ## Live Production Findings On 2026-04-19
 
@@ -66,3 +94,4 @@ Operational interpretation:
 - the current live site is not a stable content surface
 - quote and contact handoff already belong to the quoting platform, not the WordPress site
 - rebuilding this property in Astro is not only a design migration, it is also a production cleanup of broken technical SEO and broken internal-link paths
+- the repo is now structurally ready for preview and cutover work, but WordPress remains the production controller until deploy linkage and verification are complete

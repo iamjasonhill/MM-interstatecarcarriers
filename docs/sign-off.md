@@ -16,7 +16,7 @@ This repo now has the durable closeout artifacts needed for the Interstate Car C
 ## Production Notes
 
 - The Vercel project for this repo currently has no environment variables configured.
-- The deployed public output now includes GA4 on the production homepage and returns a permanent redirect from `/contact-icc/`.
+- A live verification on `2026-04-23` confirmed the deployed public output includes GA4 on the production homepage and returns a permanent redirect from `/contact-icc/`.
 
 ## Closeout Decision
 

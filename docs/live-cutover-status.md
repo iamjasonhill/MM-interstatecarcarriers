@@ -17,7 +17,7 @@ Current reality:
 
 Conclusion:
 
-- the Astro repo is now the live controller, and the remaining closeout work is publication verification and recordkeeping
+- the Astro repo is now the live controller, production verification is complete, and this note remains as the historical cutover record
 
 ## Astro Build Status
 
@@ -52,7 +52,7 @@ Analytics note:
 - GA4 provider support uses the shared `Ga4.astro` pattern
 - `.env.example` exposes GA4 variables with `G-G4FXNJBHPM` plus the analytics contract keys
 - site-consumer fallback wiring resolves GA4 in production output for this site
-- the production homepage now renders GA4 and the legacy `/contact-icc/` alias now redirects permanently to the quoting contact surface
+- a live check on `2026-04-23` confirmed the production homepage renders GA4 and the legacy `/contact-icc/` alias redirects permanently to the quoting contact surface
 
 ## Remaining Cutover Gates
 

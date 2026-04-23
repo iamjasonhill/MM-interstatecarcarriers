@@ -213,6 +213,7 @@ export const site: SiteConfig = {
     { label: 'Services', href: '#services' },
     { label: 'Routes', href: '#routes' },
     { label: 'Why ICC', href: '#why-icc' },
+    { label: 'Contact', href: 'https://quoting.interstatecarcarriers.com.au/contact', external: true },
     { label: 'Sitemap', href: '/sitemap/' },
   ],
   footerSections: [
@@ -222,7 +223,7 @@ export const site: SiteConfig = {
         { label: 'Services', href: '#services' },
         { label: 'Popular routes', href: '#routes' },
         { label: 'Why ICC', href: '#why-icc' },
-        { label: 'Contact', href: '#contact' },
+        { label: 'Contact', href: 'https://quoting.interstatecarcarriers.com.au/contact', external: true },
       ],
     },
     {

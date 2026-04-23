@@ -1,6 +1,26 @@
 {
   "redirects": [
     {
+      "source": "/contact",
+      "destination": "https://quoting.interstatecarcarriers.com.au/contact",
+      "permanent": true
+    },
+    {
+      "source": "/contact/",
+      "destination": "https://quoting.interstatecarcarriers.com.au/contact",
+      "permanent": true
+    },
+    {
+      "source": "/contact-us",
+      "destination": "https://quoting.interstatecarcarriers.com.au/contact",
+      "permanent": true
+    },
+    {
+      "source": "/contact-us/",
+      "destination": "https://quoting.interstatecarcarriers.com.au/contact",
+      "permanent": true
+    },
+    {
       "source": "/contact-icc",
       "destination": "https://quoting.interstatecarcarriers.com.au/contact",
       "permanent": true
@@ -12,4 +32,3 @@
     }
   ]
 }
-

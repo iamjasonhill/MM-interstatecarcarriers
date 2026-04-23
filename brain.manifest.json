@@ -3,7 +3,7 @@
   "site_url": "https://interstatecarcarriers.com.au",
   "framework": "Astro",
   "controller_type": "static_site",
-  "repo_path": "/Users/jasonhill/Projects/websites/MM-interstatecarcarriers.com.au",
+  "repo_path": "/Users/jasonhill/Projects/Business/websites/MM-interstatecarcarriers.com.au",
   "action_adapter": "static-repo-build-deploy",
   "capabilities": ["audit", "verify_analytics", "redeploy_static"],
   "deploy_target": "vercel",

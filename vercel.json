@@ -1,0 +1,15 @@
+{
+  "redirects": [
+    {
+      "source": "/contact-icc",
+      "destination": "https://quoting.interstatecarcarriers.com.au/contact",
+      "permanent": true
+    },
+    {
+      "source": "/contact-icc/",
+      "destination": "https://quoting.interstatecarcarriers.com.au/contact",
+      "permanent": true
+    }
+  ]
+}
+

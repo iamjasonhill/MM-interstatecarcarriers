@@ -1,8 +1,8 @@
 # Interstate Car Carriers Redirect Map
 
-Last updated: 2026-04-19
+Last updated: 2026-04-23
 
-This file records the intended redirect and handoff shape for the Astro rebuild. It is not yet a live redirect inventory because the public site still runs on WordPress.
+This file records the intended redirect and handoff shape for the Astro rebuild.
 
 ## Confirmed External Handoffs
 
@@ -20,9 +20,7 @@ This file records the intended redirect and handoff shape for the Astro rebuild.
 - legacy quote and contact pages
   expected to resolve to the quoting/contact surfaces rather than stay as long-form WordPress pages
 
-## Initial Redirect Decisions
-
-These are the first working assumptions based on the live-site checks from 2026-04-19.
+## Redirect Decisions
 
 ### Keep in Astro
 
@@ -45,12 +43,7 @@ These are the first working assumptions based on the live-site checks from 2026-
 - `/interstate-car-transport-by-rail/`
 - `/cheapest-interstate-car-transport/`
 
-These should not be blindly restored one-for-one without checking search demand and internal-link value, but they are good candidates for a smaller evergreen content set in Astro.
-
-Status update:
-
-- these pages now exist in the Astro rebuild as first-class pages
-- redirect planning for them is no longer a blocker for the Astro build itself
+These pages now exist in the Astro rebuild as first-class pages, so redirect planning for them is no longer a blocker for the build itself.
 
 ### Route pages
 
@@ -79,5 +72,6 @@ The site still needs a final launch-ready redirect decision for any legacy URLs 
 That means the remaining redirect work is now:
 
 - verify whether any inherited WordPress pages outside the current Astro build need explicit redirects
-- confirm quote/contact legacy aliases on preview and production
-- verify live redirect behavior after cutover
+- confirm quote/contact legacy aliases on production
+- verify live redirect behavior after publish
+

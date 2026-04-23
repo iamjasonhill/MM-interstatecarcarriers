@@ -1,6 +1,6 @@
 # Interstate Car Carriers Live Cutover Status
 
-Last updated: 2026-04-19
+Last updated: 2026-04-23
 
 This document applies the shared Astro migration model to `interstatecarcarriers.com.au`.
 
@@ -9,15 +9,15 @@ This document applies the shared Astro migration model to `interstatecarcarriers
 Current reality:
 
 - production domain: `https://interstatecarcarriers.com.au/`
-- current live controller: WordPress
-- current Astro scaffold: `/Users/jasonhill/Projects/websites/MM-interstatecarcarriers.com.au`
-- local manifest: `/Users/jasonhill/Projects/websites/MM-interstatecarcarriers.com.au/brain.manifest.json`
+- current live controller: Astro
+- current Astro scaffold: `/Users/jasonhill/Projects/Business/websites/MM-interstatecarcarriers.com.au`
+- local manifest: `/Users/jasonhill/Projects/Business/websites/MM-interstatecarcarriers.com.au/brain.manifest.json`
 - Vercel project: `mm-interstatecarcarriers`
-- first linked Vercel deployment: `https://mm-interstatecarcarriers-17s1p7h1p-iamjasonhills-projects.vercel.app`
+- production URL: `https://mm-interstatecarcarriers.vercel.app`
 
 Conclusion:
 
-- the Astro repo exists locally, but it is not yet the live controller
+- the Astro repo is now the live controller, and the remaining closeout work is publication verification and recordkeeping
 
 ## Astro Build Status
 
@@ -49,32 +49,25 @@ Validation status:
 Analytics note:
 
 - the shared analytics adapter is now present in code
-- `.env.example` now exposes the analytics contract variables for this repo
-- no provider values are configured yet for this site, so no analytics snippet currently renders
-- remaining gate is provider confirmation plus preview verification, not component implementation
-
-Preview access note:
-
-- direct browser requests to the Vercel deployment currently return deployment protection `401` without a bypass token
-- Vercel-authenticated checks succeed, so the deployment itself is healthy
+- GA4 provider support uses the shared `Ga4.astro` pattern
+- `.env.example` exposes GA4 variables with `G-G4FXNJBHPM` plus the analytics contract keys
+- site-consumer fallback wiring resolves GA4 in production output for this site
+- the remaining gate is publishing the committed state and rechecking the deployed output
 
 ## Remaining Cutover Gates
 
-- confirm production deployment target and project linkage
-- test public behavior on a preview deployment
-- verify homepage, support pages, representative route pages, and quote/contact handoff on the preview
-- verify robots, sitemap, schema, and analytics on the preview
-- decide whether deployment protection should remain on during the broader review phase or be relaxed for easier stakeholder checks
 - finalize redirect behavior for any legacy URLs that will not remain Astro-owned
-- perform live production cutover and then update tracker / `_wp-house` state
+- verify live production output after the committed state is published
+- update tracker / `_wp-house` state if the operating model changes again
 
 ## `_wp-house` Decision
 
 Current decision:
 
-- retain temporarily
+- retire as live controller
 
 Reason:
 
-- WordPress is still the live production controller
-- `_wp-house/sites/interstatecarcarriers-com-au.json` remains the active compatibility record until cutover happens
+- WordPress is no longer the active production controller
+- `_wp-house/sites/interstatecarcarriers-com-au.json` remains as a transitional compatibility record until the final closeout sweep is complete
+

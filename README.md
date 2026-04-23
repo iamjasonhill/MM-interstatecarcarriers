@@ -10,7 +10,7 @@ This folder is the new first-class site home for Interstate Car Carriers inside 
 - framework: Astro
 - target hosting: Vercel
 - local controller path: `MM-interstatecarcarriers.com.au`
-- live production status: WordPress still live, Astro rebuild completed locally and awaiting preview/cutover work
+- live production status: Astro is live, with WordPress retired as the active controller and the final closeout paperwork now in place
 
 ## What This Scaffold Already Covers
 
@@ -53,9 +53,9 @@ npm run import:routes:batches
 
 ## Migration Notes
 
-This repo is now beyond the initial scaffold stage. The core support pages, legal pages, and indexed route archive are in place locally, and the remaining work is now preview, redirect, deploy-linkage, and live cutover rather than basic migration setup.
+This repo is now beyond the initial scaffold stage. The core support pages, legal pages, and indexed route archive are in place, the live controller has moved to Astro, and the remaining work is publication verification plus final repo closeout rather than basic migration setup.
 
-Analytics is now enforced at the repo-contract level too. The shared analytics adapter is present in the document shell, `.env.example` exposes the expected analytics variables, and `npm run check:contract` verifies that contract locally. What is still outstanding is the actual provider decision and live values for this site.
+Analytics is now enforced at the repo-contract level too. The shared analytics adapter is present in the document shell, GA4 wiring is available through `src/components/analytics/Ga4.astro`, `.env.example` exposes the expected GA4 and contract variables, and `npm run check:contract` verifies that contract locally.
 
 ## Repo Paperwork
 

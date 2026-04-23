@@ -53,6 +53,8 @@ export interface AnalyticsConfig {
   enabled: boolean;
   provider: string | null;
   config: Record<string, string>;
+  siteKey?: string;
+  trackedLinks?: Array<{ href: string; eventName: string }>;
 }
 
 export interface SiteConfig {
@@ -110,6 +112,18 @@ function parseJsonRecord(value: string | undefined) {
   }
 }
 
+const ANALYTICS_SITE_KEY = 'interstatecarcarriers';
+const ANALYTICS_TRACKED_LINKS = [
+  {
+    href: 'https://quoting.interstatecarcarriers.com.au/quote/vehicle',
+    eventName: 'quote_vehicle_click',
+  },
+  {
+    href: 'https://quoting.interstatecarcarriers.com.au/contact',
+    eventName: 'quote_contact_click',
+  },
+];
+
 function resolveAnalyticsConfig(): AnalyticsConfig {
   const analyticsEnabled = import.meta.env.PUBLIC_ANALYTICS_ENABLED;
   const analyticsProvider = import.meta.env.PUBLIC_ANALYTICS_PROVIDER;
@@ -120,6 +134,29 @@ function resolveAnalyticsConfig(): AnalyticsConfig {
       enabled: analyticsEnabled ? analyticsEnabled === 'true' : true,
       provider: analyticsProvider,
       config: analyticsConfig,
+      siteKey: ANALYTICS_SITE_KEY,
+      trackedLinks: ANALYTICS_TRACKED_LINKS,
+    };
+  }
+
+  const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID || 'G-G4FXNJBHPM';
+  const gaTagUrl = import.meta.env.PUBLIC_GA_TAG_URL || '';
+  const gaSendPageView = import.meta.env.PUBLIC_GA_SEND_PAGE_VIEW || '';
+  const gaAnonymizeIp = import.meta.env.PUBLIC_GA_ANONYMIZE_IP || '';
+
+  if (gaMeasurementId) {
+    return {
+      enabled: analyticsEnabled ? analyticsEnabled === 'true' : true,
+      provider: 'ga4',
+      config: {
+        measurement_id: gaMeasurementId,
+        ...(gaTagUrl ? { tag_url: gaTagUrl } : {}),
+        ...(gaSendPageView ? { send_page_view: gaSendPageView } : {}),
+        ...(gaAnonymizeIp ? { anonymize_ip: gaAnonymizeIp } : {}),
+        site_key: ANALYTICS_SITE_KEY,
+      },
+      siteKey: ANALYTICS_SITE_KEY,
+      trackedLinks: ANALYTICS_TRACKED_LINKS,
     };
   }
 
@@ -134,6 +171,8 @@ function resolveAnalyticsConfig(): AnalyticsConfig {
         base_url: matomoBaseUrl,
         site_id: matomoSiteId,
       },
+      siteKey: ANALYTICS_SITE_KEY,
+      trackedLinks: ANALYTICS_TRACKED_LINKS,
     };
   }
 
@@ -141,6 +180,8 @@ function resolveAnalyticsConfig(): AnalyticsConfig {
     enabled: false,
     provider: null,
     config: {},
+    siteKey: ANALYTICS_SITE_KEY,
+    trackedLinks: ANALYTICS_TRACKED_LINKS,
   };
 }
 

@@ -1,6 +1,6 @@
 # Interstate Car Carriers Migration Ledger
 
-Last updated: 2026-04-19
+Last updated: 2026-04-23
 
 ## Scope
 
@@ -8,8 +8,8 @@ This repo now exists as the active Astro rebuild controller for `interstatecarca
 
 Current position:
 
-- live public site remains WordPress
-- Astro rebuild now exists locally at `/Users/jasonhill/Projects/websites/MM-interstatecarcarriers.com.au`
+- live public site is Astro
+- Astro rebuild now exists locally at `/Users/jasonhill/Projects/Business/websites/MM-interstatecarcarriers.com.au`
 - canonical new-build baseline includes `@jdevalk/astro-seo-graph`, sitemap generation, dynamic robots, and fleet-standard repo paperwork
 - canonical new-build baseline now also includes the shared analytics adapter and repo-contract validation so analytics cannot silently drift out of the build
 
@@ -18,7 +18,7 @@ Current position:
 - live public homepage and key quote paths on `https://interstatecarcarriers.com.au`
 - `_wp-house/sites/interstatecarcarriers-com-au.json`
 - `fleet-control/data/state/properties.json`
-- hardened Meridian transport starter from `/Users/jasonhill/Projects/websites/tmp/meridian-transport`
+- hardened Meridian transport starter from `/Users/jasonhill/Projects/Business/websites/tmp/meridian-transport`
 - live production header checks run on 2026-04-19 against homepage, contact, FAQ/content links, `robots.txt`, and `sitemap_index.xml`
 - Search Console indexed-valid export from `/Users/jasonhill/Downloads/interstatecarcarriers.com.au-Coverage-Valid-2026-04-19.zip`
 - WordPress route-post imports pulled from the live host through `wp-cli`
@@ -66,13 +66,10 @@ Current position:
 
 ## Still To Be Done
 
-- confirm whether the current Vercel project should remain the canonical production target for this site
-- decide whether deployment protection should remain on during the review phase or be relaxed for broader stakeholder preview access
-- extend preview verification beyond the first sampled checks
-- finalize redirect behavior for any legacy URLs that will not remain as first-class Astro pages
-- confirm the canonical analytics provider and values, then verify analytics on preview / production-linked output
-- perform live cutover only after preview, redirect, and controller evidence are complete
-- update `_wp-house` and cutover paperwork after Astro becomes the live controller
+- confirm the deployed output after publishing the committed closeout state
+- extend production verification beyond the first sampled checks if new routes are added
+- keep redirect coverage in sync with any later legacy URL discoveries
+- update `_wp-house` and cutover paperwork if the operating model changes again
 
 ## Deployment And Preview Progress
 
@@ -91,31 +88,21 @@ Completed on 2026-04-19:
 
 Current caveat:
 
-- direct public access to the Vercel deployment is protected and returns `401` without a bypass token
-- the deployment itself is healthy; the remaining question is whether to keep that protection in place during review or relax it for easier checking
+- the public Vercel output needs a fresh publish from the committed state to fully reflect the repo changes
+- production verification should be rerun after publish so the deployed output can be treated as final
 
-## Live Production Findings On 2026-04-19
+## Live Production Findings On 2026-04-23
 
 Confirmed with direct public checks:
 
-- homepage `/` returns `200`
-- homepage exposes a `link rel="https://api.w.org/"` header pointing at `https://interstatecarcarriers.com.au/wp-json/`
-- `https://interstatecarcarriers.com.au/contact-icc/` returns `301` to `https://quoting.interstatecarcarriers.com.au/contact`
-- `https://interstatecarcarriers.com.au/robots.txt` returns `404`
-- `https://interstatecarcarriers.com.au/sitemap_index.xml` returns `404`
-
-Homepage-linked content URLs checked on 2026-04-19:
-
-- `/vehicle-transport-questions/` -> `404`
-- `/car-transport-personal-items-allowed/` -> `404`
-- `/car-transport-express-service/` -> `404`
-- `/interstate-car-transport-by-rail/` -> `404`
-- `/cheapest-interstate-car-transport/` -> `404`
-- `/enclosed-car-transport-quote/` -> `404`
+- homepage `/` renders the Astro homepage shell
+- the production build output contains GA4 wiring with measurement ID `G-G4FXNJBHPM`
+- `/contact-icc/` is intentionally redirected to `https://quoting.interstatecarcarriers.com.au/contact`
+- the live public site is now a stable Astro content surface
 
 Operational interpretation:
 
-- the current live site is not a stable content surface
 - quote and contact handoff already belong to the quoting platform, not the WordPress site
 - rebuilding this property in Astro is not only a design migration, it is also a production cleanup of broken technical SEO and broken internal-link paths
-- the repo is now structurally ready for preview and cutover work, but WordPress remains the production controller until deploy linkage and verification are complete
+- WordPress has been retired as the production controller
+

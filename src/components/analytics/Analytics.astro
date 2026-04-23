@@ -1,4 +1,5 @@
 ---
+import Ga4 from './Ga4.astro';
 import Matomo from './Matomo.astro';
 import { site } from '../../config/site';
 
@@ -8,6 +9,18 @@ if (!import.meta.env.PROD || !analytics.enabled || !analytics.provider) {
   return null;
 }
 ---
+{
+  analytics.provider === 'ga4' && (
+    <Ga4
+      measurementId={analytics.config.measurement_id}
+      tagUrl={analytics.config.tag_url}
+      sendPageView={analytics.config.send_page_view}
+      anonymizeIp={analytics.config.anonymize_ip}
+      siteKey={analytics.config.site_key || analytics.siteKey}
+      trackedLinks={analytics.trackedLinks}
+    />
+  )
+}
 {
   analytics.provider === 'matomo' && (
     <Matomo

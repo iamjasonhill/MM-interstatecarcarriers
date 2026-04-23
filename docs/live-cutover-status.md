@@ -52,12 +52,11 @@ Analytics note:
 - GA4 provider support uses the shared `Ga4.astro` pattern
 - `.env.example` exposes GA4 variables with `G-G4FXNJBHPM` plus the analytics contract keys
 - site-consumer fallback wiring resolves GA4 in production output for this site
-- the remaining gate is publishing the committed state and rechecking the deployed output
+- the production homepage now renders GA4 and the legacy `/contact-icc/` alias now redirects permanently to the quoting contact surface
 
 ## Remaining Cutover Gates
 
-- finalize redirect behavior for any legacy URLs that will not remain Astro-owned
-- verify live production output after the committed state is published
+- close the GitHub issue and keep this note as a historical record
 - update tracker / `_wp-house` state if the operating model changes again
 
 ## `_wp-house` Decision
@@ -70,4 +69,3 @@ Reason:
 
 - WordPress is no longer the active production controller
 - `_wp-house/sites/interstatecarcarriers-com-au.json` remains as a transitional compatibility record until the final closeout sweep is complete
-

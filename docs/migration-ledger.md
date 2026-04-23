@@ -88,16 +88,16 @@ Completed on 2026-04-19:
 
 Current caveat:
 
-- the public Vercel output needs a fresh publish from the committed state to fully reflect the repo changes
-- production verification should be rerun after publish so the deployed output can be treated as final
+- production verification passed on the live custom domain
+- the repo is ready for issue closure
 
 ## Live Production Findings On 2026-04-23
 
 Confirmed with direct public checks:
 
 - homepage `/` renders the Astro homepage shell
-- the production build output contains GA4 wiring with measurement ID `G-G4FXNJBHPM`
-- `/contact-icc/` is intentionally redirected to `https://quoting.interstatecarcarriers.com.au/contact`
+- the production homepage contains GA4 wiring with measurement ID `G-G4FXNJBHPM`
+- `/contact-icc/` returns a permanent redirect to `https://quoting.interstatecarcarriers.com.au/contact`
 - the live public site is now a stable Astro content surface
 
 Operational interpretation:
@@ -105,4 +105,4 @@ Operational interpretation:
 - quote and contact handoff already belong to the quoting platform, not the WordPress site
 - rebuilding this property in Astro is not only a design migration, it is also a production cleanup of broken technical SEO and broken internal-link paths
 - WordPress has been retired as the production controller
-
+- the closeout loop is complete

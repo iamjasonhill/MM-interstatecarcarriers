@@ -8,5 +8,4 @@
 - Trigger: repo-owned closeout for the Interstate Car Carriers cutover loop
 - Changed: added durable closeout paperwork, normalized indexed coverage notes, and codified the legacy `/contact-icc/` redirect decision in the repo
 - Fixed: stale notes that still described WordPress as the live controller were updated toward the Astro-live state
-- Remaining: publish the committed state and recheck live GA4 rendering on the deployed output before final issue closure
-
+- Remaining: none in repo; close the GitHub issue now that production GA4 and `/contact-icc/` redirect behavior have been verified

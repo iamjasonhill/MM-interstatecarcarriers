@@ -67,11 +67,9 @@ The Astro cutover must replace broken production files with working equivalents:
 
 ## Remaining Redirect Planning Gap
 
-The site still needs a final launch-ready redirect decision for any legacy URLs that will not remain Astro-owned after cutover.
+The `contact-icc` alias is now covered. Any future redirect work should be driven by newly discovered legacy URLs rather than the current closeout set.
 
 That means the remaining redirect work is now:
 
 - verify whether any inherited WordPress pages outside the current Astro build need explicit redirects
-- confirm quote/contact legacy aliases on production
 - verify live redirect behavior after publish
-

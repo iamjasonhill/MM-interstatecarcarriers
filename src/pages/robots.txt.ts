@@ -9,6 +9,7 @@ const body = [
   'User-agent: *',
   'Allow: /',
   '',
+  `Sitemap: ${siteUrl.replace(/\/$/, '')}/sitemap.xml`,
   `Sitemap: ${siteUrl.replace(/\/$/, '')}/sitemap-index.xml`,
   '',
 ].join('\n');

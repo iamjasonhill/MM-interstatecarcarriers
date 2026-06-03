@@ -2,6 +2,15 @@
 
 ## Change Log
 
+### 2026-06-03 19:10 AEST
+
+- Issue: Bossman draft `draft:seo_champion:fix:google:de41f5c7-8c8b-47af-827c-df14aed00921`, `Google issue: sitemap health`
+- Trigger: SEO Champion / Search Console sitemap evidence reported submitted `https://interstatecarcarriers.com.au/sitemap_index.xml` with errors or warnings.
+- Changed: added a permanent Vercel redirect from legacy `/sitemap_index.xml` to the current `/sitemap-index.xml` endpoint.
+- Fixed: the old Google-submitted underscore sitemap URL now has an owning-site compatibility route instead of depending on Google forgetting stale submitted sitemap evidence.
+- Verification: `npm run check:seo` and `npm run build` passed locally.
+- Remaining: deploy to production, verify the live redirect, then allow Google/Search Console to refresh its sitemap evidence.
+
 ### 2026-05-08 08:08 AEST
 
 - Issue: iamjasonhill/MM-fleet-program#47, `[CONTROL] Domain Monitor findings: interstatecarcarriers.com.au`

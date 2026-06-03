@@ -9,6 +9,7 @@ function assert(condition, message) {
 }
 
 const packageJson = JSON.parse(fs.readFileSync(new URL('../package.json', import.meta.url), 'utf8'));
+const vercelConfig = JSON.parse(fs.readFileSync(new URL('../vercel.json', import.meta.url), 'utf8'));
 const astroConfig = fs.readFileSync(new URL('../astro.config.mjs', import.meta.url), 'utf8');
 const siteConfig = fs.readFileSync(new URL('../src/config/site.ts', import.meta.url), 'utf8');
 const layoutSource = fs.readFileSync(
@@ -41,6 +42,16 @@ assert(
 assert(
   robotsRoute.includes('sitemap-index.xml'),
   'robots.txt route must publish the sitemap-index.xml location',
+);
+assert(
+  Array.isArray(vercelConfig.redirects) &&
+    vercelConfig.redirects.some(
+      (redirect) =>
+        redirect.source === '/sitemap_index.xml' &&
+        redirect.destination === '/sitemap-index.xml' &&
+        redirect.permanent === true,
+    ),
+  'vercel.json must permanently redirect legacy /sitemap_index.xml to /sitemap-index.xml',
 );
 assert(
   homepageSource.includes('Interstate car transport without the guesswork.'),

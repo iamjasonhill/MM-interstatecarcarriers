@@ -8,8 +8,8 @@
 - Trigger: SEO Champion / Search Console sitemap evidence reported submitted `https://interstatecarcarriers.com.au/sitemap_index.xml` with errors or warnings.
 - Changed: added a permanent Vercel redirect from legacy `/sitemap_index.xml` to the current `/sitemap-index.xml` endpoint.
 - Fixed: the old Google-submitted underscore sitemap URL now has an owning-site compatibility route instead of depending on Google forgetting stale submitted sitemap evidence.
-- Verification: `npm run check:seo` and `npm run build` passed locally.
-- Remaining: deploy to production, verify the live redirect, then allow Google/Search Console to refresh its sitemap evidence.
+- Verification: `npm run check:seo` and `npm run build` passed locally; production `https://interstatecarcarriers.com.au/sitemap_index.xml` now returns a `308` redirect to `https://interstatecarcarriers.com.au/sitemap-index.xml`.
+- Remaining: allow Google/Search Console to refresh its sitemap evidence.
 
 ### 2026-05-08 08:08 AEST
 

@@ -5,6 +5,11 @@ import { fileURLToPath } from 'node:url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const root = path.resolve(__dirname, '..');
+const vehicleAssistantLoader = 'src="https://quotes.moveroo.com.au/embed/vehicle-assistant/v1/loader.js"';
+
+function countOccurrences(haystack, needle) {
+  return haystack.split(needle).length - 1;
+}
 
 async function read(relativePath) {
   return fs.readFile(path.join(root, relativePath), 'utf8');
@@ -39,6 +44,22 @@ async function main() {
   checks.push([
     'SiteDocument renders Analytics',
     siteDocument.includes('<Analytics />'),
+  ]);
+  checks.push([
+    'vehicle assistant uses central loader',
+    siteDocument.includes(vehicleAssistantLoader),
+  ]);
+  checks.push([
+    'vehicle assistant loads once in site document',
+    countOccurrences(siteDocument, vehicleAssistantLoader) === 1,
+  ]);
+  checks.push([
+    'vehicle assistant channel is chatbot-widget',
+    siteDocument.includes('data-channel="chatbot-widget"'),
+  ]);
+  checks.push([
+    'vehicle assistant surface is main-domain-sitewide',
+    siteDocument.includes('data-surface="main-domain-sitewide"'),
   ]);
   checks.push([
     'SiteDocument links RSS feed',

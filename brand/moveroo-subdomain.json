@@ -1,0 +1,188 @@
+{
+  "source_system": "site-repo-moveroo-subdomain-handoff",
+  "contract_version": 1,
+  "hostnames": ["quoting.interstatecarcarriers.com.au"],
+  "property_slug": "interstatecarcarriers-com-au",
+  "surface_slug": "interstate-car-carriers-quoting",
+  "surface_type": "quote",
+  "canonical_role": "primary",
+  "canonical_hostname": "quoting.interstatecarcarriers.com.au",
+  "brand": {
+    "display_name": "Interstate Car Carriers",
+    "brand_key": "interstatecarcarriers",
+    "mark_text": "ICC",
+    "tagline": "Australia-wide vehicle transport for standard, prestige, and specialist vehicles."
+  },
+  "copy": {
+    "eyebrow": "Interstate Car Carriers quotes",
+    "headline": "Interstate car transport without the guesswork",
+    "subheading": "Start with a fast vehicle quote for standard moves, or contact the team when the job needs enclosed, prestige, non-drivable, or specialist coordination.",
+    "primary_cta_label": "Get a vehicle quote",
+    "secondary_cta_label": "Contact the quote team",
+    "footer_blurb": "Australia-wide vehicle transport for open, enclosed, prestige, and specialist moves.",
+    "contact_page": {
+      "hero_heading": "Talk to Interstate Car Carriers",
+      "hero_subheading": "Send the vehicle, route, and timing details and the team will help choose the right quote path.",
+      "quote_section_heading": "Ready for a price first?",
+      "quote_section_body": "Use the vehicle quote flow for standard interstate car transport details.",
+      "quote_primary_cta_label": "Get a vehicle quote"
+    }
+  },
+  "theme": {
+    "theme_key": "interstatecarcarriers",
+    "fonts": {
+      "body_family": "Inter, system-ui, sans-serif",
+      "heading_family": "Barlow Condensed, Impact, sans-serif"
+    },
+    "colors": {
+      "accent": "#3B8FD6",
+      "accent_strong": "#2B73B1",
+      "background": "#F6F8FB",
+      "surface": "#FFFFFF",
+      "text": "#0A0D10",
+      "muted_text": "#42505C",
+      "border": "#D7E1EB",
+      "header_background": "#0F1215",
+      "header_border": "#3B8FD6",
+      "header_text": "#E8EEF5",
+      "header_muted_text": "#9AA9B7",
+      "header_link": "#F7FBFF",
+      "footer_background": "#11161D",
+      "footer_border": "#3B8FD6",
+      "footer_text": "#E8EEF5",
+      "footer_muted_text": "#9AA9B7",
+      "footer_link": "#F7FBFF",
+      "hero_gradient_start": "#11161D",
+      "hero_gradient_mid": "#10263C",
+      "hero_gradient_end": "#0C0F13",
+      "hero_text": "#F7FBFF"
+    },
+    "radius_scale": "0.375rem",
+    "shadow_style": "soft",
+    "exact_tokens": {
+      "primary_cta": {
+        "background": "#3B8FD6",
+        "text": "#FFFFFF",
+        "border": "#3B8FD6"
+      },
+      "secondary_cta": {
+        "background": "#E8F3FC",
+        "text": "#0F3D66",
+        "border": "#B9D7EF"
+      },
+      "dark_card": {
+        "background": "#0F1215",
+        "text": "#E8EEF5",
+        "muted_text": "#9AA9B7",
+        "border": "#3B8FD6"
+      },
+      "form_panel": {
+        "background": "#FFFFFF",
+        "text": "#0A0D10",
+        "muted_text": "#42505C",
+        "border": "#D7E1EB",
+        "focus": "#3B8FD6",
+        "selected_background": "#E8F3FC"
+      }
+    }
+  },
+  "visual_identity": {
+    "mark": {
+      "type": "text",
+      "text": "ICC",
+      "treatment": "uppercase compact transport mark with a steel-blue dot or rule when space allows"
+    },
+    "motifs": [
+      "dispatch-board lane cards",
+      "interstate route corridors",
+      "open and enclosed vehicle carrier references"
+    ],
+    "voice": [
+      "clear",
+      "operational",
+      "route-aware",
+      "vehicle-transport specific"
+    ]
+  },
+  "surface_design": {
+    "status": "approved",
+    "preferred_mode": "light",
+    "composition_profile": "vehicle_quote_shell",
+    "visual_profile": "dark_steel_vehicle_transport",
+    "surface_density": "compact",
+    "hero_treatment": "compact dark shell with steel-blue action, keeping the first form step quickly reachable on mobile",
+    "form_treatment": "light form cards with steel-blue focus and selected-choice states",
+    "shell_treatment": "dark charcoal header and footer with steel-blue divider accents"
+  },
+  "navigation": {
+    "show_household_quote_link": true,
+    "show_vehicle_quote_link": true,
+    "show_booking_link": true,
+    "show_contact_link": true,
+    "show_customer_portal_link": true,
+    "show_customer_portal_in_header": false,
+    "show_provider_login_link": false,
+    "show_admin_link": false
+  },
+  "navigation_intent": {
+    "primary_journey": "vehicle_quote",
+    "secondary_journeys": [
+      "household_quote",
+      "booking",
+      "contact",
+      "customer_portal"
+    ],
+    "link_prominence": {
+      "vehicle_quote": "primary",
+      "household_quote": "secondary",
+      "booking": "secondary",
+      "contact": "secondary",
+      "customer_portal": "footer_only"
+    }
+  },
+  "behavior": {
+    "show_phone_publicly": true,
+    "show_email_publicly": true,
+    "prefer_contact_page_over_direct_contact": true,
+    "allow_customer_portal_links": true,
+    "allow_provider_login_links": false,
+    "allow_admin_links": false
+  },
+  "links": {
+    "primary_cta_route": "quote.vehicle.index",
+    "household_quote_url": "/quote/household",
+    "vehicle_quote_url": "/quote/vehicle",
+    "booking_url": "/booking/create",
+    "contact_url": "/contact",
+    "customer_portal_url": "/customer/login",
+    "support_url": "/contact"
+  },
+  "contact": {
+    "public_phone": "+61721432557",
+    "public_phone_display": "+61 7 2143 2557",
+    "public_phone_href": "tel:+61721432557",
+    "public_email": "removals@moveroo.com.au",
+    "public_email_href": "mailto:removals@moveroo.com.au",
+    "buttons": [
+      {
+        "label": "+61 7 2143 2557",
+        "href": "tel:+61721432557",
+        "type": "phone"
+      },
+      {
+        "label": "removals@moveroo.com.au",
+        "href": "mailto:removals@moveroo.com.au",
+        "type": "email"
+      }
+    ]
+  },
+  "analytics": {
+    "status": "linked",
+    "runtime_context_key": "interstatecarcarriers"
+  },
+  "provenance": {
+    "source_repo": "MM-interstatecarcarriers.com.au",
+    "source_homepage": "src/pages/index.astro",
+    "source_tokens": "src/styles/tokens.css"
+  }
+}

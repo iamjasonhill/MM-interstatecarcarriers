@@ -8,7 +8,7 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && node ./scripts/indexnow-submit.mjs --auto",
     "preview": "astro preview",
     "check": "astro check",
     "check:contract": "node ./scripts/check-contract.mjs",
@@ -16,7 +16,9 @@
     "import:routes": "node ./scripts/import-icc-route-sources.mjs",
     "import:routes:batches": "node ./scripts/import-icc-route-batches.mjs",
     "lint": "astro check",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "indexnow:dry-run": "node ./scripts/indexnow-submit.mjs --dry-run",
+    "indexnow:submit": "node ./scripts/indexnow-submit.mjs --live --force"
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.18",

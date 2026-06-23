@@ -1,35 +1,45 @@
 {
-  "schema": "bossman-site-manifest.v1",
-  "domain": "interstatecarcarriers.com.au",
-  "brandName": "Interstate Car Carriers",
-  "productionUrl": "https://interstatecarcarriers.com.au",
-  "repo": "iamjasonhill/MM-interstatecarcarriers",
-  "platform": "astro",
-  "deployTarget": "Vercel",
-  "localPath": "/Users/jasonhill/Projects/Business/websites/MM-interstatecarcarriers.com.au",
-  "owner": "site-repo",
-  "quoteTargets": [
-    "https://quotes.moveroo.com.au/embed/vehicle-assistant/v1/loader.js"
-  ],
-  "legalPages": [
-    "/privacy-policy/",
-    "/terms/"
-  ],
-  "search": {
-    "status": "not-applicable"
-  },
-  "standards": {
-    "legalPages": "moveroo-aligned",
-    "imageQuality": "brand-pass-required",
-    "languageQuality": "basic-hygiene-required",
-    "search": "not-applicable",
-    "quoteLinkSecurity": "quote-subdomain-required",
-    "astroBuild": "static-astro"
-  },
-  "evidence": {
-    "brandTokens": "brand/tokens.json",
-    "signOff": "docs/sign-off.md"
-  },
-  "notes": "Bossman site manifest for repo-owned implementation truth. Bossman imports this as evidence but does not overwrite accepted truth without review.",
-  "updatedAt": "2026-06-18"
+	"schema": "bossman-site-manifest.v1",
+	"domain": "interstatecarcarriers.com.au",
+	"brandName": "Interstate Car Carriers",
+	"productionUrl": "https://interstatecarcarriers.com.au",
+	"repo": "iamjasonhill/MM-interstatecarcarriers",
+	"platform": "astro",
+	"deployTarget": "Vercel",
+	"localPath": "/Users/jasonhill/Projects/Business/websites/MM-interstatecarcarriers.com.au",
+	"owner": "site-repo",
+	"quoteTargets": [
+		"https://quotes.moveroo.com.au/embed/vehicle-assistant/v1/loader.js"
+	],
+	"legalPages": [
+		"/privacy-policy/",
+		"/terms/"
+	],
+	"search": {
+		"status": "not-applicable"
+	},
+	"standards": {
+		"legalPages": "moveroo-aligned",
+		"imageQuality": "brand-pass-required",
+		"languageQuality": "basic-hygiene-required",
+		"search": "not-applicable",
+		"quoteLinkSecurity": "quote-subdomain-required",
+		"astroBuild": "static-astro"
+	},
+	"evidence": {
+		"brandTokens": "brand/tokens.json",
+		"signOff": "docs/sign-off.md"
+	},
+	"notes": "Bossman site manifest for repo-owned implementation truth. Bossman imports this as evidence but does not overwrite accepted truth without review.",
+	"updatedAt": "2026-06-23",
+	"indexNow": {
+		"status": "auto",
+		"submissionApproved": true,
+		"submissionMode": "production_deploy_sitemap",
+		"endpoint": "https://api.indexnow.org/indexnow",
+		"maxUrlsPerBatch": 10000,
+		"key": "indexnow-interstatecarcarriers-com-au-5975428f0dd7ac0da611ffd9",
+		"keyFile": "public/indexnow-interstatecarcarriers-com-au-5975428f0dd7ac0da611ffd9.txt",
+		"keyFileUrl": "https://interstatecarcarriers.com.au/indexnow-interstatecarcarriers-com-au-5975428f0dd7ac0da611ffd9.txt"
+	}
 }

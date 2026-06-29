@@ -68,6 +68,24 @@ const pageSchemas = [
   },
   {
     '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: toAbsoluteUrl('/'),
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: content.title,
+        item: toAbsoluteUrl(content.canonicalPath),
+      },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
     '@type': 'Service',
     '@id': toAbsoluteUrl(`${content.canonicalPath}#service`),
     name: content.title,
@@ -95,6 +113,12 @@ const pageSchemas = [
   canonicalPath={content.canonicalPath}
   schemas={pageSchemas}
 >
+  <nav class="container breadcrumbs" aria-label="Breadcrumb">
+    <ol>
+      <li><a href="/">Home</a></li>
+      <li><span aria-current="page">{content.title}</span></li>
+    </ol>
+  </nav>
   <RoutePageTemplate
     heroEyebrow={content.heroEyebrow}
     title={content.title}

@@ -9,7 +9,9 @@
   "localPath": "/Users/jasonhill/Projects/Business/websites/MM-interstatecarcarriers.com.au",
   "owner": "site-repo",
   "quoteTargets": [
-    "https://quotes.moveroo.com.au/embed/vehicle-assistant/v1/loader.js"
+    "https://quoting.interstatecarcarriers.com.au/contact",
+    "https://quoting.interstatecarcarriers.com.au/quote/household",
+    "https://quoting.interstatecarcarriers.com.au/quote/vehicle"
   ],
   "legalPages": [
     "/privacy-policy/",

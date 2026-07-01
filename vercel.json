@@ -18,6 +18,14 @@
         {
           "key": "Permissions-Policy",
           "value": "camera=(), microphone=(), geolocation=(), interest-cohort=()"
+        },
+        {
+          "key": "Link",
+          "value": "</agents/>; rel=\"help\"; type=\"text/html\"; title=\"Interstate Car Carriers Agent/API documentation\", </index.md>; rel=\"alternate\"; type=\"text/markdown\"; title=\"Markdown homepage summary\", </llms.txt>; rel=\"alternate\"; type=\"text/plain\"; title=\"LLMs guidance\", </.well-known/llms.txt>; rel=\"alternate\"; type=\"text/plain\"; title=\"Well-known LLMs guidance\", </.well-known/ai-catalog.json>; rel=\"service-desc\"; type=\"application/json\"; title=\"Marketing site AI catalog\", </.well-known/agent-skills/index.json>; rel=\"service-desc\"; type=\"application/json\"; title=\"Agent skills discovery index\", </bossman-site-manifest.json>; rel=\"service-desc\"; type=\"application/json\"; title=\"Bossman site manifest\", </quote-capability.json>; rel=\"service-desc\"; type=\"application/json\"; title=\"Quote capability manifest\", </.well-known/ai-plugin.json>; rel=\"service-desc\"; type=\"application/json\"; title=\"Quote AI plugin compatibility manifest\", </openapi.json>; rel=\"service-desc\"; type=\"application/vnd.oai.openapi+json\"; title=\"Quote OpenAPI description\""
+        },
+        {
+          "key": "Vary",
+          "value": "Accept"
         }
       ]
     }
@@ -56,6 +64,26 @@
     {
       "source": "/contact-icc/",
       "destination": "https://quoting.interstatecarcarriers.com.au/contact",
+      "permanent": true
+    },
+    {
+      "source": "/openapi.json",
+      "destination": "https://quoting.interstatecarcarriers.com.au/openapi.json",
+      "permanent": true
+    },
+    {
+      "source": "/.well-known/openapi.json",
+      "destination": "https://quoting.interstatecarcarriers.com.au/.well-known/openapi.json",
+      "permanent": true
+    },
+    {
+      "source": "/quote-capability.json",
+      "destination": "https://quoting.interstatecarcarriers.com.au/quote-capability.json",
+      "permanent": true
+    },
+    {
+      "source": "/.well-known/ai-plugin.json",
+      "destination": "https://quoting.interstatecarcarriers.com.au/.well-known/ai-plugin.json",
       "permanent": true
     }
   ]

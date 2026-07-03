@@ -1,6 +1,20 @@
 ---
 const title = "Interstate Car Carriers Agent/API";
 const description = "Interstate Car Carriers publishes agent-readable discovery resources for customer-authorised household moving quotes, vehicle transport quotes, callbacks, and quote API documentation.";
+const breadcrumbItems = [
+  { name: "Home", url: "https://interstatecarcarriers.com.au/" },
+  { name: "Agents", url: "https://interstatecarcarriers.com.au/agents/" },
+];
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: breadcrumbItems.map((item, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: item.name,
+    item: item.url,
+  })),
+};
 ---
 <!doctype html>
 <html lang="en">
@@ -10,6 +24,7 @@ const description = "Interstate Car Carriers publishes agent-readable discovery 
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={Astro.url.href} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
     <style>
       :root { color-scheme: light; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #17202a; background: #f7f4ee; }
       body { margin: 0; }
@@ -24,10 +39,20 @@ const description = "Interstate Car Carriers publishes agent-readable discovery 
       .grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); margin-top: 18px; }
       .card { border: 1px solid #ddd4c7; border-radius: 8px; padding: 16px; background: #fffaf2; }
       .card h3 { margin: 0 0 8px; font-size: 1rem; }
+      .breadcrumbs { margin: 0 0 28px; font-size: 0.95rem; }
+      .breadcrumbs ol { display: flex; flex-wrap: wrap; gap: 0.65rem; list-style: none; margin: 0; padding: 0; }
+      .breadcrumbs li { align-items: center; display: inline-flex; gap: 0.65rem; }
+      .breadcrumbs li:not(:last-child)::after { color: #8a7d6c; content: "/"; }
     </style>
   </head>
   <body>
     <main>
+      <nav aria-label="Breadcrumb" class="breadcrumbs">
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li><span aria-current="page">Agents</span></li>
+        </ol>
+      </nav>
       <h1>{title}</h1>
       <p class="lede">{description}</p>
       <h2>Supported Agent Actions</h2>

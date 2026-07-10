@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+bossman_helper="/Users/jasonhill/Projects/Systems/bossman-laravel-v2/scripts/bossman-site-context"
+
+if [[ ! -x "$bossman_helper" ]]; then
+  echo "Bossman site-context helper is unavailable at $bossman_helper" >&2
+  exit 1
+fi
+
+cd "$repo_root"
+exec "$bossman_helper" "$@"
